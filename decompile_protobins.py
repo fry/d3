@@ -1,18 +1,3 @@
-# TODO:
-# FileDescriptorProto:
-# - message_type
-# - enum_type
-# - service
-# - extension
-# - options
-# DescriptorProto
-# - field
-# - extension
-# - nested_type
-# - enum_type
-# - extension_range
-# - options
-
 import os
 import sys
 import google.protobuf.descriptor_pb2 as pb2
@@ -74,7 +59,7 @@ class ProtobinDecompiler:
 	def decompile_file_descriptor(self, out, descriptor):
 		# deserialize package name and dependencies
 		if descriptor.HasField("package"):
-			self.write(out, "package %s;\n\n" % descriptor.package)
+			self.write(out, "package %s;\n" % descriptor.package)
 
 		for dep in descriptor.dependency:
 			self.write(out, "import \"%s\";\n" % dep)
