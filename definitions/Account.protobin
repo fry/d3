@@ -1,0 +1,29 @@
+
+Account.proto
+D3.AccountAttributeSerializer.protoItems.protoOnlineService.protoItemCrafting.proto"’
+BannerConfiguration
+banner_index (:0
+
+sigil_main (:0
+sigil_accent (:-1
+pattern_color_index (:0!
+background_color_index (:0
+sigil_color_index (:0
+placement_index (:0
+pattern (:0 
+use_sigil_variant	 (:false"È
+Digest
+version (7
+last_played_hero_id (2.D3.OnlineService.EntityId=
+banner_configuration (2.D3.Account.BannerConfiguration
+flags (:0"#
+Flags
+HARDCORE_HERO_UNLOCKED"Ð
+SavedDefinition
+version ("
+digest (2.D3.Account.DigestA
+saved_attributes (2'.D3.AttributeSerializer.SavedAttributes5
+normal_shared_saved_items (2.D3.Items.ItemList7
+hardcore_shared_saved_items (2.D3.Items.ItemList=
+crafter_saved_data (2!.D3.ItemCrafting.CrafterSavedData
+seen_tutorials (

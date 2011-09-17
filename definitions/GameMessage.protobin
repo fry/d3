@@ -1,0 +1,31 @@
+
+GameMessage.protoD3.GameMessage
+Hero.protoOnlineService.protoSettings.protoAccount.proto"f
+HeroDigestList.
+
+account_id (2.D3.OnlineService.EntityId$
+digest_list (2.D3.Hero.Digest"x
+ClientToonSettings+
+toon_id (2.D3.OnlineService.EntityId5
+client_toon_settings (2.D3.Client.ToonSettings"D
+HeroDigestListRequest+
+toon_id (2.D3.OnlineService.EntityId"x
+HeroDigestResponse+
+toon_id (2.D3.OnlineService.EntityId
+success ($
+hero_digest (2.D3.Hero.Digest"Q
+HeroDigestListResponse7
+digest_list (2".D3.GameMessage.HeroDigestResponse"U
+PlayerBanner
+player_index (/
+banner (2.D3.Account.BannerConfiguration"|
+SaveBannerConfiguration/
+banner (2.D3.Account.BannerConfiguration
+
+slot_index (:0
+make_active (:true"i
+HeroDigestBanner$
+hero_digest (2.D3.Hero.Digest/
+banner (2.D3.Account.BannerConfiguration"G
+GameCurrentPlayers1
+players (2 .D3.GameMessage.HeroDigestBanner

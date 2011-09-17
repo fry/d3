@@ -1,0 +1,100 @@
+
+
+Hero.protoD3.HeroAttributeSerializer.protoHireling.protoItems.protoOnlineService.proto"j
+
+VisualItem
+gbid (:-1
+dye_type (:0
+item_effect_type (:0
+effect_level (:-1";
+VisualEquipment(
+visual_item (2.D3.Hero.VisualItem"A
+QuestHistoryEntry
+	sno_quest (:-1
+
+difficulty (:0"]
+QuestRewardHistoryEntry
+	sno_quest (:-1
+step_uid (:-1
+
+difficulty (:0"È
+Digest
+version (+
+hero_id (2.D3.OnlineService.EntityId
+	hero_name (	
+
+gbid_class (
+level (
+player_flags (2
+visual_equipment (2.D3.Hero.VisualEquipment1
+quest_history (2.D3.Hero.QuestHistoryEntry
+last_played_act
+ (
+highest_unlocked_act (
+last_played_difficulty (#
+highest_unlocked_difficulty (
+last_played_quest (
+last_played_quest_step (
+time_played (:0"@
+HotbarButtonData
+	sno_power (:-1
+	gbid_item (:-1"X
+SkillKeyMapping
+	sno_power (:-1
+	id_hotkey (:-1
+skill_button (:0"š
+
+SavedQuest
+	sno_quest (:-1
+
+difficulty (:0
+current_step_uid (:-1
+objective_state (B#
+failure_condition_state (B"'
+LearnedLore
+sno_lore_learned ("\
+SavedConversations%
+played_conversations_bitfield (
+sno_saved_conversations ("e
+SavePointData_Proto
+	sno_world (:-1
+savepoint_number (:-1
+creates_portal (:0"â
+	SavedData<
+hotbar_button_assignments (2.D3.Hero.HotbarButtonData/
+skill_key_map (2.D3.Hero.SkillKeyMapping
+time_played (:0
+activated_waypoints (:03
+hireling_saved_data (2.D3.Hireling.SavedData
+last_level_time (:0*
+learned_lore (2.D3.Hero.LearnedLore8
+saved_conversations (2.D3.Hero.SavedConversations
+sno_active_skills	 (
+
+sno_traits
+ (
+seen_tutorials (0
+
+save_point (2.D3.Hero.SavePointData_Proto"6
+
+Timestamps
+create_time (
+delete_time ("»
+SavedDefinition
+version (
+digest (2.D3.Hero.DigestA
+saved_attributes (2'.D3.AttributeSerializer.SavedAttributes&
+
+saved_data (2.D3.Hero.SavedData(
+saved_quest (2.D3.Hero.SavedQuest!
+items (2.D3.Items.ItemList>
+quest_reward_history (2 .D3.Hero.QuestRewardHistoryEntry"#
+NameSequence
+sequence (:0"
+NameText
+name (	"w
+Escrow
+version (&
+	generator (2.D3.Items.Generator%
+	hero_data (2.D3.Hero.SavedData
+state (

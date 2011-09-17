@@ -1,0 +1,74 @@
+
+#service/channel/channel_types.protobnet.protocol.channellib/protocol/attribute.protolib/protocol/entity.protolib/protocol/invitation.proto"U
+Message5
+	attribute (2".bnet.protocol.attribute.Attribute
+role (*dêN"ï
+ChannelDescription+
+
+channel_id (2.bnet.protocol.EntityId
+current_members (2
+state (2#.bnet.protocol.channel.ChannelState*dêN"É
+ChannelInfo>
+description (2).bnet.protocol.channel.ChannelDescription-
+member (2.bnet.protocol.channel.Member*dêN"o
+GetChannelInfoRequest)
+agent_id (2.bnet.protocol.EntityId+
+
+channel_id (2.bnet.protocol.EntityId"R
+GetChannelInfoResponse8
+channel_info (2".bnet.protocol.channel.ChannelInfo"
+GetChannelIdRequest"C
+GetChannelIdResponse+
+
+channel_id (2.bnet.protocol.EntityId"ª
+CreateChannelRequest/
+agent_identity (2.bnet.protocol.Identity2
+state (2#.bnet.protocol.channel.ChannelState+
+
+channel_id (2.bnet.protocol.EntityId
+	object_id ("W
+CreateChannelResponse
+	object_id (+
+
+channel_id (2.bnet.protocol.EntityId"π
+JoinChannelRequest/
+agent_identity (2.bnet.protocol.Identity+
+
+channel_id (2.bnet.protocol.EntityId
+	object_id (2
+friend_account_id (2.bnet.protocol.EntityId"á
+JoinChannelResponse
+	object_id ((
+require_friend_validation (:false3
+privileged_account (2.bnet.protocol.EntityId"N
+FindChannelRequest8
+filter (2(.bnet.protocol.attribute.AttributeFilter"Q
+FindChannelResponse:
+channel (2).bnet.protocol.channel.ChannelDescription"û
+ChannelState
+max_members (
+min_members (5
+	attribute (2".bnet.protocol.attribute.Attribute8
+
+invitation (2$.bnet.protocol.invitation.Invitation
+max_invitations (
+reason ([
+privacy_level (20.bnet.protocol.channel.ChannelState.PrivacyLevel:PRIVACY_LEVEL_OPEN
+public (
+name	 (	
+delegate_name
+ (	
+channel_type (	:default"ë
+PrivacyLevel
+PRIVACY_LEVEL_OPEN,
+(PRIVACY_LEVEL_OPEN_INVITATION_AND_FRIEND!
+PRIVACY_LEVEL_OPEN_INVITATION
+PRIVACY_LEVEL_CLOSED*dêN"p
+MemberState5
+	attribute (2".bnet.protocol.attribute.Attribute
+role (
+
+privileges (:0*dêN"f
+Member)
+identity (2.bnet.protocol.Identity1
+state (2".bnet.protocol.channel.MemberState

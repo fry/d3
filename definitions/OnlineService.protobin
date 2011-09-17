@@ -1,0 +1,35 @@
+
+OnlineService.protoD3.OnlineService"1
+EntityId
+id_high (:0
+id_low (:0"C
+GameId
+factory (:0
+id_high (:0
+id_low (:0"/
+ItemId
+id_high (:0
+id_low (:0"ñ
+CoopCreateParams
+difficulty_level (:-1
+act (:0
+	sno_quest (:-1
+quest_step_id (:-1<
+resume_from_save_hero_id (2.D3.OnlineService.EntityId
+open_to_friends (:false
+open_to_friends_message (	"(
+PvPCreateParams
+	sno_world (:-1"Ê
+GameCreateParams
+	game_type (
+creation_flags (:00
+coop (2".D3.OnlineService.CoopCreateParams.
+pvp (2!.D3.OnlineService.PvPCreateParams
+name (	
+
+is_private (:true"`
+HeroCreateParams
+
+gbid_class (:-1
+is_hardcore (:false
+	is_female (:false

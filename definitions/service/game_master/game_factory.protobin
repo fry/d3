@@ -1,0 +1,8 @@
+
+&service/game_master/game_factory.protobnet.protocol.game_masterlib/protocol/attribute.protolib/protocol/entity.proto"‰
+GameProperties8
+filter (2(.bnet.protocol.attribute.AttributeFilter
+create (:false
+open (:true
+
+program_id (

@@ -1,0 +1,10 @@
+
+lib/protocol/entity.protobnet.protocol"%
+EntityId
+high (
+low ("“
+Identity+
+
+account_id (2.bnet.protocol.EntityId0
+game_account_id (2.bnet.protocol.EntityId(
+toon_id (2.bnet.protocol.EntityId

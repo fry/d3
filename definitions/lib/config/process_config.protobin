@@ -1,0 +1,42 @@
+
+lib/config/process_config.protobnet.protocol.configlib/rpc/rpc.proto""
+Var
+name (	
+value (	"%
+Resource
+name (	
+url (	"C
+ProgramResources/
+program (2.bnet.protocol.config.Resource"c
+ServerAddress'
+address (2.bnet.protocol.Address
+process_name (	
+server_name (	"|
+	ServerSet;
+server_address (2#.bnet.protocol.config.ServerAddress
+exported_service (	
+imported_service (	"1
+SupplementalService
+name (	
+port ("f
+ListenPoint
+port (
+address (	:0.0.0.0/
+accept (2.bnet.protocol.config.ServerSet"$
+ServiceShard
+process_name (	"]
+ServiceConfig
+name (	
+url (	1
+shard (2".bnet.protocol.config.ServiceShard"„
+RPCServerConfig
+name (	1
+listen (2!.bnet.protocol.config.ListenPoint0
+connect (2.bnet.protocol.config.ServerSet"µ
+ProcessConfig
+process_name (	5
+server (2%.bnet.protocol.config.RPCServerConfig0
+resource (2.bnet.protocol.config.Resource4
+service (2#.bnet.protocol.config.ServiceConfig&
+var (2.bnet.protocol.config.VarG
+supplemental_service (2).bnet.protocol.config.SupplementalService

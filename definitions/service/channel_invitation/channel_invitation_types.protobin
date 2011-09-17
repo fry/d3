@@ -1,0 +1,21 @@
+
+9service/channel_invitation/channel_invitation_types.proto bnet.protocol.channel_invitationlib/protocol/invitation.protolib/protocol/entity.proto#service/channel/channel_types.proto"Š
+
+InvitationF
+channel_description (2).bnet.protocol.channel.ChannelDescription
+reserved (:false
+rejoin (:false
+service_type (2n
+channel_invitation$.bnet.protocol.invitation.Invitationi (2,.bnet.protocol.channel_invitation.Invitation"ƒ
+SendInvitationRequest+
+
+channel_id (2.bnet.protocol.EntityId
+reserved (
+rejoin (
+service_type (2„
+channel_invitation/.bnet.protocol.invitation.SendInvitationRequesti (27.bnet.protocol.channel_invitation.SendInvitationRequest"¤
+InvitationCollection
+service_type ( 
+max_received_invitations (
+	object_id (A
+received_invitation (2$.bnet.protocol.invitation.Invitation

@@ -1,0 +1,17 @@
+
+lib/rpc/rpc.protobnet.protocol google/protobuf/descriptor.proto"
+NO_RESPONSE"N
+Address
+address (	
+port ($
+next (2.bnet.protocol.Address")
+	ProcessId
+label (
+epoch ("J
+ObjectAddress&
+host (2.bnet.protocol.ProcessId
+	object_id ("
+NoData:3
+	method_id.google.protobuf.MethodOptionsІ (:.
+cost.google.protobuf.MethodOptionsц (:1
+timeout.google.protobuf.MethodOptions҆ (

@@ -1,0 +1,10 @@
+
+Quest.proto	D3.QuestsItems.proto"`
+QuestReward
+
+xp_granted (:0
+gold_granted (:0!
+item (2.D3.Items.Generator"V
+QuestStepComplete
+is_quest_complete (&
+reward (2.D3.Quests.QuestReward

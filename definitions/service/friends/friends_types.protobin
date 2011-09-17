@@ -1,0 +1,8 @@
+
+#service/friends/friends_types.protobnet.protocol.friendslib/protocol/attribute.protolib/protocol/entity.protolib/protocol/invitation.proto"d
+Friend#
+id (2.bnet.protocol.EntityId5
+	attribute (2".bnet.protocol.attribute.Attribute"›
+FriendInvitation
+first_received (:false2h
+friend_invitation$.bnet.protocol.invitation.Invitationg (2'.bnet.protocol.friends.FriendInvitation

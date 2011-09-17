@@ -1,0 +1,7 @@
+
+(service/chat/definition/chat_types.protobnet.protocol.chat#service/channel/channel_types.proto"–
+ChannelState
+identity (	
+program (
+locale (2S
+chat#.bnet.protocol.channel.ChannelStated (2 .bnet.protocol.chat.ChannelState
