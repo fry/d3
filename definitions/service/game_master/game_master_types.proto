@@ -1,5 +1,4 @@
 package bnet.protocol.game_master;
-
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 
@@ -14,7 +13,6 @@ message Player {
 	optional .bnet.protocol.EntityId bnet_account_id = 4;
 	repeated .bnet.protocol.attribute.Attribute attribute = 5;
 }
-
 message ConnectInfo {
 	required .bnet.protocol.EntityId toon_id = 1;
 	required string host = 2;
@@ -22,7 +20,6 @@ message ConnectInfo {
 	optional bytes token = 4;
 	repeated .bnet.protocol.attribute.Attribute attribute = 5;
 }
-
 message GameStatsBucket {
 	optional float bucket_min = 1 [default = 0];
 	optional float bucket_max = 2 [default = 4.2949673e+009];
@@ -33,16 +30,13 @@ message GameStatsBucket {
 	optional uint32 forming_games = 7 [default = 0];
 	optional uint32 waiting_players = 8 [default = 0];
 }
-
 message GameFactoryDescription {
 	required fixed64 id = 1;
 	optional string name = 2;
 	repeated .bnet.protocol.attribute.Attribute attribute = 3;
 	repeated .bnet.protocol.game_master.GameStatsBucket stats_bucket = 4;
 }
-
 message GameHandle {
 	required fixed64 factory_id = 1;
 	required .bnet.protocol.EntityId game_id = 2;
 }
-

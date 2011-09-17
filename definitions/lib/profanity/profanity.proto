@@ -1,12 +1,9 @@
 package bnet.protocol.profanity;
 
-
 message WordFilter {
 	required string type = 1;
 	required string regex = 2;
 }
-
 message WordFilters {
 	repeated .bnet.protocol.profanity.WordFilter filters = 1;
 }
-

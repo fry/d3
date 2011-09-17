@@ -1,5 +1,4 @@
 package bnet.protocol.exchange;
-
 import "lib/protocol/entity.proto";
 import "lib/protocol/exchange.proto";
 
@@ -11,12 +10,10 @@ message OrderBook {
 	required int32 specialist = 5;
 	required uint32 allowed_realm = 6;
 }
-
 message OrderBookHandle {
 	required .bnet.protocol.exchange.PartitionId partition_id = 1;
 	required uint64 order_book_id = 2;
 }
-
 message OrderBookNotification {
 	required .bnet.protocol.exchange.OrderBook order_book = 1;
 	required .bnet.protocol.exchange.PartitionId partition_id = 2;
@@ -25,7 +22,6 @@ message OrderBookNotification {
 	required uint32 status = 5;
 	required uint64 update_time = 6;
 }
-
 message OrderBookSummary {
 	required .bnet.protocol.exchange.PartitionId partition_id = 1;
 	required uint64 order_book_id = 2;
@@ -42,7 +38,6 @@ message OrderBookSummary {
 	optional uint32 reason = 13;
 	optional uint64 out_bid_unit_price = 14;
 }
-
 message Order {
 	required uint32 amount = 1;
 	optional uint64 start_time = 2;
@@ -53,7 +48,6 @@ message Order {
 	optional .bnet.protocol.EntityId game_account = 7;
 	optional .bnet.protocol.EntityId toon = 8;
 }
-
 message Extension {
 	required .bnet.protocol.exchange.PartitionId partition_id = 1;
 	required uint64 order_book_id = 2;
@@ -69,33 +63,28 @@ message Extension {
 	optional uint64 money_to_claim = 12;
 	optional uint64 items_to_claim = 13;
 }
-
 message Offer {
 	required .bnet.protocol.exchange.Order order = 1;
 	optional uint64 trade_now_price = 2;
 	optional uint64 reserve_price = 3;
 	optional uint64 out_bid_price = 4;
 }
-
 message OfferExtended {
 	required .bnet.protocol.exchange.Offer offer = 1;
 	required .bnet.protocol.exchange.Extension extension = 2;
 	optional uint64 current_winning_price = 3;
 }
-
 message OfferCreation {
 	required .bnet.protocol.exchange.Offer offer = 1;
 	optional uint64 auction_duration = 2;
 	optional uint64 auction_start_delay = 3;
 	optional .bnet.protocol.exchange.BillingAddress billing_address = 4;
 }
-
 message Bid {
 	required .bnet.protocol.exchange.Order order = 1;
 	optional uint64 current_unit_price = 2;
 	optional uint64 max_unit_price = 3;
 }
-
 message BidExtended {
 	required .bnet.protocol.exchange.Bid bid = 1;
 	required .bnet.protocol.exchange.Extension extension = 2;
@@ -103,31 +92,26 @@ message BidExtended {
 	optional uint64 offer_trade_now_price = 4;
 	optional uint64 offer_current_winning_price = 5;
 }
-
 message BidCreation {
 	required .bnet.protocol.exchange.Bid bid = 1;
 	optional uint64 auction_duration = 2;
 	optional uint64 auction_start_delay = 3;
 	optional .bnet.protocol.exchange.BillingAddress billing_address = 4;
 }
-
 message QueryFilterByOrderId {
 	required uint32 max_result = 1;
 	optional uint64 ref_order_id = 2;
 }
-
 message QueryFilterByCreatedTime {
 	required uint32 max_result = 1;
 	optional uint64 ref_created_time = 2;
 }
-
 message Settlement {
 	required uint64 order_book_id = 1;
 	required uint64 money_amount = 2;
 	required uint64 items_amount = 3;
 	required uint64 offer_settle_id = 4;
 }
-
 message CurrencyConfig {
 	required string currency = 1;
 	required uint64 tick_size = 2;
@@ -139,7 +123,6 @@ message CurrencyConfig {
 	required uint64 max_total_amount = 8;
 	required int32 buyout_rule = 9;
 }
-
 message SpecialistConfig {
 	required int32 specialist = 1;
 	repeated uint64 auction_durations = 2;
@@ -147,14 +130,12 @@ message SpecialistConfig {
 	required uint64 anti_sniping_extension_delay = 4;
 	repeated .bnet.protocol.exchange.CurrencyConfig currency_config = 5;
 }
-
 message BillingAddress {
 	required int32 country_id = 1;
 	required string city = 2;
 	optional string state = 3;
 	optional string postal_code = 4;
 }
-
 message FeeEstimationData {
 	required fixed32 program = 1;
 	required int32 specialist = 2;
@@ -164,4 +145,3 @@ message FeeEstimationData {
 	optional .bnet.protocol.EntityId bnet_account = 6;
 	optional .bnet.protocol.exchange.BillingAddress billing_address = 7;
 }
-

@@ -1,5 +1,4 @@
 package D3.Account;
-
 import "AttributeSerializer.proto";
 import "Items.proto";
 import "OnlineService.proto";
@@ -16,7 +15,6 @@ message BannerConfiguration {
 	required int32 pattern = 8 [default = 0];
 	required bool use_sigil_variant = 9 [default = false];
 }
-
 message Digest {
 	enum Flags {
 		HARDCORE_HERO_UNLOCKED = 1;
@@ -26,7 +24,6 @@ message Digest {
 	required .D3.Account.BannerConfiguration banner_configuration = 3;
 	required uint32 flags = 4 [default = 0];
 }
-
 message SavedDefinition {
 	required uint32 version = 1;
 	optional .D3.Account.Digest digest = 2;
@@ -36,4 +33,3 @@ message SavedDefinition {
 	optional .D3.ItemCrafting.CrafterSavedData crafter_saved_data = 6;
 	repeated sfixed32 seen_tutorials = 7;
 }
-

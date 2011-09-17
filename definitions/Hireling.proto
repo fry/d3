@@ -1,6 +1,5 @@
 package D3.Hireling;
 
-
 message Info {
 	required sint32 hireling_class = 1 [default = 0];
 	required sfixed32 gbid_name = 2 [default = -1];
@@ -9,10 +8,8 @@ message Info {
 	repeated sint32 power_key_params = 11;
 	required bool dead = 12;
 }
-
 message SavedData {
 	repeated .D3.Hireling.Info hirelings = 1;
 	required uint32 active_hireling = 2 [default = 0];
 	required uint32 available_hirelings_bitfield = 3 [default = 0];
 }
-

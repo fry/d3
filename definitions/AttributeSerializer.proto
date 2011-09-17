@@ -1,14 +1,11 @@
 package D3.AttributeSerializer;
-
 import "GBHandle.proto";
 
 message SavedAttribute {
 	required sint32 key = 1;
 	required sint32 value = 2;
 }
-
 message SavedAttributes {
 	required .D3.GameBalance.Handle gb_handle = 1;
 	repeated .D3.AttributeSerializer.SavedAttribute attributes = 2;
 }
-

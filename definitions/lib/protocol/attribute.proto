@@ -1,6 +1,5 @@
 package bnet.protocol.attribute;
 
-
 message Variant {
 	optional bool bool_value = 2;
 	optional int64 int_value = 3;
@@ -11,12 +10,10 @@ message Variant {
 	optional string fourcc_value = 8;
 	optional uint64 uint_value = 9;
 }
-
 message Attribute {
 	required string name = 1;
 	required .bnet.protocol.attribute.Variant value = 2;
 }
-
 message AttributeFilter {
 	enum Operation {
 		MATCH_NONE = 0;
@@ -27,4 +24,3 @@ message AttributeFilter {
 	required .bnet.protocol.attribute.AttributeFilter.Operation op = 1;
 	repeated .bnet.protocol.attribute.Attribute attribute = 2;
 }
-

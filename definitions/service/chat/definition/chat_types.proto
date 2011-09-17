@@ -1,5 +1,4 @@
 package bnet.protocol.chat;
-
 import "service/channel/channel_types.proto";
 
 message ChannelState {
@@ -7,4 +6,3 @@ message ChannelState {
 	optional fixed32 program = 2;
 	optional fixed32 locale = 3;
 }
-

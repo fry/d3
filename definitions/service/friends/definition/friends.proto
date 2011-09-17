@@ -1,5 +1,4 @@
 package bnet.protocol.friends;
-
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 import "lib/protocol/invitation.proto";
@@ -10,7 +9,6 @@ message SubscribeToFriendsRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required uint64 object_id = 2;
 }
-
 message SubscribeToFriendsResponse {
 	optional uint32 max_friends = 2;
 	optional uint32 max_received_invitations = 3;
@@ -19,26 +17,21 @@ message SubscribeToFriendsResponse {
 	repeated .bnet.protocol.invitation.Invitation sent_invitations = 6;
 	repeated .bnet.protocol.invitation.Invitation received_invitations = 7;
 }
-
 message UnsubscribeToFriendsRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	optional uint64 object_id = 2;
 }
-
 message GenericFriendRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required .bnet.protocol.EntityId target_id = 2;
 }
-
 message GenericFriendResponse {
 	optional .bnet.protocol.friends.Friend target_friend = 2;
 }
-
 message SendInvitationRequest {
 	optional string target_email = 3;
 	optional string display_string = 4;
 }
-
 message ViewFriendsRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required .bnet.protocol.EntityId target_id = 2;
@@ -46,34 +39,46 @@ message ViewFriendsRequest {
 	optional uint32 start_index = 4 [default = 0];
 	optional uint32 max_results = 5 [default = 100];
 }
-
 message ViewFriendsResponse {
 	repeated .bnet.protocol.friends.Friend friends = 1;
 	optional uint32 total_results = 2;
 }
-
 message UpdateFriendStateRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required .bnet.protocol.EntityId target_id = 2;
 	repeated .bnet.protocol.attribute.Attribute attribute = 3;
 }
-
 message UpdateFriendStateResponse {
 	required .bnet.protocol.EntityId target_id = 2;
 	repeated .bnet.protocol.attribute.Attribute attribute = 3;
 }
-
 message FriendNotification {
 	required .bnet.protocol.friends.Friend target = 1;
 }
-
 message InvitationAddedNotification {
 	required .bnet.protocol.invitation.Invitation invitation = 1;
 }
-
 message InvitationRemovedNotification {
 	required .bnet.protocol.invitation.Invitation invitation = 1;
 	optional uint32 reason = 2;
 	optional .bnet.protocol.friends.Friend added_friend = 3;
 }
-
+service FriendsService {
+	rpc SubscribeToFriends (.bnet.protocol.friends.SubscribeToFriendsRequest) returns (.bnet.protocol.friends.SubscribeToFriendsResponse);
+	rpc SendInvitation (.bnet.protocol.invitation.SendInvitationRequest) returns (.bnet.protocol.invitation.SendInvitationResponse);
+	rpc AcceptInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc RevokeInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc DeclineInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc IgnoreInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc RemoveFriend (.bnet.protocol.friends.GenericFriendRequest) returns (.bnet.protocol.friends.GenericFriendResponse);
+	rpc ViewFriends (.bnet.protocol.friends.ViewFriendsRequest) returns (.bnet.protocol.friends.ViewFriendsResponse);
+	rpc UpdateFriendState (.bnet.protocol.friends.UpdateFriendStateRequest) returns (.bnet.protocol.friends.UpdateFriendStateResponse);
+	rpc UnsubscribeToFriends (.bnet.protocol.friends.UnsubscribeToFriendsRequest) returns (.bnet.protocol.NoData);
+}
+service FriendsNotify {
+	rpc NotifyFriendAdded (.bnet.protocol.friends.FriendNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyFriendRemoved (.bnet.protocol.friends.FriendNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyReceivedInvitationAdded (.bnet.protocol.friends.InvitationAddedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyReceivedInvitationRemoved (.bnet.protocol.friends.InvitationRemovedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifySentInvitationRemoved (.bnet.protocol.friends.InvitationRemovedNotification) returns (.bnet.protocol.NO_RESPONSE);
+}

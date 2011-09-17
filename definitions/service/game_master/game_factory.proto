@@ -1,5 +1,4 @@
 package bnet.protocol.game_master;
-
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 
@@ -9,4 +8,3 @@ message GameProperties {
 	optional bool open = 3 [default = true];
 	optional fixed32 program_id = 4;
 }
-

@@ -1,8 +1,12 @@
 package bnet.protocol.party;
-
 import "service/channel/channel_types.proto";
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 import "lib/protocol/invitation.proto";
 import "lib/rpc/rpc.proto";
 
+service PartyService {
+	rpc CreateChannel (.bnet.protocol.channel.CreateChannelRequest) returns (.bnet.protocol.channel.CreateChannelResponse);
+	rpc JoinChannel (.bnet.protocol.channel.JoinChannelRequest) returns (.bnet.protocol.channel.JoinChannelResponse);
+	rpc GetChannelInfo (.bnet.protocol.channel.GetChannelInfoRequest) returns (.bnet.protocol.channel.GetChannelInfoResponse);
+}

@@ -66,8 +66,17 @@ class ProtobinDecompiler:
 
 		self.write(out, "\n")
 
+		# enumerations
+		for enum in descriptor.enum_type:
+			self.decompile_enum_type(out, enum)
+
+		# messages
 		for msg in descriptor.message_type:
 			self.decompile_message_type(out, msg)
+		
+		# services
+		for service in descriptor.service:
+			self.decompile_service(out, service)
 	
 	def decompile_message_type(self, out, msg):
 		self.write(out, "message %s {\n" % msg.name)
@@ -99,7 +108,7 @@ class ProtobinDecompiler:
 			field_str += ";\n"
 			self.write(out, field_str)
 		self.indent_level -= 1
-		self.write(out, "}\n\n")
+		self.write(out, "}\n")
 	
 	def decompile_enum_type(self, out, enum):
 		self.write(out, "enum %s {\n" % enum.name)
@@ -111,6 +120,19 @@ class ProtobinDecompiler:
 
 		self.indent_level -= 1
 		self.write(out, "}\n")
+
+	def decompile_service(self, out, service):
+		self.write(out, "service %s {\n" % service.name)
+		self.indent_level += 1
+
+		for method in service.method:
+			self.decompile_method(out, method)
+
+		self.indent_level -= 1
+		self.write(out, "}\n")
+	
+	def decompile_method(self, out, method):
+		self.write(out, "rpc %s (%s) returns (%s);\n" % (method.name, method.input_type, method.output_type))
 
 	def write(self, out, str):
 		out.write("\t" * self.indent_level)

@@ -1,5 +1,4 @@
 package bnet.protocol.followers;
-
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 import "lib/rpc/rpc.proto";
@@ -8,47 +7,46 @@ message FollowedUser {
 	required .bnet.protocol.EntityId id = 1;
 	repeated .bnet.protocol.attribute.Attribute attribute = 2;
 }
-
 message SubscribeToFollowersRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required uint64 object_id = 2;
 }
-
 message SubscribeToFollowersResponse {
 	repeated .bnet.protocol.followers.FollowedUser followed_users = 2;
 }
-
 message StartFollowingRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	optional .bnet.protocol.EntityId target_id = 2;
 	optional string follower_name = 3;
 }
-
 message StartFollowingResponse {
 	optional .bnet.protocol.followers.FollowedUser followed_user = 2;
 }
-
 message StopFollowingRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required .bnet.protocol.EntityId target_id = 2;
 }
-
 message StopFollowingResponse {
 	optional .bnet.protocol.followers.FollowedUser followed_user = 2;
 }
-
 message UpdateFollowerStateRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required .bnet.protocol.EntityId target_id = 2;
 	repeated .bnet.protocol.attribute.Attribute attribute = 3;
 }
-
 message UpdateFollowerStateResponse {
 	required .bnet.protocol.EntityId target_id = 2;
 	repeated .bnet.protocol.attribute.Attribute attribute = 3;
 }
-
 message FollowerNotification {
 	required .bnet.protocol.followers.FollowedUser followed_user = 1;
 }
-
+service FollowersService {
+	rpc SubscribeToFollowers (.bnet.protocol.followers.SubscribeToFollowersRequest) returns (.bnet.protocol.followers.SubscribeToFollowersResponse);
+	rpc StartFollowing (.bnet.protocol.followers.StartFollowingRequest) returns (.bnet.protocol.followers.StartFollowingResponse);
+	rpc StopFollowing (.bnet.protocol.followers.StopFollowingRequest) returns (.bnet.protocol.followers.StopFollowingResponse);
+	rpc UpdateFollowerState (.bnet.protocol.followers.UpdateFollowerStateRequest) returns (.bnet.protocol.followers.UpdateFollowerStateResponse);
+}
+service FollowersNotify {
+	rpc NotifyFollowerRemoved (.bnet.protocol.followers.FollowerNotification) returns (.bnet.protocol.NO_RESPONSE);
+}

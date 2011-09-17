@@ -1,5 +1,4 @@
 package bnet.protocol.presence;
-
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 import "service/channel/channel_types.proto";
@@ -10,12 +9,10 @@ message FieldKey {
 	required uint32 field = 3;
 	optional uint64 index = 4 [default = 0];
 }
-
 message Field {
 	required .bnet.protocol.presence.FieldKey key = 1;
 	required .bnet.protocol.attribute.Variant value = 2;
 }
-
 message FieldOperation {
 	enum OperationType {
 		SET = 0;
@@ -24,9 +21,7 @@ message FieldOperation {
 	required .bnet.protocol.presence.Field field = 1;
 	optional .bnet.protocol.presence.FieldOperation.OperationType operation = 2 [default = SET];
 }
-
 message ChannelState {
 	optional .bnet.protocol.EntityId entity_id = 1;
 	repeated .bnet.protocol.presence.FieldOperation field_operation = 2;
 }
-

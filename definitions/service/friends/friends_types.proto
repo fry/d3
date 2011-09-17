@@ -1,5 +1,4 @@
 package bnet.protocol.friends;
-
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 import "lib/protocol/invitation.proto";
@@ -8,8 +7,6 @@ message Friend {
 	required .bnet.protocol.EntityId id = 1;
 	repeated .bnet.protocol.attribute.Attribute attribute = 2;
 }
-
 message FriendInvitation {
 	optional bool first_received = 1 [default = false];
 }
-

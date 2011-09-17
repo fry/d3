@@ -1,5 +1,4 @@
 package bnet.protocol.storage;
-
 import "lib/protocol/descriptor.proto";
 import "lib/protocol/entity.proto";
 import "lib/rpc/rpc.proto";
@@ -7,15 +6,12 @@ import "lib/rpc/rpc.proto";
 message TableId {
 	required bytes hash = 1;
 }
-
 message ColumnId {
 	required bytes hash = 1;
 }
-
 message RowId {
 	required bytes hash = 1;
 }
-
 message Privilege {
 	enum Permission {
 		OWNER = 1;
@@ -27,7 +23,6 @@ message Privilege {
 	optional fixed64 bits = 1 [default = 0];
 	optional fixed32 program = 2 [default = 0];
 }
-
 message ScanOperation {
 	enum Op {
 		IS_CLEAR = 1;
@@ -42,7 +37,6 @@ message ScanOperation {
 	required .bnet.protocol.storage.ScanOperation.Op op = 1;
 	required .bnet.protocol.Path field = 2;
 }
-
 message Command {
 	enum Op {
 		ROW_DELETE = 1;
@@ -87,7 +81,6 @@ message Command {
 	optional .bnet.protocol.storage.Command.Cond condition = 8;
 	optional string message = 11;
 }
-
 message Operation {
 	required .bnet.protocol.storage.TableId table_id = 1;
 	optional .bnet.protocol.storage.ColumnId column_id = 2;
@@ -98,7 +91,6 @@ message Operation {
 	optional fixed64 mutate_version = 7;
 	optional .bnet.protocol.storage.Privilege privilege = 8;
 }
-
 message Cell {
 	required .bnet.protocol.storage.ColumnId column_id = 1;
 	required .bnet.protocol.storage.RowId row_id = 2;
@@ -106,13 +98,11 @@ message Cell {
 	optional fixed64 version = 4;
 	optional bytes data = 5;
 }
-
 message OperationResult {
 	optional uint32 error_code = 1 [default = 0];
 	required .bnet.protocol.storage.TableId table_id = 2;
 	repeated .bnet.protocol.storage.Cell data = 3;
 }
-
 message OpenTableRequest {
 	optional string schema = 1 [default = DEFAULT];
 	optional .bnet.protocol.storage.Privilege privilege = 2;
@@ -120,10 +110,8 @@ message OpenTableRequest {
 	optional .bnet.protocol.EntityId agent_id = 4;
 	optional string process_name = 5;
 }
-
 message OpenTableResponse {
 }
-
 message OpenColumnRequest {
 	optional string schema = 1 [default = DEFAULT];
 	optional .bnet.protocol.storage.Privilege privilege = 2;
@@ -133,11 +121,9 @@ message OpenColumnRequest {
 	optional .bnet.protocol.EntityId agent_id = 7;
 	optional string process_name = 8;
 }
-
 message OpenColumnResponse {
 	optional bool server_field_ops = 2 [default = false];
 }
-
 message ExecuteRequest {
 	optional string schema = 1 [default = DEFAULT];
 	optional .bnet.protocol.storage.Privilege privilege = 2;
@@ -151,10 +137,13 @@ message ExecuteRequest {
 	optional string query_name = 10 [default = NoName];
 	optional string process_name = 11;
 }
-
 message ExecuteResponse {
 	optional uint32 error_code = 1 [default = 0];
 	repeated .bnet.protocol.storage.OperationResult results = 2;
 	optional string error_message = 3;
 }
-
+service StorageService {
+	rpc Execute (.bnet.protocol.storage.ExecuteRequest) returns (.bnet.protocol.storage.ExecuteResponse);
+	rpc OpenTable (.bnet.protocol.storage.OpenTableRequest) returns (.bnet.protocol.storage.OpenTableResponse);
+	rpc OpenColumn (.bnet.protocol.storage.OpenColumnRequest) returns (.bnet.protocol.storage.OpenColumnResponse);
+}

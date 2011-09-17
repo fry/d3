@@ -1,5 +1,4 @@
 package bnet.protocol.channel_invitation;
-
 import "lib/protocol/entity.proto";
 import "lib/protocol/invitation.proto";
 import "lib/rpc/rpc.proto";
@@ -11,53 +10,57 @@ message AcceptInvitationRequest {
 	required fixed64 invitation_id = 2;
 	required uint64 object_id = 3;
 }
-
 message AcceptInvitationResponse {
 	required uint64 object_id = 1;
 }
-
 message SubscribeRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required uint64 object_id = 2;
 }
-
 message SubscribeResponse {
 	repeated .bnet.protocol.channel_invitation.InvitationCollection collection = 1;
 	repeated .bnet.protocol.invitation.Invitation received_invitation = 2;
 }
-
 message UnsubscribeRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 }
-
 message SuggestInvitationRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	required .bnet.protocol.EntityId channel_id = 2;
 	required .bnet.protocol.EntityId target_id = 3;
 	optional .bnet.protocol.EntityId approval_id = 4;
 }
-
 message RevokeInvitationRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
 	optional .bnet.protocol.EntityId target_id = 2;
 	required fixed64 invitation_id = 3;
 	required .bnet.protocol.EntityId channel_id = 4;
 }
-
 message HasRoomForInvitationRequest {
 	required uint32 service_type = 1;
 }
-
 message InvitationAddedNotification {
 	required .bnet.protocol.invitation.Invitation invitation = 1;
 }
-
 message InvitationRemovedNotification {
 	required .bnet.protocol.invitation.Invitation invitation = 1;
 	optional uint32 reason = 2;
 }
-
 message SuggestionAddedNotification {
 	required .bnet.protocol.invitation.Suggestion suggestion = 1;
 }
-
+service ChannelInvitationService {
+	rpc Subscribe (.bnet.protocol.channel_invitation.SubscribeRequest) returns (.bnet.protocol.channel_invitation.SubscribeResponse);
+	rpc Unsubscribe (.bnet.protocol.channel_invitation.UnsubscribeRequest) returns (.bnet.protocol.NoData);
+	rpc SendInvitation (.bnet.protocol.invitation.SendInvitationRequest) returns (.bnet.protocol.invitation.SendInvitationResponse);
+	rpc AcceptInvitation (.bnet.protocol.channel_invitation.AcceptInvitationRequest) returns (.bnet.protocol.channel_invitation.AcceptInvitationResponse);
+	rpc DeclineInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc RevokeInvitation (.bnet.protocol.channel_invitation.RevokeInvitationRequest) returns (.bnet.protocol.NoData);
+	rpc SuggestInvitation (.bnet.protocol.channel_invitation.SuggestInvitationRequest) returns (.bnet.protocol.NoData);
+}
+service ChannelInvitationNotify {
+	rpc NotifyReceivedInvitationAdded (.bnet.protocol.channel_invitation.InvitationAddedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyReceivedInvitationRemoved (.bnet.protocol.channel_invitation.InvitationRemovedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyReceivedSuggestionAdded (.bnet.protocol.channel_invitation.SuggestionAddedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc HasRoomForInvitation (.bnet.protocol.channel_invitation.HasRoomForInvitationRequest) returns (.bnet.protocol.NoData);
+}

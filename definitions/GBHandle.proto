@@ -1,8 +1,6 @@
 package D3.GameBalance;
 
-
 message Handle {
 	required sint32 game_balance_type = 1 [default = -1];
 	required sfixed32 gbid = 2 [default = -1];
 }
-

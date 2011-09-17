@@ -1,14 +1,11 @@
 package D3.Stats;
 
-
 message StatCategory {
 	required uint32 stat_id = 1;
 	required uint32 data_1 = 2;
 	optional uint32 data_2 = 3;
 	required uint64 total = 4;
 }
-
 message StatList {
 	repeated .D3.Stats.StatCategory stats = 1;
 }
-

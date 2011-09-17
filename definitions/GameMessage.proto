@@ -1,5 +1,4 @@
 package D3.GameMessage;
-
 import "Hero.proto";
 import "OnlineService.proto";
 import "Settings.proto";
@@ -9,43 +8,34 @@ message HeroDigestList {
 	required .D3.OnlineService.EntityId account_id = 1;
 	repeated .D3.Hero.Digest digest_list = 2;
 }
-
 message ClientToonSettings {
 	required .D3.OnlineService.EntityId toon_id = 1;
 	required .D3.Client.ToonSettings client_toon_settings = 2;
 }
-
 message HeroDigestListRequest {
 	repeated .D3.OnlineService.EntityId toon_id = 1;
 }
-
 message HeroDigestResponse {
 	required .D3.OnlineService.EntityId toon_id = 1;
 	required bool success = 2;
 	optional .D3.Hero.Digest hero_digest = 3;
 }
-
 message HeroDigestListResponse {
 	repeated .D3.GameMessage.HeroDigestResponse digest_list = 1;
 }
-
 message PlayerBanner {
 	required uint32 player_index = 1;
 	required .D3.Account.BannerConfiguration banner = 2;
 }
-
 message SaveBannerConfiguration {
 	required .D3.Account.BannerConfiguration banner = 1;
 	optional uint32 slot_index = 2 [default = 0];
 	optional bool make_active = 3 [default = true];
 }
-
 message HeroDigestBanner {
 	required .D3.Hero.Digest hero_digest = 1;
 	required .D3.Account.BannerConfiguration banner = 2;
 }
-
 message GameCurrentPlayers {
 	repeated .D3.GameMessage.HeroDigestBanner players = 1;
 }
-
