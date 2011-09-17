@@ -72,7 +72,7 @@ message ChannelState {
 	optional bool public = 8;
 	optional string name = 9;
 	optional string delegate_name = 10;
-	optional string channel_type = 11 [default = default];
+	optional string channel_type = 11 [default = "default"];
 }
 message MemberState {
 	repeated .bnet.protocol.attribute.Attribute attribute = 1;

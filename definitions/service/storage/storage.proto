@@ -104,7 +104,7 @@ message OperationResult {
 	repeated .bnet.protocol.storage.Cell data = 3;
 }
 message OpenTableRequest {
-	optional string schema = 1 [default = DEFAULT];
+	optional string schema = 1 [default = "DEFAULT"];
 	optional .bnet.protocol.storage.Privilege privilege = 2;
 	required .bnet.protocol.storage.TableId table_id = 3;
 	optional .bnet.protocol.EntityId agent_id = 4;
@@ -113,7 +113,7 @@ message OpenTableRequest {
 message OpenTableResponse {
 }
 message OpenColumnRequest {
-	optional string schema = 1 [default = DEFAULT];
+	optional string schema = 1 [default = "DEFAULT"];
 	optional .bnet.protocol.storage.Privilege privilege = 2;
 	required .bnet.protocol.storage.TableId table_id = 4;
 	required .bnet.protocol.storage.ColumnId column_id = 5;
@@ -125,7 +125,7 @@ message OpenColumnResponse {
 	optional bool server_field_ops = 2 [default = false];
 }
 message ExecuteRequest {
-	optional string schema = 1 [default = DEFAULT];
+	optional string schema = 1 [default = "DEFAULT"];
 	optional .bnet.protocol.storage.Privilege privilege = 2;
 	optional bool read_only = 3 [default = false];
 	optional bool wants_row_key = 4 [default = false];
@@ -134,7 +134,7 @@ message ExecuteRequest {
 	repeated .bnet.protocol.storage.Operation operations = 7;
 	optional uint32 timeout = 12;
 	optional .bnet.protocol.EntityId agent_id = 9;
-	optional string query_name = 10 [default = NoName];
+	optional string query_name = 10 [default = "NoName"];
 	optional string process_name = 11;
 }
 message ExecuteResponse {

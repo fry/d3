@@ -104,7 +104,11 @@ class ProtobinDecompiler:
 
 			# add default value if set
 			if field.HasField("default_value"):
-				field_str += " [default = %s]" % field.default_value
+				def_val = field.default_value
+				# string default values have to be put in quotes
+				if field.type == pb2.FieldDescriptorProto.TYPE_STRING:
+					def_val = "\"%s\"" % def_val
+				field_str += " [default = %s]" % def_val
 			field_str += ";\n"
 			self.write(out, field_str)
 		self.indent_level -= 1

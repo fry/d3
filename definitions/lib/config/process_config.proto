@@ -28,7 +28,7 @@ message SupplementalService {
 }
 message ListenPoint {
 	required uint32 port = 1;
-	optional string address = 2 [default = 0.0.0.0];
+	optional string address = 2 [default = "0.0.0.0"];
 	repeated .bnet.protocol.config.ServerSet accept = 3;
 }
 message ServiceShard {
