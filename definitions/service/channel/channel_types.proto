@@ -1,0 +1,102 @@
+package bnet.protocol.channel;
+
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/protocol/invitation.proto";
+
+message Message {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional uint32 role = 2;
+}
+
+message ChannelDescription {
+	required .bnet.protocol.EntityId channel_id = 1;
+	optional uint32 current_members = 2;
+	optional .bnet.protocol.channel.ChannelState state = 3;
+}
+
+message ChannelInfo {
+	required .bnet.protocol.channel.ChannelDescription description = 1;
+	repeated .bnet.protocol.channel.Member member = 2;
+}
+
+message GetChannelInfoRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId channel_id = 2;
+}
+
+message GetChannelInfoResponse {
+	optional .bnet.protocol.channel.ChannelInfo channel_info = 1;
+}
+
+message GetChannelIdRequest {
+}
+
+message GetChannelIdResponse {
+	optional .bnet.protocol.EntityId channel_id = 1;
+}
+
+message CreateChannelRequest {
+	optional .bnet.protocol.Identity agent_identity = 1;
+	optional .bnet.protocol.channel.ChannelState state = 2;
+	optional .bnet.protocol.EntityId channel_id = 3;
+	optional uint64 object_id = 4;
+}
+
+message CreateChannelResponse {
+	required uint64 object_id = 1;
+	optional .bnet.protocol.EntityId channel_id = 2;
+}
+
+message JoinChannelRequest {
+	optional .bnet.protocol.Identity agent_identity = 1;
+	required .bnet.protocol.EntityId channel_id = 2;
+	required uint64 object_id = 3;
+	repeated .bnet.protocol.EntityId friend_account_id = 4;
+}
+
+message JoinChannelResponse {
+	optional uint64 object_id = 1;
+	optional bool require_friend_validation = 2 [default = false];
+	repeated .bnet.protocol.EntityId privileged_account = 3;
+}
+
+message FindChannelRequest {
+	required .bnet.protocol.attribute.AttributeFilter filter = 1;
+}
+
+message FindChannelResponse {
+	repeated .bnet.protocol.channel.ChannelDescription channel = 1;
+}
+
+message ChannelState {
+	enum PrivacyLevel {
+		PRIVACY_LEVEL_OPEN = 1;
+		PRIVACY_LEVEL_OPEN_INVITATION_AND_FRIEND = 2;
+		PRIVACY_LEVEL_OPEN_INVITATION = 3;
+		PRIVACY_LEVEL_CLOSED = 4;
+	}
+	optional uint32 max_members = 1;
+	optional uint32 min_members = 2;
+	repeated .bnet.protocol.attribute.Attribute attribute = 3;
+	repeated .bnet.protocol.invitation.Invitation invitation = 4;
+	optional uint32 max_invitations = 5;
+	optional uint32 reason = 6;
+	optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
+	optional bool public = 8;
+	optional string name = 9;
+	optional string delegate_name = 10;
+	optional string channel_type = 11 [default = default];
+}
+
+message MemberState {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	repeated uint32 role = 2;
+	optional uint64 privileges = 3 [default = 0];
+}
+
+message Member {
+	required .bnet.protocol.Identity identity = 1;
+	required .bnet.protocol.channel.MemberState state = 2;
+}
+

@@ -1,0 +1,48 @@
+package D3.OnlineService;
+
+
+message EntityId {
+	required uint64 id_high = 1 [default = 0];
+	required uint64 id_low = 2 [default = 0];
+}
+
+message GameId {
+	required uint64 factory = 1 [default = 0];
+	required uint64 id_high = 2 [default = 0];
+	required uint64 id_low = 3 [default = 0];
+}
+
+message ItemId {
+	required uint64 id_high = 1 [default = 0];
+	required uint64 id_low = 2 [default = 0];
+}
+
+message CoopCreateParams {
+	required int32 difficulty_level = 1 [default = -1];
+	required sint32 act = 2 [default = 0];
+	required sfixed32 sno_quest = 3 [default = -1];
+	required int32 quest_step_id = 4 [default = -1];
+	optional .D3.OnlineService.EntityId resume_from_save_hero_id = 5;
+	required bool open_to_friends = 6 [default = false];
+	optional string open_to_friends_message = 7;
+}
+
+message PvPCreateParams {
+	required sfixed32 sno_world = 1 [default = -1];
+}
+
+message GameCreateParams {
+	required sint32 game_type = 1;
+	required uint32 creation_flags = 2 [default = 0];
+	optional .D3.OnlineService.CoopCreateParams coop = 3;
+	optional .D3.OnlineService.PvPCreateParams pvp = 4;
+	optional string name = 5;
+	required bool is_private = 6 [default = true];
+}
+
+message HeroCreateParams {
+	required sfixed32 gbid_class = 1 [default = -1];
+	required bool is_hardcore = 2 [default = false];
+	required bool is_female = 3 [default = false];
+}
+

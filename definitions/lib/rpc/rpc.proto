@@ -1,0 +1,26 @@
+package bnet.protocol;
+
+import "google/protobuf/descriptor.proto";
+
+message NO_RESPONSE {
+}
+
+message Address {
+	required string address = 1;
+	optional uint32 port = 2;
+	optional .bnet.protocol.Address next = 3;
+}
+
+message ProcessId {
+	required uint32 label = 1;
+	required uint32 epoch = 2;
+}
+
+message ObjectAddress {
+	required .bnet.protocol.ProcessId host = 1;
+	required uint64 object_id = 2;
+}
+
+message NoData {
+}
+

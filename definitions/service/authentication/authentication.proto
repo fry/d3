@@ -1,0 +1,63 @@
+package bnet.protocol.authentication;
+
+import "lib/rpc/rpc.proto";
+import "lib/protocol/content_handle.proto";
+import "lib/protocol/entity.proto";
+import "lib/config/process_config.proto";
+
+message ModuleLoadRequest {
+	required .bnet.protocol.ContentHandle module_handle = 1;
+	optional bytes message = 2;
+}
+
+message ModuleLoadResponse {
+	optional int32 module_id = 2;
+}
+
+message ModuleMessageRequest {
+	required int32 module_id = 1;
+	optional bytes message = 2;
+}
+
+message LogonRequest {
+	optional string program = 1;
+	optional string platform = 2;
+	optional string locale = 3;
+	optional string email = 4;
+	optional uint64 listener_id = 5;
+	optional string version = 6;
+}
+
+message LogonResponse {
+	required .bnet.protocol.EntityId account = 1;
+	required .bnet.protocol.EntityId game_account = 2;
+}
+
+message AuthenticationConfig {
+	repeated .bnet.protocol.config.Resource module = 1;
+	repeated string allow_version = 2;
+	repeated string deny_version = 3;
+	repeated .bnet.protocol.config.Resource agreement = 4;
+}
+
+message AuthModuleVariant {
+	required string platform = 1;
+	required string handle = 2;
+}
+
+message AuthModuleConfig {
+	repeated .bnet.protocol.authentication.AuthModuleVariant variant = 1;
+}
+
+message AuthAgreementLocale {
+	required string id = 1;
+	required string handle = 2;
+}
+
+message AuthAgreement {
+	required string type = 1;
+	required string program = 2;
+	required uint32 scheme = 3;
+	repeated .bnet.protocol.authentication.AuthAgreementLocale locale = 4;
+}
+

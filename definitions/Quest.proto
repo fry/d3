@@ -1,0 +1,15 @@
+package D3.Quests;
+
+import "Items.proto";
+
+message QuestReward {
+	optional int32 xp_granted = 1 [default = 0];
+	optional int32 gold_granted = 2 [default = 0];
+	optional .D3.Items.Generator item = 3;
+}
+
+message QuestStepComplete {
+	required bool is_quest_complete = 1;
+	optional .D3.Quests.QuestReward reward = 2;
+}
+

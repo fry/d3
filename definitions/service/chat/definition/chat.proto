@@ -1,0 +1,9 @@
+package bnet.protocol.chat;
+
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/protocol/invitation.proto";
+import "lib/rpc/rpc.proto";
+import "service/channel/channel_types.proto";
+import "service/chat/definition/chat_types.proto";
+

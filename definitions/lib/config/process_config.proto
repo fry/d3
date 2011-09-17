@@ -1,0 +1,66 @@
+package bnet.protocol.config;
+
+import "lib/rpc/rpc.proto";
+
+message Var {
+	required string name = 1;
+	required string value = 2;
+}
+
+message Resource {
+	required string name = 1;
+	required string url = 2;
+}
+
+message ProgramResources {
+	repeated .bnet.protocol.config.Resource program = 1;
+}
+
+message ServerAddress {
+	required .bnet.protocol.Address address = 1;
+	required string process_name = 2;
+	optional string server_name = 3;
+}
+
+message ServerSet {
+	repeated .bnet.protocol.config.ServerAddress server_address = 1;
+	repeated string exported_service = 2;
+	repeated string imported_service = 3;
+}
+
+message SupplementalService {
+	required string name = 1;
+	required uint32 port = 2;
+}
+
+message ListenPoint {
+	required uint32 port = 1;
+	optional string address = 2 [default = 0.0.0.0];
+	repeated .bnet.protocol.config.ServerSet accept = 3;
+}
+
+message ServiceShard {
+	required string process_name = 1;
+}
+
+message ServiceConfig {
+	required string name = 1;
+	required string url = 2;
+	repeated .bnet.protocol.config.ServiceShard shard = 3;
+}
+
+message RPCServerConfig {
+	required string name = 1;
+	optional .bnet.protocol.config.ListenPoint listen = 2;
+	repeated .bnet.protocol.config.ServerSet connect = 3;
+}
+
+message ProcessConfig {
+	required string process_name = 1;
+	repeated .bnet.protocol.config.RPCServerConfig server = 2;
+	repeated .bnet.protocol.config.Resource resource = 3;
+	repeated .bnet.protocol.config.ServiceConfig service = 4;
+	repeated .bnet.protocol.config.Var var = 5;
+	repeated .bnet.protocol.config.SupplementalService supplemental_service = 6;
+}
+

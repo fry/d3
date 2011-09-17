@@ -1,0 +1,16 @@
+package D3.PartyMessage;
+
+import "OnlineService.proto";
+
+message ScreenStatus {
+	required int32 screen = 1;
+	required int32 status = 2;
+}
+
+message SearchForPublicGameParams {
+	optional sint64 start_time = 1;
+	optional uint32 seconds_to_search = 2;
+	optional .D3.OnlineService.GameCreateParams game_params = 3;
+	optional int32 remove_reason = 4;
+}
+

@@ -1,0 +1,39 @@
+package D3.Account;
+
+import "AttributeSerializer.proto";
+import "Items.proto";
+import "OnlineService.proto";
+import "ItemCrafting.proto";
+
+message BannerConfiguration {
+	required uint32 banner_index = 1 [default = 0];
+	required int32 sigil_main = 2 [default = 0];
+	required int32 sigil_accent = 3 [default = -1];
+	required int32 pattern_color_index = 4 [default = 0];
+	required int32 background_color_index = 5 [default = 0];
+	required int32 sigil_color_index = 6 [default = 0];
+	required int32 placement_index = 7 [default = 0];
+	required int32 pattern = 8 [default = 0];
+	required bool use_sigil_variant = 9 [default = false];
+}
+
+message Digest {
+	enum Flags {
+		HARDCORE_HERO_UNLOCKED = 1;
+	}
+	required uint32 version = 1;
+	required .D3.OnlineService.EntityId last_played_hero_id = 2;
+	required .D3.Account.BannerConfiguration banner_configuration = 3;
+	required uint32 flags = 4 [default = 0];
+}
+
+message SavedDefinition {
+	required uint32 version = 1;
+	optional .D3.Account.Digest digest = 2;
+	required .D3.AttributeSerializer.SavedAttributes saved_attributes = 3;
+	optional .D3.Items.ItemList normal_shared_saved_items = 4;
+	optional .D3.Items.ItemList hardcore_shared_saved_items = 5;
+	optional .D3.ItemCrafting.CrafterSavedData crafter_saved_data = 6;
+	repeated sfixed32 seen_tutorials = 7;
+}
+

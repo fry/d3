@@ -1,0 +1,12 @@
+package D3.Client;
+
+
+message ToonSettings {
+	optional uint32 ui_flags = 1 [default = 0];
+}
+
+message GameAccountSettings {
+	optional int32 use_last_hero = 1 [default = 0];
+	optional int32 show_offline_toast = 2 [default = 0];
+}
+

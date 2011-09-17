@@ -1,0 +1,44 @@
+package bnet.protocol.exchange_object_provider;
+
+import "lib/protocol/entity.proto";
+import "lib/protocol/exchange.proto";
+
+message ReportAuthorizeRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.PartitionId token = 2;
+	required uint64 result = 3;
+	optional .bnet.protocol.exchange.BlobFromOfType auth_handle = 4;
+	optional bool defer_delivery = 5;
+	required .bnet.protocol.EntityId bnet_account_id = 6;
+}
+
+message ReportSettleRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.PartitionId token = 2;
+	required uint64 result = 3;
+}
+
+message ReportCancelRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.PartitionId token = 2;
+	required uint64 result = 3;
+}
+
+message GetPaymentMethodsRequest {
+	optional .bnet.protocol.EntityId bnet_account = 1;
+	optional .bnet.protocol.EntityId game_account = 2;
+	optional .bnet.protocol.EntityId toon = 3;
+	required string currency = 4;
+	required uint32 cash_in_out_mask = 5;
+}
+
+message PaymentMethod {
+	required .bnet.protocol.exchange.BlobFrom account = 1;
+	required string description = 2;
+	optional uint64 amount = 3;
+}
+
+message GetPaymentMethodsResponse {
+	repeated .bnet.protocol.exchange_object_provider.PaymentMethod methods = 1;
+}
+

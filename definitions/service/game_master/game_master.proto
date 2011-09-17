@@ -1,0 +1,132 @@
+package bnet.protocol.game_master;
+
+import "service/game_master/game_factory.proto";
+import "service/server_pool/server_pool.proto";
+import "service/channel/channel_types.proto";
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/rpc/rpc.proto";
+import "service/game_master/game_master_types.proto";
+
+message JoinGameRequest {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+	repeated .bnet.protocol.game_master.Player player = 2;
+	optional .bnet.protocol.channel.JoinChannelRequest channel_request = 3;
+}
+
+message JoinGameResponse {
+	repeated .bnet.protocol.game_master.ConnectInfo connect_info = 1;
+}
+
+message ListFactoriesRequest {
+	required .bnet.protocol.attribute.AttributeFilter filter = 1;
+	optional uint32 start_index = 2 [default = 0];
+	optional uint32 max_results = 3 [default = 100];
+}
+
+message ListFactoriesResponse {
+	repeated .bnet.protocol.game_master.GameFactoryDescription description = 1;
+	optional uint32 total_results = 2;
+}
+
+message FindGameRequest {
+	repeated .bnet.protocol.game_master.Player player = 1;
+	optional fixed64 factory_id = 2;
+	optional .bnet.protocol.game_master.GameProperties properties = 3;
+	required uint64 object_id = 4;
+	optional .bnet.protocol.channel.CreateChannelRequest channel_request = 5;
+}
+
+message FindGameResponse {
+	optional uint64 request_id = 1;
+	optional fixed64 factory_id = 2;
+}
+
+message CancelFindGameRequest {
+	required fixed64 factory_id = 1;
+	required uint64 request_id = 2;
+}
+
+message GameEndedNotification {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+}
+
+message PlayerLeftNotification {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+	required .bnet.protocol.EntityId toon_id = 2;
+	optional uint32 reason = 3 [default = 0];
+}
+
+message RegisterServerRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional .bnet.protocol.server_pool.ServerState state = 2;
+	required fixed32 program_id = 3;
+}
+
+message UnregisterServerRequest {
+}
+
+message RegisterUtilitiesRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional .bnet.protocol.server_pool.ServerState state = 2;
+	required fixed32 program_id = 3;
+}
+
+message UnregisterUtilitiesRequest {
+}
+
+message SubscribeRequest {
+	required uint64 object_id = 1;
+}
+
+message SubscribeResponse {
+	optional uint64 subscription_id = 1;
+}
+
+message UnsubscribeRequest {
+	required uint64 subscription_id = 1;
+}
+
+message ChangeGameRequest {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+	optional bool open = 2;
+	repeated .bnet.protocol.attribute.Attribute attribute = 3;
+	optional bool replace = 4 [default = false];
+}
+
+message GetFactoryInfoRequest {
+	required fixed64 factory_id = 1;
+}
+
+message GetFactoryInfoResponse {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	repeated .bnet.protocol.game_master.GameStatsBucket stats_bucket = 2;
+}
+
+message GetGameStatsRequest {
+	required fixed64 factory_id = 1;
+	required .bnet.protocol.attribute.AttributeFilter filter = 2;
+}
+
+message GetGameStatsResponse {
+	repeated .bnet.protocol.game_master.GameStatsBucket stats_bucket = 1;
+}
+
+message FactoryUpdateNotification {
+	enum Operation {
+		ADD = 1;
+		REMOVE = 2;
+		CHANGE = 3;
+	}
+	required .bnet.protocol.game_master.FactoryUpdateNotification.Operation op = 1;
+	required .bnet.protocol.game_master.GameFactoryDescription description = 2;
+	optional fixed32 program_id = 3;
+}
+
+message GameFoundNotification {
+	required uint64 request_id = 1;
+	optional uint32 error_code = 2 [default = 0];
+	optional .bnet.protocol.game_master.GameHandle game_handle = 3;
+	repeated .bnet.protocol.game_master.ConnectInfo connect_info = 4;
+}
+

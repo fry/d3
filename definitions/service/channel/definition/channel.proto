@@ -1,0 +1,84 @@
+package bnet.protocol.channel;
+
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/rpc/rpc.proto";
+import "service/channel/channel_types.proto";
+
+message AddMemberRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.Identity member_identity = 2;
+	required .bnet.protocol.channel.MemberState state = 3;
+	required uint64 object_id = 4;
+}
+
+message RemoveMemberRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId member_id = 2;
+	optional uint32 reason = 3;
+}
+
+message SendMessageRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.channel.Message message = 2;
+	optional uint64 required_privileges = 3 [default = 0];
+}
+
+message UpdateChannelStateRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.channel.ChannelState state_change = 2;
+}
+
+message UpdateMemberStateRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	repeated .bnet.protocol.channel.Member state_change = 2;
+}
+
+message DissolveRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	optional uint32 reason = 2;
+}
+
+message SetRolesRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	repeated uint32 role = 2;
+	repeated .bnet.protocol.EntityId member_id = 3;
+}
+
+message AddNotification {
+	optional .bnet.protocol.channel.Member self = 1;
+	repeated .bnet.protocol.channel.Member member = 2;
+	required .bnet.protocol.channel.ChannelState channel_state = 3;
+}
+
+message JoinNotification {
+	required .bnet.protocol.channel.Member member = 1;
+}
+
+message RemoveNotification {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId member_id = 2;
+	optional uint32 reason = 3;
+}
+
+message LeaveNotification {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId member_id = 2;
+}
+
+message SendMessageNotification {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.channel.Message message = 2;
+	optional uint64 required_privileges = 3 [default = 0];
+}
+
+message UpdateChannelStateNotification {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.channel.ChannelState state_change = 2;
+}
+
+message UpdateMemberStateNotification {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	repeated .bnet.protocol.channel.Member state_change = 2;
+}
+

@@ -1,0 +1,8 @@
+package bnet.protocol.party;
+
+import "service/channel/channel_types.proto";
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/protocol/invitation.proto";
+import "lib/rpc/rpc.proto";
+

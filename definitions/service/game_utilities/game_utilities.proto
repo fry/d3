@@ -1,0 +1,85 @@
+package bnet.protocol.game_utilities;
+
+import "service/game_master/game_master.proto";
+import "service/server_pool/server_pool.proto";
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/rpc/rpc.proto";
+
+message ClientRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional .bnet.protocol.ProcessId host = 2;
+	optional .bnet.protocol.EntityId bnet_account_id = 3;
+	optional .bnet.protocol.EntityId game_account_id = 4;
+	optional .bnet.protocol.EntityId toon_id = 5;
+}
+
+message ClientResponse {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+}
+
+message CreateToonRequest {
+	required .bnet.protocol.EntityId bnet_account_id = 1;
+	required .bnet.protocol.EntityId game_account_id = 2;
+	required .bnet.protocol.EntityId toon_id = 3;
+	required string name = 4;
+	repeated .bnet.protocol.attribute.Attribute attribute = 5;
+	optional .bnet.protocol.ProcessId host = 6;
+}
+
+message CreateToonResponse {
+	optional string name = 1;
+}
+
+message DeleteToonRequest {
+	optional .bnet.protocol.EntityId bnet_account_id = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+	required .bnet.protocol.EntityId toon_id = 3;
+	optional .bnet.protocol.ProcessId host = 4;
+}
+
+message TransferToonRequest {
+	message Account {
+		required .bnet.protocol.EntityId bnet_account_id = 1;
+		required .bnet.protocol.EntityId game_account_id = 2;
+	}
+
+	required .bnet.protocol.EntityId toon_id = 1;
+	optional .bnet.protocol.game_utilities.TransferToonRequest.Account source = 2;
+	optional .bnet.protocol.game_utilities.TransferToonRequest.Account target = 3;
+	optional .bnet.protocol.ProcessId host = 4;
+}
+
+message SelectToonRequest {
+	required .bnet.protocol.EntityId bnet_account_id = 1;
+	required .bnet.protocol.EntityId game_account_id = 2;
+	required .bnet.protocol.EntityId toon_id = 3;
+	optional .bnet.protocol.ProcessId host = 4;
+}
+
+message PresenceChannelCreatedRequest {
+	required .bnet.protocol.EntityId id = 1;
+	optional .bnet.protocol.EntityId toon_id = 2;
+	optional .bnet.protocol.EntityId game_account_id = 3;
+	optional .bnet.protocol.EntityId bnet_account_id = 4;
+	optional .bnet.protocol.ProcessId host = 5;
+}
+
+message PlayerVariablesRequest {
+	required .bnet.protocol.EntityId bnet_account_id = 1;
+	required .bnet.protocol.EntityId game_account_id = 2;
+	required .bnet.protocol.EntityId toon_id = 3;
+	repeated string variable = 4;
+	optional .bnet.protocol.ProcessId host = 5;
+}
+
+message GameVariablesRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	repeated string variable = 2;
+	optional .bnet.protocol.ProcessId host = 3;
+}
+
+message VariablesResponse {
+	repeated float value = 1;
+}
+

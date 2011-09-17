@@ -1,0 +1,7 @@
+package bnet.protocol;
+
+
+message Path {
+	repeated uint32 ordinal = 1;
+}
+

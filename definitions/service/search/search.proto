@@ -1,0 +1,29 @@
+package bnet.protocol.search;
+
+import "lib/rpc/rpc.proto";
+import "service/search/search_types.proto";
+
+message FindMatchesRequest {
+	required string universe = 1;
+	repeated .bnet.protocol.search.Filter filters = 2;
+	optional uint32 starting_index = 3 [default = 0];
+	optional uint32 count = 4 [default = 0];
+}
+
+message FindMatchesResponse {
+	required uint32 total_count = 1;
+	repeated .bnet.protocol.search.Object objects = 2;
+}
+
+message SetObjectRequest {
+	repeated .bnet.protocol.search.Object objects = 1;
+}
+
+message RemoveObjectsRequest {
+	required bytes start_id = 1;
+	required bytes end_id = 2;
+}
+
+message SearchConfig {
+}
+

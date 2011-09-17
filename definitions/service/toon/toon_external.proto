@@ -1,0 +1,37 @@
+package bnet.protocol.toon.external;
+
+import "lib/rpc/rpc.proto";
+import "lib/protocol/entity.proto";
+import "lib/protocol/attribute.proto";
+import "service/toon/toon.proto";
+
+message ToonListRequest {
+}
+
+message ToonListResponse {
+	repeated .bnet.protocol.EntityId toons = 2;
+}
+
+message SelectToonRequest {
+	required .bnet.protocol.EntityId toon = 1;
+}
+
+message SelectToonResponse {
+}
+
+message CreateToonRequest {
+	optional string name = 1;
+	repeated .bnet.protocol.attribute.Attribute attribute = 2;
+}
+
+message CreateToonResponse {
+	optional .bnet.protocol.EntityId toon = 2;
+}
+
+message DeleteToonRequest {
+	required .bnet.protocol.EntityId toon = 1;
+}
+
+message DeleteToonResponse {
+}
+
