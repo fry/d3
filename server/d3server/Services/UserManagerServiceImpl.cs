@@ -12,7 +12,9 @@ namespace d3server.Services {
 		}
 
 		public override void SubscribeToUserManager(Google.ProtocolBuffers.IRpcController controller, SubscribeToUserManagerRequest request, Action<SubscribeToUserManagerResponse> done) {
-			throw new NotImplementedException();
+			var response = SubscribeToUserManagerResponse.CreateBuilder();
+
+			done(response.Build());
 		}
 
 		public override void ReportPlayer(Google.ProtocolBuffers.IRpcController controller, ReportPlayerRequest request, Action<ReportPlayerResponse> done) {

@@ -12,7 +12,8 @@ namespace d3server.Services {
 		}
 
 		public override void ProcessClientRequest(Google.ProtocolBuffers.IRpcController controller, ClientRequest request, Action<ClientResponse> done) {
-			throw new NotImplementedException();
+			var response = ClientResponse.CreateBuilder();
+			done(response.Build());
 		}
 
 		public override void CreateToon(Google.ProtocolBuffers.IRpcController controller, CreateToonRequest request, Action<CreateToonResponse> done) {

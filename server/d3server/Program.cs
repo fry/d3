@@ -9,6 +9,7 @@ using System.Net;
 using Google.ProtocolBuffers.Descriptors;
 using System.Threading;
 using d3server.Services;
+using System.Diagnostics;
 
 namespace d3server {
 	
@@ -17,6 +18,7 @@ namespace d3server {
 		static void Main(string[] args) {
 			var listener = new TcpListener(IPAddress.Any, 6666);
 
+			Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
 			var registry = new ServiceRegistry();
 
 			// Services the client implements

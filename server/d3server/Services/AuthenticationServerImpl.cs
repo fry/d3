@@ -16,9 +16,9 @@ namespace d3server.Services {
 			var account = bnet.protocol.EntityId.CreateBuilder();
 			var game_account = bnet.protocol.EntityId.CreateBuilder();
 
-			account.SetHigh(0).SetLow(0);
+			account.SetHigh(0x100000000000000).SetLow(0);
 
-			game_account.SetHigh(0).SetLow(0);
+			game_account.SetHigh(0x200006200004433).SetLow(0);
 
 			response.SetAccount(account).SetGameAccount(game_account);
 

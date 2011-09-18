@@ -5,6 +5,9 @@ using System.Text;
 using bnet.protocol.game_master;
 
 namespace d3server.Services {
+	using Attribute = bnet.protocol.attribute.Attribute;
+	using bnet.protocol.attribute;
+
 	public class GameMasterImpl: GameMaster {
 		Client client;
 		public GameMasterImpl(Client client) {
@@ -16,7 +19,30 @@ namespace d3server.Services {
 		}
 
 		public override void ListFactories(Google.ProtocolBuffers.IRpcController controller, ListFactoriesRequest request, Action<ListFactoriesResponse> done) {
-			throw new NotImplementedException();
+			var response = ListFactoriesResponse.CreateBuilder();
+
+			var description = GameFactoryDescription.CreateBuilder();
+			description.SetId(14249086168335147635);
+			description.AddAttribute(Attribute.CreateBuilder().SetName("min_players").SetValue(Variant.CreateBuilder().SetIntValue(2)));
+			description.AddAttribute(Attribute.CreateBuilder().SetName("max_players").SetValue(Variant.CreateBuilder().SetIntValue(4)));
+			description.AddAttribute(Attribute.CreateBuilder().SetName("num_teams").SetValue(Variant.CreateBuilder().SetIntValue(1)));
+			description.AddAttribute(Attribute.CreateBuilder().SetName("version").SetValue(Variant.CreateBuilder().SetStringValue("0.3.0")));
+
+			var stats_bucket = GameStatsBucket.CreateBuilder();
+			stats_bucket.SetBucketMin(0)
+						.SetBucketMax(4294967296)
+						.SetWaitMilliseconds(1354)
+						.SetGamesPerHour(0)
+						.SetActiveGames(1)
+						.SetActivePlayers(1)
+						.SetFormingGames(1)
+						.SetWaitingPlayers(0);
+
+			description.AddStatsBucket(stats_bucket);
+			response.AddDescription(description);
+			response.SetTotalResults(1);
+
+			done(response.Build());
 		}
 
 		public override void FindGame(Google.ProtocolBuffers.IRpcController controller, FindGameRequest request, Action<FindGameResponse> done) {

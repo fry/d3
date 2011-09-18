@@ -12,7 +12,8 @@ namespace d3server.Services {
 		}
 
 		public override void SubscribeToFriends(Google.ProtocolBuffers.IRpcController controller, SubscribeToFriendsRequest request, Action<SubscribeToFriendsResponse> done) {
-			throw new NotImplementedException();
+			var response = SubscribeToFriendsResponse.CreateBuilder();
+			done(response.Build());
 		}
 
 		public override void SendInvitation(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.invitation.SendInvitationRequest request, Action<bnet.protocol.invitation.SendInvitationResponse> done) {

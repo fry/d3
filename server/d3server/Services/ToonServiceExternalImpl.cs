@@ -12,7 +12,8 @@ namespace d3server.Services {
 		}
 
 		public override void ToonList(Google.ProtocolBuffers.IRpcController controller, ToonListRequest request, Action<ToonListResponse> done) {
-			throw new NotImplementedException();
+			var response = ToonListResponse.CreateBuilder();
+			done(response.Build());
 		}
 
 		public override void SelectToon(Google.ProtocolBuffers.IRpcController controller, SelectToonRequest request, Action<SelectToonResponse> done) {

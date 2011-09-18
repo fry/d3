@@ -165,8 +165,8 @@ namespace d3server {
 			temp_writer.Flush();
 
 			var buffer = stream.ToArray();
-			Debug.WriteLine("Sending data: ");
-			Debug.WriteLine(buffer.ToHexString());
+			//Debug.WriteLine("Sending data: ");
+			//Debug.WriteLine(buffer.ToHexString());
 
 			writer.WriteRawBytes(buffer);
 			writer.Flush();
@@ -178,14 +178,13 @@ namespace d3server {
 			var request_id = reader.ReadFixedUInt16();
 
 			Debug.WriteLine("Received packet [service_id: 0x{0:X2}, method_id: {1}, request_id: {2}]", service_id, method_id, request_id);
-			Debug.Indent();
 			// Handle RPC responses
 			if (service_id == RESPONSE_SERVICE_ID) {
-				Debug.WriteLine("received response");
+				Debug.WriteLine("  received response");
 				HandleResponse(request_id, reader);
 			} else {
 				var listener_id = reader.ReadInt64();
-				Debug.WriteLine("listener_id: {0}", listener_id);
+				Debug.WriteLine("  listener_id: {0}", listener_id);
 
 				IService service;
 				if (!exportedServices.TryGetValue(service_id, out service))
@@ -200,7 +199,7 @@ namespace d3server {
 				// Read the message into the correct builder
 				var message = ReadMessage(reader, builder);
 
-				Debug.WriteLine("passing RPC to {0}::{1}", method_descriptor.Service.Name, method_descriptor.Name);
+				Debug.WriteLine("  passing RPC to {0}::{1}", method_descriptor.Service.Name, method_descriptor.Name);
 				Debug.WriteLine(message.ToString());
 
 				// Response callback sends the repsponse

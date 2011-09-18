@@ -12,7 +12,9 @@ namespace d3server.Services {
 		}
 
 		public override void SubscribeToFollowers(Google.ProtocolBuffers.IRpcController controller, SubscribeToFollowersRequest request, Action<SubscribeToFollowersResponse> done) {
-			throw new NotImplementedException();
+			var response = SubscribeToFollowersResponse.CreateBuilder();
+
+			done(response.Build());
 		}
 
 		public override void StartFollowing(Google.ProtocolBuffers.IRpcController controller, StartFollowingRequest request, Action<StartFollowingResponse> done) {
