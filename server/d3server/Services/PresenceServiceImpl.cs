@@ -12,7 +12,7 @@ namespace d3server.Services {
 		}
 
 		public override void Subscribe(Google.ProtocolBuffers.IRpcController controller, SubscribeRequest request, Action<bnet.protocol.NoData> done) {
-			throw new NotImplementedException();
+			done(bnet.protocol.NoData.CreateBuilder().Build());
 		}
 
 		public override void Unsubscribe(Google.ProtocolBuffers.IRpcController controller, UnsubscribeRequest request, Action<bnet.protocol.NoData> done) {

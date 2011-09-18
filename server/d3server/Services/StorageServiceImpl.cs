@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.storage;
+using D3.Hero;
 
 namespace d3server.Services {
 	public class StorageServiceImpl: StorageService {
@@ -28,15 +29,31 @@ namespace d3server.Services {
 				if (request.QueryName == "GetGameAccountSettings") {
 					result.SetErrorCode(4);
 				} else if (request.QueryName == "GetHeroDigests") {
-					//var hero_digest = 
+					var hero_digest = D3.Hero.Digest.CreateBuilder();
+					hero_digest.SetVersion(1);
+					hero_digest.SetHeroId(D3.OnlineService.EntityId.CreateBuilder().SetIdHigh(0).SetIdLow(0));
+					hero_digest.SetHeroName("poop");
+					hero_digest.SetGbidClass(0);
+					hero_digest.SetLevel(1);
+					hero_digest.SetPlayerFlags(0);
+					hero_digest.SetVisualEquipment(VisualEquipment.CreateBuilder());
+					//hero_digest.SetQuestHistory(QuestHistoryEntry
+					hero_digest.SetLastPlayedAct(0);
+					hero_digest.SetHighestUnlockedAct(1);
+					hero_digest.SetLastPlayedQuest(0);
+					hero_digest.SetLastPlayedQuestStep(0);
+					hero_digest.SetLastPlayedDifficulty(0);
+					hero_digest.SetTimePlayed(0);
+					hero_digest.SetHighestUnlockedDifficulty(0);
+					data.SetData(hero_digest.Build().ToByteString());
 				} else if (request.QueryName == "LoadAccountDigest") {
 					var account_digest = D3.Account.Digest.CreateBuilder();
 					account_digest.SetVersion(1);
 					
 					// no last played hero
 					var last_played = D3.OnlineService.EntityId.CreateBuilder();
-					last_played.SetIdHigh(1);
-					last_played.SetIdLow(1);
+					last_played.SetIdHigh(0);
+					last_played.SetIdLow(0);
 					account_digest.SetLastPlayedHeroId(last_played);
 
 					// default banner

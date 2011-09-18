@@ -80,7 +80,8 @@ namespace d3server.Services {
 		}
 
 		public override void UnsubscribeOrderStatusChange(Google.ProtocolBuffers.IRpcController controller, UnsubscribeOrderStatusChangeRequest request, Action<bnet.protocol.NoData> done) {
-			throw new NotImplementedException();
+			var response = bnet.protocol.NoData.CreateBuilder();
+			done(response.Build());
 		}
 
 		public override void GetPaymentMethods(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.exchange_object_provider.GetPaymentMethodsRequest request, Action<bnet.protocol.exchange_object_provider.GetPaymentMethodsResponse> done) {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.party;
+using bnet.protocol.channel;
 
 namespace d3server.Services {
 	public class PartyServiceImpl: PartyService {
@@ -12,7 +13,9 @@ namespace d3server.Services {
 		}
 
 		public override void CreateChannel(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.CreateChannelRequest request, Action<bnet.protocol.channel.CreateChannelResponse> done) {
-			throw new NotImplementedException();
+			var response = CreateChannelResponse.CreateBuilder();
+			response.SetObjectId(request.ObjectId);
+			done(response.Build());
 		}
 
 		public override void JoinChannel(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.JoinChannelRequest request, Action<bnet.protocol.channel.JoinChannelResponse> done) {
