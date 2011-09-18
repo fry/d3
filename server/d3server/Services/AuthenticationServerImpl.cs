@@ -12,7 +12,7 @@ namespace d3server.Services {
 		}
 
 		public override void Logon(Google.ProtocolBuffers.IRpcController controller, LogonRequest request, Action<LogonResponse> done) {
-			throw new NotImplementedException();
+			
 		}
 
 		public override void ModuleMessage(Google.ProtocolBuffers.IRpcController controller, ModuleMessageRequest request, Action<bnet.protocol.NoData> done) {
