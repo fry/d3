@@ -1,6 +1,6 @@
 package bnet.protocol.exchange_object_provider;
 import "lib/protocol/entity.proto";
-import "lib/protocol/exchange.proto";
+import "service/exchange/exchange_types.proto";
 
 message ReportAuthorizeRequest {
 	required .bnet.protocol.exchange.PartitionId partition_id = 1;

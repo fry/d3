@@ -18,6 +18,14 @@ namespace bnet.protocol.exchange {
     }
     #endregion
     #region Static variables
+    internal static pbd::MessageDescriptor internal__static_bnet_protocol_exchange_PartitionId__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.PartitionId, global::bnet.protocol.exchange.PartitionId.Builder> internal__static_bnet_protocol_exchange_PartitionId__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_bnet_protocol_exchange_BlobFrom__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BlobFrom, global::bnet.protocol.exchange.BlobFrom.Builder> internal__static_bnet_protocol_exchange_BlobFrom__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_bnet_protocol_exchange_BlobOfType__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BlobOfType, global::bnet.protocol.exchange.BlobOfType.Builder> internal__static_bnet_protocol_exchange_BlobOfType__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_bnet_protocol_exchange_BlobFromOfType__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BlobFromOfType, global::bnet.protocol.exchange.BlobFromOfType.Builder> internal__static_bnet_protocol_exchange_BlobFromOfType__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_bnet_protocol_exchange_OrderBook__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.OrderBook, global::bnet.protocol.exchange.OrderBook.Builder> internal__static_bnet_protocol_exchange_OrderBook__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_bnet_protocol_exchange_OrderBookHandle__Descriptor;
@@ -67,160 +75,181 @@ namespace bnet.protocol.exchange {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "CiVzZXJ2aWNlL2V4Y2hhbmdlL2V4Y2hhbmdlX3R5cGVzLnByb3RvEhZibmV0" + 
           "LnByb3RvY29sLmV4Y2hhbmdlGhlsaWIvcHJvdG9jb2wvZW50aXR5LnByb3Rv" + 
-          "GhtsaWIvcHJvdG9jb2wvZXhjaGFuZ2UucHJvdG8ipAEKCU9yZGVyQm9vaxIy" + 
-          "CgZvYmplY3QYASACKAsyIi5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkJsb2JP" + 
-          "ZlR5cGUSDwoHcHJvZ3JhbRgCIAIoBxIVCg1jb21wYXRpYmlsaXR5GAMgAigN" + 
-          "EhAKCGN1cnJlbmN5GAQgAigJEhIKCnNwZWNpYWxpc3QYBSACKAUSFQoNYWxs" + 
-          "b3dlZF9yZWFsbRgGIAIoDSJjCg9PcmRlckJvb2tIYW5kbGUSOQoMcGFydGl0" + 
-          "aW9uX2lkGAEgAigLMiMuYm5ldC5wcm90b2NvbC5leGNoYW5nZS5QYXJ0aXRp" + 
-          "b25JZBIVCg1vcmRlcl9ib29rX2lkGAIgAigEIt4BChVPcmRlckJvb2tOb3Rp" + 
-          "ZmljYXRpb24SNQoKb3JkZXJfYm9vaxgBIAIoCzIhLmJuZXQucHJvdG9jb2wu" + 
-          "ZXhjaGFuZ2UuT3JkZXJCb29rEjkKDHBhcnRpdGlvbl9pZBgCIAIoCzIjLmJu" + 
-          "ZXQucHJvdG9jb2wuZXhjaGFuZ2UuUGFydGl0aW9uSWQSFQoNb3JkZXJfYm9v" + 
-          "a19pZBgDIAIoBBIXCg90cmFkZV9ub3dfcHJpY2UYBCABKAQSDgoGc3RhdHVz" + 
-          "GAUgAigNEhMKC3VwZGF0ZV90aW1lGAYgAigEIvsCChBPcmRlckJvb2tTdW1t" + 
-          "YXJ5EjkKDHBhcnRpdGlvbl9pZBgBIAIoCzIjLmJuZXQucHJvdG9jb2wuZXhj" + 
-          "aGFuZ2UuUGFydGl0aW9uSWQSFQoNb3JkZXJfYm9va19pZBgCIAIoBBIOCgZy" + 
-          "ZXN1bHQYAyACKA0SNQoKb3JkZXJfYm9vaxgEIAEoCzIhLmJuZXQucHJvdG9j" + 
-          "b2wuZXhjaGFuZ2UuT3JkZXJCb29rEg4KBmFtb3VudBgFIAEoBBIYChBiZXN0" + 
-          "X29mZmVyX3ByaWNlGAYgASgEEhYKDmJlc3RfYmlkX3ByaWNlGAcgASgEEhAK" + 
-          "CGVuZF90aW1lGAggASgEEg4KBnN0YXR1cxgJIAEoBRIUCgxjcmVhdGVkX3Rp" + 
-          "bWUYCiABKAQSEwoLYWN0aXZlX3RpbWUYCyABKAQSEwoLY2xvc2VkX3RpbWUY" + 
-          "DCABKAQSDgoGcmVhc29uGA0gASgNEhoKEm91dF9iaWRfdW5pdF9wcmljZRgO" + 
-          "IAEoBCK7AgoFT3JkZXISDgoGYW1vdW50GAEgAigNEhIKCnN0YXJ0X3RpbWUY" + 
-          "AiABKAQSEAoIZW5kX3RpbWUYAyABKAQSOwoRYWNjb3VudF9mb3JfbW9uZXkY" + 
-          "BCABKAsyIC5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkJsb2JGcm9tEjoKEGFj" + 
-          "Y291bnRfZm9yX2l0ZW0YBSABKAsyIC5ibmV0LnByb3RvY29sLmV4Y2hhbmdl" + 
-          "LkJsb2JGcm9tEi0KDGJuZXRfYWNjb3VudBgGIAEoCzIXLmJuZXQucHJvdG9j" + 
-          "b2wuRW50aXR5SWQSLQoMZ2FtZV9hY2NvdW50GAcgASgLMhcuYm5ldC5wcm90" + 
-          "b2NvbC5FbnRpdHlJZBIlCgR0b29uGAggASgLMhcuYm5ldC5wcm90b2NvbC5F" + 
-          "bnRpdHlJZCLyAgoJRXh0ZW5zaW9uEjkKDHBhcnRpdGlvbl9pZBgBIAIoCzIj" + 
-          "LmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuUGFydGl0aW9uSWQSFQoNb3JkZXJf" + 
-          "Ym9va19pZBgCIAIoBBIQCghvcmRlcl9pZBgDIAIoBBIVCg1maWxsZWRfYW1v" + 
-          "dW50GAQgASgEEhQKDG9yZGVyX3N0YXR1cxgFIAEoBRIXCg9hdXRob3JpemVk" + 
-          "X3RpbWUYBiABKAQSFAoMY3JlYXRlZF90aW1lGAcgASgEEhMKC2Nsb3NlZF90" + 
-          "aW1lGAggASgEEg4KBnJlYXNvbhgJIAEoDRI1CgpvcmRlcl9ib29rGAogASgL" + 
-          "MiEuYm5ldC5wcm90b2NvbC5leGNoYW5nZS5PcmRlckJvb2sSGQoRb3JkZXJf" + 
-          "Ym9va19zdGF0dXMYCyABKAQSFgoObW9uZXlfdG9fY2xhaW0YDCABKAQSFgoO" + 
-          "aXRlbXNfdG9fY2xhaW0YDSABKAQifAoFT2ZmZXISLAoFb3JkZXIYASACKAsy" + 
-          "HS5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLk9yZGVyEhcKD3RyYWRlX25vd19w" + 
-          "cmljZRgCIAEoBBIVCg1yZXNlcnZlX3ByaWNlGAMgASgEEhUKDW91dF9iaWRf" + 
-          "cHJpY2UYBCABKAQikgEKDU9mZmVyRXh0ZW5kZWQSLAoFb2ZmZXIYASACKAsy" + 
-          "HS5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLk9mZmVyEjQKCWV4dGVuc2lvbhgC" + 
-          "IAIoCzIhLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuRXh0ZW5zaW9uEh0KFWN1" + 
-          "cnJlbnRfd2lubmluZ19wcmljZRgDIAEoBCK1AQoNT2ZmZXJDcmVhdGlvbhIs" + 
-          "CgVvZmZlchgBIAIoCzIdLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuT2ZmZXIS" + 
-          "GAoQYXVjdGlvbl9kdXJhdGlvbhgCIAEoBBIbChNhdWN0aW9uX3N0YXJ0X2Rl" + 
-          "bGF5GAMgASgEEj8KD2JpbGxpbmdfYWRkcmVzcxgEIAEoCzImLmJuZXQucHJv" + 
-          "dG9jb2wuZXhjaGFuZ2UuQmlsbGluZ0FkZHJlc3MiZwoDQmlkEiwKBW9yZGVy" + 
-          "GAEgAigLMh0uYm5ldC5wcm90b2NvbC5leGNoYW5nZS5PcmRlchIaChJjdXJy" + 
-          "ZW50X3VuaXRfcHJpY2UYAiABKAQSFgoObWF4X3VuaXRfcHJpY2UYAyABKAQi" + 
-          "zgEKC0JpZEV4dGVuZGVkEigKA2JpZBgBIAIoCzIbLmJuZXQucHJvdG9jb2wu" + 
-          "ZXhjaGFuZ2UuQmlkEjQKCWV4dGVuc2lvbhgCIAIoCzIhLmJuZXQucHJvdG9j" + 
-          "b2wuZXhjaGFuZ2UuRXh0ZW5zaW9uEhsKE29mZmVyX291dF9iaWRfcHJpY2UY" + 
-          "AyABKAQSHQoVb2ZmZXJfdHJhZGVfbm93X3ByaWNlGAQgASgEEiMKG29mZmVy" + 
-          "X2N1cnJlbnRfd2lubmluZ19wcmljZRgFIAEoBCKvAQoLQmlkQ3JlYXRpb24S" + 
-          "KAoDYmlkGAEgAigLMhsuYm5ldC5wcm90b2NvbC5leGNoYW5nZS5CaWQSGAoQ" + 
-          "YXVjdGlvbl9kdXJhdGlvbhgCIAEoBBIbChNhdWN0aW9uX3N0YXJ0X2RlbGF5" + 
-          "GAMgASgEEj8KD2JpbGxpbmdfYWRkcmVzcxgEIAEoCzImLmJuZXQucHJvdG9j" + 
-          "b2wuZXhjaGFuZ2UuQmlsbGluZ0FkZHJlc3MiQAoUUXVlcnlGaWx0ZXJCeU9y" + 
-          "ZGVySWQSEgoKbWF4X3Jlc3VsdBgBIAIoDRIUCgxyZWZfb3JkZXJfaWQYAiAB" + 
-          "KAQiSAoYUXVlcnlGaWx0ZXJCeUNyZWF0ZWRUaW1lEhIKCm1heF9yZXN1bHQY" + 
-          "ASACKA0SGAoQcmVmX2NyZWF0ZWRfdGltZRgCIAEoBCJoCgpTZXR0bGVtZW50" + 
-          "EhUKDW9yZGVyX2Jvb2tfaWQYASACKAQSFAoMbW9uZXlfYW1vdW50GAIgAigE" + 
-          "EhQKDGl0ZW1zX2Ftb3VudBgDIAIoBBIXCg9vZmZlcl9zZXR0bGVfaWQYBCAC" + 
-          "KAQi8wEKDkN1cnJlbmN5Q29uZmlnEhAKCGN1cnJlbmN5GAEgAigJEhEKCXRp" + 
-          "Y2tfc2l6ZRgCIAIoBBIYChBmbGF0X291dGJpZF9pbmNyGAMgAigEEhkKEXNj" + 
-          "YWxlX291dGJpZF9pbmNyGAQgAigEEh8KF21pbl9zdGFydGluZ191bml0X3By" + 
-          "aWNlGAUgAigEEh8KF21heF9zdGFydGluZ191bml0X3ByaWNlGAYgAigEEhYK" + 
-          "Dm1heF91bml0X3ByaWNlGAcgAigEEhgKEG1heF90b3RhbF9hbW91bnQYCCAC" + 
-          "KAQSEwoLYnV5b3V0X3J1bGUYCSACKAUixgEKEFNwZWNpYWxpc3RDb25maWcS" + 
-          "EgoKc3BlY2lhbGlzdBgBIAIoBRIZChFhdWN0aW9uX2R1cmF0aW9ucxgCIAMo" + 
-          "BBIcChRhdWN0aW9uX3N0YXJ0X2RlbGF5cxgDIAMoBBIkChxhbnRpX3NuaXBp" + 
-          "bmdfZXh0ZW5zaW9uX2RlbGF5GAQgAigEEj8KD2N1cnJlbmN5X2NvbmZpZxgF" + 
-          "IAMoCzImLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuQ3VycmVuY3lDb25maWci" + 
-          "VgoOQmlsbGluZ0FkZHJlc3MSEgoKY291bnRyeV9pZBgBIAIoBRIMCgRjaXR5" + 
-          "GAIgAigJEg0KBXN0YXRlGAMgASgJEhMKC3Bvc3RhbF9jb2RlGAQgASgJItoB" + 
-          "ChFGZWVFc3RpbWF0aW9uRGF0YRIPCgdwcm9ncmFtGAEgAigHEhIKCnNwZWNp" + 
-          "YWxpc3QYAiACKAUSEAoIY3VycmVuY3kYAyACKAkSDgoGc291cmNlGAQgAigH" + 
-          "Eg4KBmFtb3VudBgFIAIoBBItCgxibmV0X2FjY291bnQYBiABKAsyFy5ibmV0" + 
-          "LnByb3RvY29sLkVudGl0eUlkEj8KD2JpbGxpbmdfYWRkcmVzcxgHIAEoCzIm" + 
-          "LmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuQmlsbGluZ0FkZHJlc3M=");
+          "IigKC1BhcnRpdGlvbklkEgwKBGhpZ2gYASACKAYSCwoDbG93GAIgAigGIjwK" + 
+          "CEJsb2JGcm9tEg4KBnNvdXJjZRgBIAIoBxIMCgRkYXRhGAIgAigMEhIKCmV4" + 
+          "dHJhX2RhdGEYAyABKAwiPAoKQmxvYk9mVHlwZRIMCgR0eXBlGAEgAigJEgwK" + 
+          "BGRhdGEYAiABKAwSEgoKZXh0cmFfZGF0YRgDIAEoDCI8Cg5CbG9iRnJvbU9m" + 
+          "VHlwZRIOCgZzb3VyY2UYASACKAcSDAoEdHlwZRgCIAIoCRIMCgRkYXRhGAMg" + 
+          "AigMIqQBCglPcmRlckJvb2sSMgoGb2JqZWN0GAEgAigLMiIuYm5ldC5wcm90" + 
+          "b2NvbC5leGNoYW5nZS5CbG9iT2ZUeXBlEg8KB3Byb2dyYW0YAiACKAcSFQoN" + 
+          "Y29tcGF0aWJpbGl0eRgDIAIoDRIQCghjdXJyZW5jeRgEIAIoCRISCgpzcGVj" + 
+          "aWFsaXN0GAUgAigFEhUKDWFsbG93ZWRfcmVhbG0YBiACKA0iYwoPT3JkZXJC" + 
+          "b29rSGFuZGxlEjkKDHBhcnRpdGlvbl9pZBgBIAIoCzIjLmJuZXQucHJvdG9j" + 
+          "b2wuZXhjaGFuZ2UuUGFydGl0aW9uSWQSFQoNb3JkZXJfYm9va19pZBgCIAIo" + 
+          "BCLeAQoVT3JkZXJCb29rTm90aWZpY2F0aW9uEjUKCm9yZGVyX2Jvb2sYASAC" + 
+          "KAsyIS5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLk9yZGVyQm9vaxI5CgxwYXJ0" + 
+          "aXRpb25faWQYAiACKAsyIy5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLlBhcnRp" + 
+          "dGlvbklkEhUKDW9yZGVyX2Jvb2tfaWQYAyACKAQSFwoPdHJhZGVfbm93X3By" + 
+          "aWNlGAQgASgEEg4KBnN0YXR1cxgFIAIoDRITCgt1cGRhdGVfdGltZRgGIAIo" + 
+          "BCL7AgoQT3JkZXJCb29rU3VtbWFyeRI5CgxwYXJ0aXRpb25faWQYASACKAsy" + 
+          "Iy5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLlBhcnRpdGlvbklkEhUKDW9yZGVy" + 
+          "X2Jvb2tfaWQYAiACKAQSDgoGcmVzdWx0GAMgAigNEjUKCm9yZGVyX2Jvb2sY" + 
+          "BCABKAsyIS5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLk9yZGVyQm9vaxIOCgZh" + 
+          "bW91bnQYBSABKAQSGAoQYmVzdF9vZmZlcl9wcmljZRgGIAEoBBIWCg5iZXN0" + 
+          "X2JpZF9wcmljZRgHIAEoBBIQCghlbmRfdGltZRgIIAEoBBIOCgZzdGF0dXMY" + 
+          "CSABKAUSFAoMY3JlYXRlZF90aW1lGAogASgEEhMKC2FjdGl2ZV90aW1lGAsg" + 
+          "ASgEEhMKC2Nsb3NlZF90aW1lGAwgASgEEg4KBnJlYXNvbhgNIAEoDRIaChJv" + 
+          "dXRfYmlkX3VuaXRfcHJpY2UYDiABKAQiuwIKBU9yZGVyEg4KBmFtb3VudBgB" + 
+          "IAIoDRISCgpzdGFydF90aW1lGAIgASgEEhAKCGVuZF90aW1lGAMgASgEEjsK" + 
+          "EWFjY291bnRfZm9yX21vbmV5GAQgASgLMiAuYm5ldC5wcm90b2NvbC5leGNo" + 
+          "YW5nZS5CbG9iRnJvbRI6ChBhY2NvdW50X2Zvcl9pdGVtGAUgASgLMiAuYm5l" + 
+          "dC5wcm90b2NvbC5leGNoYW5nZS5CbG9iRnJvbRItCgxibmV0X2FjY291bnQY" + 
+          "BiABKAsyFy5ibmV0LnByb3RvY29sLkVudGl0eUlkEi0KDGdhbWVfYWNjb3Vu" + 
+          "dBgHIAEoCzIXLmJuZXQucHJvdG9jb2wuRW50aXR5SWQSJQoEdG9vbhgIIAEo" + 
+          "CzIXLmJuZXQucHJvdG9jb2wuRW50aXR5SWQi8gIKCUV4dGVuc2lvbhI5Cgxw" + 
+          "YXJ0aXRpb25faWQYASACKAsyIy5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLlBh" + 
+          "cnRpdGlvbklkEhUKDW9yZGVyX2Jvb2tfaWQYAiACKAQSEAoIb3JkZXJfaWQY" + 
+          "AyACKAQSFQoNZmlsbGVkX2Ftb3VudBgEIAEoBBIUCgxvcmRlcl9zdGF0dXMY" + 
+          "BSABKAUSFwoPYXV0aG9yaXplZF90aW1lGAYgASgEEhQKDGNyZWF0ZWRfdGlt" + 
+          "ZRgHIAEoBBITCgtjbG9zZWRfdGltZRgIIAEoBBIOCgZyZWFzb24YCSABKA0S" + 
+          "NQoKb3JkZXJfYm9vaxgKIAEoCzIhLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2Uu" + 
+          "T3JkZXJCb29rEhkKEW9yZGVyX2Jvb2tfc3RhdHVzGAsgASgEEhYKDm1vbmV5" + 
+          "X3RvX2NsYWltGAwgASgEEhYKDml0ZW1zX3RvX2NsYWltGA0gASgEInwKBU9m" + 
+          "ZmVyEiwKBW9yZGVyGAEgAigLMh0uYm5ldC5wcm90b2NvbC5leGNoYW5nZS5P" + 
+          "cmRlchIXCg90cmFkZV9ub3dfcHJpY2UYAiABKAQSFQoNcmVzZXJ2ZV9wcmlj" + 
+          "ZRgDIAEoBBIVCg1vdXRfYmlkX3ByaWNlGAQgASgEIpIBCg1PZmZlckV4dGVu" + 
+          "ZGVkEiwKBW9mZmVyGAEgAigLMh0uYm5ldC5wcm90b2NvbC5leGNoYW5nZS5P" + 
+          "ZmZlchI0CglleHRlbnNpb24YAiACKAsyIS5ibmV0LnByb3RvY29sLmV4Y2hh" + 
+          "bmdlLkV4dGVuc2lvbhIdChVjdXJyZW50X3dpbm5pbmdfcHJpY2UYAyABKAQi" + 
+          "tQEKDU9mZmVyQ3JlYXRpb24SLAoFb2ZmZXIYASACKAsyHS5ibmV0LnByb3Rv" + 
+          "Y29sLmV4Y2hhbmdlLk9mZmVyEhgKEGF1Y3Rpb25fZHVyYXRpb24YAiABKAQS" + 
+          "GwoTYXVjdGlvbl9zdGFydF9kZWxheRgDIAEoBBI/Cg9iaWxsaW5nX2FkZHJl" + 
+          "c3MYBCABKAsyJi5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkJpbGxpbmdBZGRy" + 
+          "ZXNzImcKA0JpZBIsCgVvcmRlchgBIAIoCzIdLmJuZXQucHJvdG9jb2wuZXhj" + 
+          "aGFuZ2UuT3JkZXISGgoSY3VycmVudF91bml0X3ByaWNlGAIgASgEEhYKDm1h" + 
+          "eF91bml0X3ByaWNlGAMgASgEIs4BCgtCaWRFeHRlbmRlZBIoCgNiaWQYASAC" + 
+          "KAsyGy5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkJpZBI0CglleHRlbnNpb24Y" + 
+          "AiACKAsyIS5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkV4dGVuc2lvbhIbChNv" + 
+          "ZmZlcl9vdXRfYmlkX3ByaWNlGAMgASgEEh0KFW9mZmVyX3RyYWRlX25vd19w" + 
+          "cmljZRgEIAEoBBIjChtvZmZlcl9jdXJyZW50X3dpbm5pbmdfcHJpY2UYBSAB" + 
+          "KAQirwEKC0JpZENyZWF0aW9uEigKA2JpZBgBIAIoCzIbLmJuZXQucHJvdG9j" + 
+          "b2wuZXhjaGFuZ2UuQmlkEhgKEGF1Y3Rpb25fZHVyYXRpb24YAiABKAQSGwoT" + 
+          "YXVjdGlvbl9zdGFydF9kZWxheRgDIAEoBBI/Cg9iaWxsaW5nX2FkZHJlc3MY" + 
+          "BCABKAsyJi5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkJpbGxpbmdBZGRyZXNz" + 
+          "IkAKFFF1ZXJ5RmlsdGVyQnlPcmRlcklkEhIKCm1heF9yZXN1bHQYASACKA0S" + 
+          "FAoMcmVmX29yZGVyX2lkGAIgASgEIkgKGFF1ZXJ5RmlsdGVyQnlDcmVhdGVk" + 
+          "VGltZRISCgptYXhfcmVzdWx0GAEgAigNEhgKEHJlZl9jcmVhdGVkX3RpbWUY" + 
+          "AiABKAQiaAoKU2V0dGxlbWVudBIVCg1vcmRlcl9ib29rX2lkGAEgAigEEhQK" + 
+          "DG1vbmV5X2Ftb3VudBgCIAIoBBIUCgxpdGVtc19hbW91bnQYAyACKAQSFwoP" + 
+          "b2ZmZXJfc2V0dGxlX2lkGAQgAigEIvMBCg5DdXJyZW5jeUNvbmZpZxIQCghj" + 
+          "dXJyZW5jeRgBIAIoCRIRCgl0aWNrX3NpemUYAiACKAQSGAoQZmxhdF9vdXRi" + 
+          "aWRfaW5jchgDIAIoBBIZChFzY2FsZV9vdXRiaWRfaW5jchgEIAIoBBIfChdt" + 
+          "aW5fc3RhcnRpbmdfdW5pdF9wcmljZRgFIAIoBBIfChdtYXhfc3RhcnRpbmdf" + 
+          "dW5pdF9wcmljZRgGIAIoBBIWCg5tYXhfdW5pdF9wcmljZRgHIAIoBBIYChBt" + 
+          "YXhfdG90YWxfYW1vdW50GAggAigEEhMKC2J1eW91dF9ydWxlGAkgAigFIsYB" + 
+          "ChBTcGVjaWFsaXN0Q29uZmlnEhIKCnNwZWNpYWxpc3QYASACKAUSGQoRYXVj" + 
+          "dGlvbl9kdXJhdGlvbnMYAiADKAQSHAoUYXVjdGlvbl9zdGFydF9kZWxheXMY" + 
+          "AyADKAQSJAocYW50aV9zbmlwaW5nX2V4dGVuc2lvbl9kZWxheRgEIAIoBBI/" + 
+          "Cg9jdXJyZW5jeV9jb25maWcYBSADKAsyJi5ibmV0LnByb3RvY29sLmV4Y2hh" + 
+          "bmdlLkN1cnJlbmN5Q29uZmlnIlYKDkJpbGxpbmdBZGRyZXNzEhIKCmNvdW50" + 
+          "cnlfaWQYASACKAUSDAoEY2l0eRgCIAIoCRINCgVzdGF0ZRgDIAEoCRITCgtw" + 
+          "b3N0YWxfY29kZRgEIAEoCSLaAQoRRmVlRXN0aW1hdGlvbkRhdGESDwoHcHJv" + 
+          "Z3JhbRgBIAIoBxISCgpzcGVjaWFsaXN0GAIgAigFEhAKCGN1cnJlbmN5GAMg" + 
+          "AigJEg4KBnNvdXJjZRgEIAIoBxIOCgZhbW91bnQYBSACKAQSLQoMYm5ldF9h" + 
+          "Y2NvdW50GAYgASgLMhcuYm5ldC5wcm90b2NvbC5FbnRpdHlJZBI/Cg9iaWxs" + 
+          "aW5nX2FkZHJlc3MYByABKAsyJi5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkJp" + 
+          "bGxpbmdBZGRyZXNz");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
-        internal__static_bnet_protocol_exchange_OrderBook__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_bnet_protocol_exchange_PartitionId__Descriptor = Descriptor.MessageTypes[0];
+        internal__static_bnet_protocol_exchange_PartitionId__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.PartitionId, global::bnet.protocol.exchange.PartitionId.Builder>(internal__static_bnet_protocol_exchange_PartitionId__Descriptor,
+                new string[] { "High", "Low", });
+        internal__static_bnet_protocol_exchange_BlobFrom__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_bnet_protocol_exchange_BlobFrom__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BlobFrom, global::bnet.protocol.exchange.BlobFrom.Builder>(internal__static_bnet_protocol_exchange_BlobFrom__Descriptor,
+                new string[] { "Source", "Data", "ExtraData", });
+        internal__static_bnet_protocol_exchange_BlobOfType__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_bnet_protocol_exchange_BlobOfType__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BlobOfType, global::bnet.protocol.exchange.BlobOfType.Builder>(internal__static_bnet_protocol_exchange_BlobOfType__Descriptor,
+                new string[] { "Type", "Data", "ExtraData", });
+        internal__static_bnet_protocol_exchange_BlobFromOfType__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_bnet_protocol_exchange_BlobFromOfType__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BlobFromOfType, global::bnet.protocol.exchange.BlobFromOfType.Builder>(internal__static_bnet_protocol_exchange_BlobFromOfType__Descriptor,
+                new string[] { "Source", "Type", "Data", });
+        internal__static_bnet_protocol_exchange_OrderBook__Descriptor = Descriptor.MessageTypes[4];
         internal__static_bnet_protocol_exchange_OrderBook__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.OrderBook, global::bnet.protocol.exchange.OrderBook.Builder>(internal__static_bnet_protocol_exchange_OrderBook__Descriptor,
                 new string[] { "Object", "Program", "Compatibility", "Currency", "Specialist", "AllowedRealm", });
-        internal__static_bnet_protocol_exchange_OrderBookHandle__Descriptor = Descriptor.MessageTypes[1];
+        internal__static_bnet_protocol_exchange_OrderBookHandle__Descriptor = Descriptor.MessageTypes[5];
         internal__static_bnet_protocol_exchange_OrderBookHandle__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.OrderBookHandle, global::bnet.protocol.exchange.OrderBookHandle.Builder>(internal__static_bnet_protocol_exchange_OrderBookHandle__Descriptor,
                 new string[] { "PartitionId", "OrderBookId", });
-        internal__static_bnet_protocol_exchange_OrderBookNotification__Descriptor = Descriptor.MessageTypes[2];
+        internal__static_bnet_protocol_exchange_OrderBookNotification__Descriptor = Descriptor.MessageTypes[6];
         internal__static_bnet_protocol_exchange_OrderBookNotification__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.OrderBookNotification, global::bnet.protocol.exchange.OrderBookNotification.Builder>(internal__static_bnet_protocol_exchange_OrderBookNotification__Descriptor,
                 new string[] { "OrderBook", "PartitionId", "OrderBookId", "TradeNowPrice", "Status", "UpdateTime", });
-        internal__static_bnet_protocol_exchange_OrderBookSummary__Descriptor = Descriptor.MessageTypes[3];
+        internal__static_bnet_protocol_exchange_OrderBookSummary__Descriptor = Descriptor.MessageTypes[7];
         internal__static_bnet_protocol_exchange_OrderBookSummary__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.OrderBookSummary, global::bnet.protocol.exchange.OrderBookSummary.Builder>(internal__static_bnet_protocol_exchange_OrderBookSummary__Descriptor,
                 new string[] { "PartitionId", "OrderBookId", "Result", "OrderBook", "Amount", "BestOfferPrice", "BestBidPrice", "EndTime", "Status", "CreatedTime", "ActiveTime", "ClosedTime", "Reason", "OutBidUnitPrice", });
-        internal__static_bnet_protocol_exchange_Order__Descriptor = Descriptor.MessageTypes[4];
+        internal__static_bnet_protocol_exchange_Order__Descriptor = Descriptor.MessageTypes[8];
         internal__static_bnet_protocol_exchange_Order__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.Order, global::bnet.protocol.exchange.Order.Builder>(internal__static_bnet_protocol_exchange_Order__Descriptor,
                 new string[] { "Amount", "StartTime", "EndTime", "AccountForMoney", "AccountForItem", "BnetAccount", "GameAccount", "Toon", });
-        internal__static_bnet_protocol_exchange_Extension__Descriptor = Descriptor.MessageTypes[5];
+        internal__static_bnet_protocol_exchange_Extension__Descriptor = Descriptor.MessageTypes[9];
         internal__static_bnet_protocol_exchange_Extension__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.Extension, global::bnet.protocol.exchange.Extension.Builder>(internal__static_bnet_protocol_exchange_Extension__Descriptor,
                 new string[] { "PartitionId", "OrderBookId", "OrderId", "FilledAmount", "OrderStatus", "AuthorizedTime", "CreatedTime", "ClosedTime", "Reason", "OrderBook", "OrderBookStatus", "MoneyToClaim", "ItemsToClaim", });
-        internal__static_bnet_protocol_exchange_Offer__Descriptor = Descriptor.MessageTypes[6];
+        internal__static_bnet_protocol_exchange_Offer__Descriptor = Descriptor.MessageTypes[10];
         internal__static_bnet_protocol_exchange_Offer__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.Offer, global::bnet.protocol.exchange.Offer.Builder>(internal__static_bnet_protocol_exchange_Offer__Descriptor,
                 new string[] { "Order", "TradeNowPrice", "ReservePrice", "OutBidPrice", });
-        internal__static_bnet_protocol_exchange_OfferExtended__Descriptor = Descriptor.MessageTypes[7];
+        internal__static_bnet_protocol_exchange_OfferExtended__Descriptor = Descriptor.MessageTypes[11];
         internal__static_bnet_protocol_exchange_OfferExtended__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.OfferExtended, global::bnet.protocol.exchange.OfferExtended.Builder>(internal__static_bnet_protocol_exchange_OfferExtended__Descriptor,
                 new string[] { "Offer", "Extension", "CurrentWinningPrice", });
-        internal__static_bnet_protocol_exchange_OfferCreation__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_bnet_protocol_exchange_OfferCreation__Descriptor = Descriptor.MessageTypes[12];
         internal__static_bnet_protocol_exchange_OfferCreation__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.OfferCreation, global::bnet.protocol.exchange.OfferCreation.Builder>(internal__static_bnet_protocol_exchange_OfferCreation__Descriptor,
                 new string[] { "Offer", "AuctionDuration", "AuctionStartDelay", "BillingAddress", });
-        internal__static_bnet_protocol_exchange_Bid__Descriptor = Descriptor.MessageTypes[9];
+        internal__static_bnet_protocol_exchange_Bid__Descriptor = Descriptor.MessageTypes[13];
         internal__static_bnet_protocol_exchange_Bid__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.Bid, global::bnet.protocol.exchange.Bid.Builder>(internal__static_bnet_protocol_exchange_Bid__Descriptor,
                 new string[] { "Order", "CurrentUnitPrice", "MaxUnitPrice", });
-        internal__static_bnet_protocol_exchange_BidExtended__Descriptor = Descriptor.MessageTypes[10];
+        internal__static_bnet_protocol_exchange_BidExtended__Descriptor = Descriptor.MessageTypes[14];
         internal__static_bnet_protocol_exchange_BidExtended__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BidExtended, global::bnet.protocol.exchange.BidExtended.Builder>(internal__static_bnet_protocol_exchange_BidExtended__Descriptor,
                 new string[] { "Bid", "Extension", "OfferOutBidPrice", "OfferTradeNowPrice", "OfferCurrentWinningPrice", });
-        internal__static_bnet_protocol_exchange_BidCreation__Descriptor = Descriptor.MessageTypes[11];
+        internal__static_bnet_protocol_exchange_BidCreation__Descriptor = Descriptor.MessageTypes[15];
         internal__static_bnet_protocol_exchange_BidCreation__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BidCreation, global::bnet.protocol.exchange.BidCreation.Builder>(internal__static_bnet_protocol_exchange_BidCreation__Descriptor,
                 new string[] { "Bid", "AuctionDuration", "AuctionStartDelay", "BillingAddress", });
-        internal__static_bnet_protocol_exchange_QueryFilterByOrderId__Descriptor = Descriptor.MessageTypes[12];
+        internal__static_bnet_protocol_exchange_QueryFilterByOrderId__Descriptor = Descriptor.MessageTypes[16];
         internal__static_bnet_protocol_exchange_QueryFilterByOrderId__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.QueryFilterByOrderId, global::bnet.protocol.exchange.QueryFilterByOrderId.Builder>(internal__static_bnet_protocol_exchange_QueryFilterByOrderId__Descriptor,
                 new string[] { "MaxResult", "RefOrderId", });
-        internal__static_bnet_protocol_exchange_QueryFilterByCreatedTime__Descriptor = Descriptor.MessageTypes[13];
+        internal__static_bnet_protocol_exchange_QueryFilterByCreatedTime__Descriptor = Descriptor.MessageTypes[17];
         internal__static_bnet_protocol_exchange_QueryFilterByCreatedTime__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.QueryFilterByCreatedTime, global::bnet.protocol.exchange.QueryFilterByCreatedTime.Builder>(internal__static_bnet_protocol_exchange_QueryFilterByCreatedTime__Descriptor,
                 new string[] { "MaxResult", "RefCreatedTime", });
-        internal__static_bnet_protocol_exchange_Settlement__Descriptor = Descriptor.MessageTypes[14];
+        internal__static_bnet_protocol_exchange_Settlement__Descriptor = Descriptor.MessageTypes[18];
         internal__static_bnet_protocol_exchange_Settlement__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.Settlement, global::bnet.protocol.exchange.Settlement.Builder>(internal__static_bnet_protocol_exchange_Settlement__Descriptor,
                 new string[] { "OrderBookId", "MoneyAmount", "ItemsAmount", "OfferSettleId", });
-        internal__static_bnet_protocol_exchange_CurrencyConfig__Descriptor = Descriptor.MessageTypes[15];
+        internal__static_bnet_protocol_exchange_CurrencyConfig__Descriptor = Descriptor.MessageTypes[19];
         internal__static_bnet_protocol_exchange_CurrencyConfig__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.CurrencyConfig, global::bnet.protocol.exchange.CurrencyConfig.Builder>(internal__static_bnet_protocol_exchange_CurrencyConfig__Descriptor,
                 new string[] { "Currency", "TickSize", "FlatOutbidIncr", "ScaleOutbidIncr", "MinStartingUnitPrice", "MaxStartingUnitPrice", "MaxUnitPrice", "MaxTotalAmount", "BuyoutRule", });
-        internal__static_bnet_protocol_exchange_SpecialistConfig__Descriptor = Descriptor.MessageTypes[16];
+        internal__static_bnet_protocol_exchange_SpecialistConfig__Descriptor = Descriptor.MessageTypes[20];
         internal__static_bnet_protocol_exchange_SpecialistConfig__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.SpecialistConfig, global::bnet.protocol.exchange.SpecialistConfig.Builder>(internal__static_bnet_protocol_exchange_SpecialistConfig__Descriptor,
                 new string[] { "Specialist", "AuctionDurations", "AuctionStartDelays", "AntiSnipingExtensionDelay", "CurrencyConfig", });
-        internal__static_bnet_protocol_exchange_BillingAddress__Descriptor = Descriptor.MessageTypes[17];
+        internal__static_bnet_protocol_exchange_BillingAddress__Descriptor = Descriptor.MessageTypes[21];
         internal__static_bnet_protocol_exchange_BillingAddress__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.BillingAddress, global::bnet.protocol.exchange.BillingAddress.Builder>(internal__static_bnet_protocol_exchange_BillingAddress__Descriptor,
                 new string[] { "CountryId", "City", "State", "PostalCode", });
-        internal__static_bnet_protocol_exchange_FeeEstimationData__Descriptor = Descriptor.MessageTypes[18];
+        internal__static_bnet_protocol_exchange_FeeEstimationData__Descriptor = Descriptor.MessageTypes[22];
         internal__static_bnet_protocol_exchange_FeeEstimationData__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.exchange.FeeEstimationData, global::bnet.protocol.exchange.FeeEstimationData.Builder>(internal__static_bnet_protocol_exchange_FeeEstimationData__Descriptor,
                 new string[] { "Program", "Specialist", "Currency", "Source", "Amount", "BnetAccount", "BillingAddress", });
@@ -229,13 +258,1270 @@ namespace bnet.protocol.exchange {
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
           global::bnet.protocol.Entity.Descriptor, 
-          global::bnet.protocol.exchange.Exchange.Descriptor, 
           }, assigner);
     }
     #endregion
     
   }
   #region Messages
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+  public sealed partial class PartitionId : pb::GeneratedMessage<PartitionId, PartitionId.Builder> {
+    private static readonly PartitionId defaultInstance = new Builder().BuildPartial();
+    private static readonly string[] _partitionIdFieldNames = new string[] { "high", "low" };
+    private static readonly uint[] _partitionIdFieldTags = new uint[] { 9, 17 };
+    public static PartitionId DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override PartitionId DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override PartitionId ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_PartitionId__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<PartitionId, PartitionId.Builder> InternalFieldAccessors {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_PartitionId__FieldAccessorTable; }
+    }
+    
+    public const int HighFieldNumber = 1;
+    private bool hasHigh;
+    private ulong high_;
+    public bool HasHigh {
+      get { return hasHigh; }
+    }
+    public ulong High {
+      get { return high_; }
+    }
+    
+    public const int LowFieldNumber = 2;
+    private bool hasLow;
+    private ulong low_;
+    public bool HasLow {
+      get { return hasLow; }
+    }
+    public ulong Low {
+      get { return low_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHigh) return false;
+        if (!hasLow) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _partitionIdFieldNames;
+      if (hasHigh) {
+        output.WriteFixed64(1, field_names[0], High);
+      }
+      if (hasLow) {
+        output.WriteFixed64(2, field_names[1], Low);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHigh) {
+          size += pb::CodedOutputStream.ComputeFixed64Size(1, High);
+        }
+        if (hasLow) {
+          size += pb::CodedOutputStream.ComputeFixed64Size(2, Low);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static PartitionId ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static PartitionId ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static PartitionId ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static PartitionId ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static PartitionId ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static PartitionId ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static PartitionId ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static PartitionId ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static PartitionId ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static PartitionId ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(PartitionId prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+    public sealed partial class Builder : pb::GeneratedBuilder<PartitionId, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      PartitionId result = new PartitionId();
+      
+      protected override PartitionId MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new PartitionId();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::bnet.protocol.exchange.PartitionId.Descriptor; }
+      }
+      
+      public override PartitionId DefaultInstanceForType {
+        get { return global::bnet.protocol.exchange.PartitionId.DefaultInstance; }
+      }
+      
+      public override PartitionId BuildPartial() {
+        if (result == null) {
+          throw new global::System.InvalidOperationException("build() has already been called on this Builder");
+        }
+        PartitionId returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is PartitionId) {
+          return MergeFrom((PartitionId) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(PartitionId other) {
+        if (other == global::bnet.protocol.exchange.PartitionId.DefaultInstance) return this;
+        if (other.HasHigh) {
+          High = other.High;
+        }
+        if (other.HasLow) {
+          Low = other.Low;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_partitionIdFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _partitionIdFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 9: {
+              result.hasHigh = input.ReadFixed64(ref result.high_);
+              break;
+            }
+            case 17: {
+              result.hasLow = input.ReadFixed64(ref result.low_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHigh {
+        get { return result.hasHigh; }
+      }
+      public ulong High {
+        get { return result.High; }
+        set { SetHigh(value); }
+      }
+      public Builder SetHigh(ulong value) {
+        result.hasHigh = true;
+        result.high_ = value;
+        return this;
+      }
+      public Builder ClearHigh() {
+        result.hasHigh = false;
+        result.high_ = 0;
+        return this;
+      }
+      
+      public bool HasLow {
+        get { return result.hasLow; }
+      }
+      public ulong Low {
+        get { return result.Low; }
+        set { SetLow(value); }
+      }
+      public Builder SetLow(ulong value) {
+        result.hasLow = true;
+        result.low_ = value;
+        return this;
+      }
+      public Builder ClearLow() {
+        result.hasLow = false;
+        result.low_ = 0;
+        return this;
+      }
+    }
+    static PartitionId() {
+      object.ReferenceEquals(global::bnet.protocol.exchange.ExchangeTypes.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+  public sealed partial class BlobFrom : pb::GeneratedMessage<BlobFrom, BlobFrom.Builder> {
+    private static readonly BlobFrom defaultInstance = new Builder().BuildPartial();
+    private static readonly string[] _blobFromFieldNames = new string[] { "data", "extra_data", "source" };
+    private static readonly uint[] _blobFromFieldTags = new uint[] { 18, 26, 13 };
+    public static BlobFrom DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override BlobFrom DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override BlobFrom ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_BlobFrom__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<BlobFrom, BlobFrom.Builder> InternalFieldAccessors {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_BlobFrom__FieldAccessorTable; }
+    }
+    
+    public const int SourceFieldNumber = 1;
+    private bool hasSource;
+    private uint source_;
+    public bool HasSource {
+      get { return hasSource; }
+    }
+    public uint Source {
+      get { return source_; }
+    }
+    
+    public const int DataFieldNumber = 2;
+    private bool hasData;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    public bool HasData {
+      get { return hasData; }
+    }
+    public pb::ByteString Data {
+      get { return data_; }
+    }
+    
+    public const int ExtraDataFieldNumber = 3;
+    private bool hasExtraData;
+    private pb::ByteString extraData_ = pb::ByteString.Empty;
+    public bool HasExtraData {
+      get { return hasExtraData; }
+    }
+    public pb::ByteString ExtraData {
+      get { return extraData_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasSource) return false;
+        if (!hasData) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _blobFromFieldNames;
+      if (hasSource) {
+        output.WriteFixed32(1, field_names[2], Source);
+      }
+      if (hasData) {
+        output.WriteBytes(2, field_names[0], Data);
+      }
+      if (hasExtraData) {
+        output.WriteBytes(3, field_names[1], ExtraData);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasSource) {
+          size += pb::CodedOutputStream.ComputeFixed32Size(1, Source);
+        }
+        if (hasData) {
+          size += pb::CodedOutputStream.ComputeBytesSize(2, Data);
+        }
+        if (hasExtraData) {
+          size += pb::CodedOutputStream.ComputeBytesSize(3, ExtraData);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static BlobFrom ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static BlobFrom ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static BlobFrom ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static BlobFrom ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static BlobFrom ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static BlobFrom ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static BlobFrom ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static BlobFrom ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static BlobFrom ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static BlobFrom ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(BlobFrom prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+    public sealed partial class Builder : pb::GeneratedBuilder<BlobFrom, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      BlobFrom result = new BlobFrom();
+      
+      protected override BlobFrom MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new BlobFrom();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::bnet.protocol.exchange.BlobFrom.Descriptor; }
+      }
+      
+      public override BlobFrom DefaultInstanceForType {
+        get { return global::bnet.protocol.exchange.BlobFrom.DefaultInstance; }
+      }
+      
+      public override BlobFrom BuildPartial() {
+        if (result == null) {
+          throw new global::System.InvalidOperationException("build() has already been called on this Builder");
+        }
+        BlobFrom returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is BlobFrom) {
+          return MergeFrom((BlobFrom) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(BlobFrom other) {
+        if (other == global::bnet.protocol.exchange.BlobFrom.DefaultInstance) return this;
+        if (other.HasSource) {
+          Source = other.Source;
+        }
+        if (other.HasData) {
+          Data = other.Data;
+        }
+        if (other.HasExtraData) {
+          ExtraData = other.ExtraData;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_blobFromFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _blobFromFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 13: {
+              result.hasSource = input.ReadFixed32(ref result.source_);
+              break;
+            }
+            case 18: {
+              result.hasData = input.ReadBytes(ref result.data_);
+              break;
+            }
+            case 26: {
+              result.hasExtraData = input.ReadBytes(ref result.extraData_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasSource {
+        get { return result.hasSource; }
+      }
+      public uint Source {
+        get { return result.Source; }
+        set { SetSource(value); }
+      }
+      public Builder SetSource(uint value) {
+        result.hasSource = true;
+        result.source_ = value;
+        return this;
+      }
+      public Builder ClearSource() {
+        result.hasSource = false;
+        result.source_ = 0;
+        return this;
+      }
+      
+      public bool HasData {
+        get { return result.hasData; }
+      }
+      public pb::ByteString Data {
+        get { return result.Data; }
+        set { SetData(value); }
+      }
+      public Builder SetData(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasData = true;
+        result.data_ = value;
+        return this;
+      }
+      public Builder ClearData() {
+        result.hasData = false;
+        result.data_ = pb::ByteString.Empty;
+        return this;
+      }
+      
+      public bool HasExtraData {
+        get { return result.hasExtraData; }
+      }
+      public pb::ByteString ExtraData {
+        get { return result.ExtraData; }
+        set { SetExtraData(value); }
+      }
+      public Builder SetExtraData(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasExtraData = true;
+        result.extraData_ = value;
+        return this;
+      }
+      public Builder ClearExtraData() {
+        result.hasExtraData = false;
+        result.extraData_ = pb::ByteString.Empty;
+        return this;
+      }
+    }
+    static BlobFrom() {
+      object.ReferenceEquals(global::bnet.protocol.exchange.ExchangeTypes.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+  public sealed partial class BlobOfType : pb::GeneratedMessage<BlobOfType, BlobOfType.Builder> {
+    private static readonly BlobOfType defaultInstance = new Builder().BuildPartial();
+    private static readonly string[] _blobOfTypeFieldNames = new string[] { "data", "extra_data", "type" };
+    private static readonly uint[] _blobOfTypeFieldTags = new uint[] { 18, 26, 10 };
+    public static BlobOfType DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override BlobOfType DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override BlobOfType ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_BlobOfType__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<BlobOfType, BlobOfType.Builder> InternalFieldAccessors {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_BlobOfType__FieldAccessorTable; }
+    }
+    
+    public const int TypeFieldNumber = 1;
+    private bool hasType;
+    private string type_ = "";
+    public bool HasType {
+      get { return hasType; }
+    }
+    public string Type {
+      get { return type_; }
+    }
+    
+    public const int DataFieldNumber = 2;
+    private bool hasData;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    public bool HasData {
+      get { return hasData; }
+    }
+    public pb::ByteString Data {
+      get { return data_; }
+    }
+    
+    public const int ExtraDataFieldNumber = 3;
+    private bool hasExtraData;
+    private pb::ByteString extraData_ = pb::ByteString.Empty;
+    public bool HasExtraData {
+      get { return hasExtraData; }
+    }
+    public pb::ByteString ExtraData {
+      get { return extraData_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasType) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _blobOfTypeFieldNames;
+      if (hasType) {
+        output.WriteString(1, field_names[2], Type);
+      }
+      if (hasData) {
+        output.WriteBytes(2, field_names[0], Data);
+      }
+      if (hasExtraData) {
+        output.WriteBytes(3, field_names[1], ExtraData);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasType) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Type);
+        }
+        if (hasData) {
+          size += pb::CodedOutputStream.ComputeBytesSize(2, Data);
+        }
+        if (hasExtraData) {
+          size += pb::CodedOutputStream.ComputeBytesSize(3, ExtraData);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static BlobOfType ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static BlobOfType ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static BlobOfType ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static BlobOfType ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static BlobOfType ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static BlobOfType ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static BlobOfType ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static BlobOfType ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static BlobOfType ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static BlobOfType ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(BlobOfType prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+    public sealed partial class Builder : pb::GeneratedBuilder<BlobOfType, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      BlobOfType result = new BlobOfType();
+      
+      protected override BlobOfType MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new BlobOfType();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::bnet.protocol.exchange.BlobOfType.Descriptor; }
+      }
+      
+      public override BlobOfType DefaultInstanceForType {
+        get { return global::bnet.protocol.exchange.BlobOfType.DefaultInstance; }
+      }
+      
+      public override BlobOfType BuildPartial() {
+        if (result == null) {
+          throw new global::System.InvalidOperationException("build() has already been called on this Builder");
+        }
+        BlobOfType returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is BlobOfType) {
+          return MergeFrom((BlobOfType) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(BlobOfType other) {
+        if (other == global::bnet.protocol.exchange.BlobOfType.DefaultInstance) return this;
+        if (other.HasType) {
+          Type = other.Type;
+        }
+        if (other.HasData) {
+          Data = other.Data;
+        }
+        if (other.HasExtraData) {
+          ExtraData = other.ExtraData;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_blobOfTypeFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _blobOfTypeFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasType = input.ReadString(ref result.type_);
+              break;
+            }
+            case 18: {
+              result.hasData = input.ReadBytes(ref result.data_);
+              break;
+            }
+            case 26: {
+              result.hasExtraData = input.ReadBytes(ref result.extraData_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasType {
+        get { return result.hasType; }
+      }
+      public string Type {
+        get { return result.Type; }
+        set { SetType(value); }
+      }
+      public Builder SetType(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasType = true;
+        result.type_ = value;
+        return this;
+      }
+      public Builder ClearType() {
+        result.hasType = false;
+        result.type_ = "";
+        return this;
+      }
+      
+      public bool HasData {
+        get { return result.hasData; }
+      }
+      public pb::ByteString Data {
+        get { return result.Data; }
+        set { SetData(value); }
+      }
+      public Builder SetData(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasData = true;
+        result.data_ = value;
+        return this;
+      }
+      public Builder ClearData() {
+        result.hasData = false;
+        result.data_ = pb::ByteString.Empty;
+        return this;
+      }
+      
+      public bool HasExtraData {
+        get { return result.hasExtraData; }
+      }
+      public pb::ByteString ExtraData {
+        get { return result.ExtraData; }
+        set { SetExtraData(value); }
+      }
+      public Builder SetExtraData(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasExtraData = true;
+        result.extraData_ = value;
+        return this;
+      }
+      public Builder ClearExtraData() {
+        result.hasExtraData = false;
+        result.extraData_ = pb::ByteString.Empty;
+        return this;
+      }
+    }
+    static BlobOfType() {
+      object.ReferenceEquals(global::bnet.protocol.exchange.ExchangeTypes.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+  public sealed partial class BlobFromOfType : pb::GeneratedMessage<BlobFromOfType, BlobFromOfType.Builder> {
+    private static readonly BlobFromOfType defaultInstance = new Builder().BuildPartial();
+    private static readonly string[] _blobFromOfTypeFieldNames = new string[] { "data", "source", "type" };
+    private static readonly uint[] _blobFromOfTypeFieldTags = new uint[] { 26, 13, 18 };
+    public static BlobFromOfType DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override BlobFromOfType DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override BlobFromOfType ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_BlobFromOfType__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<BlobFromOfType, BlobFromOfType.Builder> InternalFieldAccessors {
+      get { return global::bnet.protocol.exchange.ExchangeTypes.internal__static_bnet_protocol_exchange_BlobFromOfType__FieldAccessorTable; }
+    }
+    
+    public const int SourceFieldNumber = 1;
+    private bool hasSource;
+    private uint source_;
+    public bool HasSource {
+      get { return hasSource; }
+    }
+    public uint Source {
+      get { return source_; }
+    }
+    
+    public const int TypeFieldNumber = 2;
+    private bool hasType;
+    private string type_ = "";
+    public bool HasType {
+      get { return hasType; }
+    }
+    public string Type {
+      get { return type_; }
+    }
+    
+    public const int DataFieldNumber = 3;
+    private bool hasData;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    public bool HasData {
+      get { return hasData; }
+    }
+    public pb::ByteString Data {
+      get { return data_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasSource) return false;
+        if (!hasType) return false;
+        if (!hasData) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _blobFromOfTypeFieldNames;
+      if (hasSource) {
+        output.WriteFixed32(1, field_names[1], Source);
+      }
+      if (hasType) {
+        output.WriteString(2, field_names[2], Type);
+      }
+      if (hasData) {
+        output.WriteBytes(3, field_names[0], Data);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasSource) {
+          size += pb::CodedOutputStream.ComputeFixed32Size(1, Source);
+        }
+        if (hasType) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, Type);
+        }
+        if (hasData) {
+          size += pb::CodedOutputStream.ComputeBytesSize(3, Data);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static BlobFromOfType ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static BlobFromOfType ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static BlobFromOfType ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static BlobFromOfType ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static BlobFromOfType ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static BlobFromOfType ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static BlobFromOfType ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static BlobFromOfType ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static BlobFromOfType ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static BlobFromOfType ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(BlobFromOfType prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]
+    public sealed partial class Builder : pb::GeneratedBuilder<BlobFromOfType, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      BlobFromOfType result = new BlobFromOfType();
+      
+      protected override BlobFromOfType MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new BlobFromOfType();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::bnet.protocol.exchange.BlobFromOfType.Descriptor; }
+      }
+      
+      public override BlobFromOfType DefaultInstanceForType {
+        get { return global::bnet.protocol.exchange.BlobFromOfType.DefaultInstance; }
+      }
+      
+      public override BlobFromOfType BuildPartial() {
+        if (result == null) {
+          throw new global::System.InvalidOperationException("build() has already been called on this Builder");
+        }
+        BlobFromOfType returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is BlobFromOfType) {
+          return MergeFrom((BlobFromOfType) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(BlobFromOfType other) {
+        if (other == global::bnet.protocol.exchange.BlobFromOfType.DefaultInstance) return this;
+        if (other.HasSource) {
+          Source = other.Source;
+        }
+        if (other.HasType) {
+          Type = other.Type;
+        }
+        if (other.HasData) {
+          Data = other.Data;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_blobFromOfTypeFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _blobFromOfTypeFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 13: {
+              result.hasSource = input.ReadFixed32(ref result.source_);
+              break;
+            }
+            case 18: {
+              result.hasType = input.ReadString(ref result.type_);
+              break;
+            }
+            case 26: {
+              result.hasData = input.ReadBytes(ref result.data_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasSource {
+        get { return result.hasSource; }
+      }
+      public uint Source {
+        get { return result.Source; }
+        set { SetSource(value); }
+      }
+      public Builder SetSource(uint value) {
+        result.hasSource = true;
+        result.source_ = value;
+        return this;
+      }
+      public Builder ClearSource() {
+        result.hasSource = false;
+        result.source_ = 0;
+        return this;
+      }
+      
+      public bool HasType {
+        get { return result.hasType; }
+      }
+      public string Type {
+        get { return result.Type; }
+        set { SetType(value); }
+      }
+      public Builder SetType(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasType = true;
+        result.type_ = value;
+        return this;
+      }
+      public Builder ClearType() {
+        result.hasType = false;
+        result.type_ = "";
+        return this;
+      }
+      
+      public bool HasData {
+        get { return result.hasData; }
+      }
+      public pb::ByteString Data {
+        get { return result.Data; }
+        set { SetData(value); }
+      }
+      public Builder SetData(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasData = true;
+        result.data_ = value;
+        return this;
+      }
+      public Builder ClearData() {
+        result.hasData = false;
+        result.data_ = pb::ByteString.Empty;
+        return this;
+      }
+    }
+    static BlobFromOfType() {
+      object.ReferenceEquals(global::bnet.protocol.exchange.ExchangeTypes.Descriptor, null);
+    }
+  }
+  
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.3.0.277")]

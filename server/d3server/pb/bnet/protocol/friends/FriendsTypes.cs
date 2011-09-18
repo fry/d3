@@ -15,7 +15,7 @@ namespace bnet.protocol.friends {
   
     #region Extension registration
     public static void RegisterAllExtensions(pb::ExtensionRegistry registry) {
-      registry.Add(global::bnet.protocol.friends.FriendInvitation.FriendInvitationProp);
+		registry.Add(global::bnet.protocol.friends.FriendInvitation.FriendInvitationProp);
     }
     #endregion
     #region Static variables
@@ -52,7 +52,7 @@ namespace bnet.protocol.friends {
         internal__static_bnet_protocol_friends_FriendInvitation__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::bnet.protocol.friends.FriendInvitation, global::bnet.protocol.friends.FriendInvitation.Builder>(internal__static_bnet_protocol_friends_FriendInvitation__Descriptor,
                 new string[] { "FirstReceived", });
-        global::bnet.protocol.friends.FriendInvitation.FriendInvitationProp = pb::GeneratedSingleExtension<global::bnet.protocol.friends.FriendInvitation>.CreateInstance(global::bnet.protocol.friends.FriendInvitation.Descriptor.Extensions[0]);
+		global::bnet.protocol.friends.FriendInvitation.FriendInvitationProp = pb::GeneratedSingleExtension<global::bnet.protocol.friends.FriendInvitation>.CreateInstance(global::bnet.protocol.friends.FriendInvitation.Descriptor.Extensions[0]);
         return null;
       };
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,

@@ -41,30 +41,30 @@ namespace bnet.protocol.exchange_object_provider {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           "CitsaWIvcHJvdG9jb2wvZXhjaGFuZ2Vfb2JqZWN0X3Byb3ZpZGVyLnByb3Rv" + 
           "EiZibmV0LnByb3RvY29sLmV4Y2hhbmdlX29iamVjdF9wcm92aWRlchoZbGli" + 
-          "L3Byb3RvY29sL2VudGl0eS5wcm90bxobbGliL3Byb3RvY29sL2V4Y2hhbmdl" + 
-          "LnByb3RvIp4CChZSZXBvcnRBdXRob3JpemVSZXF1ZXN0EjkKDHBhcnRpdGlv" + 
-          "bl9pZBgBIAIoCzIjLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuUGFydGl0aW9u" + 
-          "SWQSMgoFdG9rZW4YAiACKAsyIy5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLlBh" + 
-          "cnRpdGlvbklkEg4KBnJlc3VsdBgDIAIoBBI7CgthdXRoX2hhbmRsZRgEIAEo" + 
-          "CzImLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuQmxvYkZyb21PZlR5cGUSFgoO" + 
-          "ZGVmZXJfZGVsaXZlcnkYBSABKAgSMAoPYm5ldF9hY2NvdW50X2lkGAYgAigL" + 
-          "MhcuYm5ldC5wcm90b2NvbC5FbnRpdHlJZCKUAQoTUmVwb3J0U2V0dGxlUmVx" + 
-          "dWVzdBI5CgxwYXJ0aXRpb25faWQYASACKAsyIy5ibmV0LnByb3RvY29sLmV4" + 
-          "Y2hhbmdlLlBhcnRpdGlvbklkEjIKBXRva2VuGAIgAigLMiMuYm5ldC5wcm90" + 
-          "b2NvbC5leGNoYW5nZS5QYXJ0aXRpb25JZBIOCgZyZXN1bHQYAyACKAQilAEK" + 
-          "E1JlcG9ydENhbmNlbFJlcXVlc3QSOQoMcGFydGl0aW9uX2lkGAEgAigLMiMu" + 
-          "Ym5ldC5wcm90b2NvbC5leGNoYW5nZS5QYXJ0aXRpb25JZBIyCgV0b2tlbhgC" + 
-          "IAIoCzIjLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuUGFydGl0aW9uSWQSDgoG" + 
-          "cmVzdWx0GAMgAigEIssBChhHZXRQYXltZW50TWV0aG9kc1JlcXVlc3QSLQoM" + 
-          "Ym5ldF9hY2NvdW50GAEgASgLMhcuYm5ldC5wcm90b2NvbC5FbnRpdHlJZBIt" + 
-          "CgxnYW1lX2FjY291bnQYAiABKAsyFy5ibmV0LnByb3RvY29sLkVudGl0eUlk" + 
-          "EiUKBHRvb24YAyABKAsyFy5ibmV0LnByb3RvY29sLkVudGl0eUlkEhAKCGN1" + 
-          "cnJlbmN5GAQgAigJEhgKEGNhc2hfaW5fb3V0X21hc2sYBSACKA0iZwoNUGF5" + 
-          "bWVudE1ldGhvZBIxCgdhY2NvdW50GAEgAigLMiAuYm5ldC5wcm90b2NvbC5l" + 
-          "eGNoYW5nZS5CbG9iRnJvbRITCgtkZXNjcmlwdGlvbhgCIAIoCRIOCgZhbW91" + 
-          "bnQYAyABKAQiYwoZR2V0UGF5bWVudE1ldGhvZHNSZXNwb25zZRJGCgdtZXRo" + 
-          "b2RzGAEgAygLMjUuYm5ldC5wcm90b2NvbC5leGNoYW5nZV9vYmplY3RfcHJv" + 
-          "dmlkZXIuUGF5bWVudE1ldGhvZA==");
+          "L3Byb3RvY29sL2VudGl0eS5wcm90bxolc2VydmljZS9leGNoYW5nZS9leGNo" + 
+          "YW5nZV90eXBlcy5wcm90byKeAgoWUmVwb3J0QXV0aG9yaXplUmVxdWVzdBI5" + 
+          "CgxwYXJ0aXRpb25faWQYASACKAsyIy5ibmV0LnByb3RvY29sLmV4Y2hhbmdl" + 
+          "LlBhcnRpdGlvbklkEjIKBXRva2VuGAIgAigLMiMuYm5ldC5wcm90b2NvbC5l" + 
+          "eGNoYW5nZS5QYXJ0aXRpb25JZBIOCgZyZXN1bHQYAyACKAQSOwoLYXV0aF9o" + 
+          "YW5kbGUYBCABKAsyJi5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLkJsb2JGcm9t" + 
+          "T2ZUeXBlEhYKDmRlZmVyX2RlbGl2ZXJ5GAUgASgIEjAKD2JuZXRfYWNjb3Vu" + 
+          "dF9pZBgGIAIoCzIXLmJuZXQucHJvdG9jb2wuRW50aXR5SWQilAEKE1JlcG9y" + 
+          "dFNldHRsZVJlcXVlc3QSOQoMcGFydGl0aW9uX2lkGAEgAigLMiMuYm5ldC5w" + 
+          "cm90b2NvbC5leGNoYW5nZS5QYXJ0aXRpb25JZBIyCgV0b2tlbhgCIAIoCzIj" + 
+          "LmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuUGFydGl0aW9uSWQSDgoGcmVzdWx0" + 
+          "GAMgAigEIpQBChNSZXBvcnRDYW5jZWxSZXF1ZXN0EjkKDHBhcnRpdGlvbl9p" + 
+          "ZBgBIAIoCzIjLmJuZXQucHJvdG9jb2wuZXhjaGFuZ2UuUGFydGl0aW9uSWQS" + 
+          "MgoFdG9rZW4YAiACKAsyIy5ibmV0LnByb3RvY29sLmV4Y2hhbmdlLlBhcnRp" + 
+          "dGlvbklkEg4KBnJlc3VsdBgDIAIoBCLLAQoYR2V0UGF5bWVudE1ldGhvZHNS" + 
+          "ZXF1ZXN0Ei0KDGJuZXRfYWNjb3VudBgBIAEoCzIXLmJuZXQucHJvdG9jb2wu" + 
+          "RW50aXR5SWQSLQoMZ2FtZV9hY2NvdW50GAIgASgLMhcuYm5ldC5wcm90b2Nv" + 
+          "bC5FbnRpdHlJZBIlCgR0b29uGAMgASgLMhcuYm5ldC5wcm90b2NvbC5FbnRp" + 
+          "dHlJZBIQCghjdXJyZW5jeRgEIAIoCRIYChBjYXNoX2luX291dF9tYXNrGAUg" + 
+          "AigNImcKDVBheW1lbnRNZXRob2QSMQoHYWNjb3VudBgBIAIoCzIgLmJuZXQu" + 
+          "cHJvdG9jb2wuZXhjaGFuZ2UuQmxvYkZyb20SEwoLZGVzY3JpcHRpb24YAiAC" + 
+          "KAkSDgoGYW1vdW50GAMgASgEImMKGUdldFBheW1lbnRNZXRob2RzUmVzcG9u" + 
+          "c2USRgoHbWV0aG9kcxgBIAMoCzI1LmJuZXQucHJvdG9jb2wuZXhjaGFuZ2Vf" + 
+          "b2JqZWN0X3Byb3ZpZGVyLlBheW1lbnRNZXRob2Q=");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_bnet_protocol_exchange_object_provider_ReportAuthorizeRequest__Descriptor = Descriptor.MessageTypes[0];
@@ -96,7 +96,7 @@ namespace bnet.protocol.exchange_object_provider {
       pbd::FileDescriptor.InternalBuildGeneratedFileFrom(descriptorData,
           new pbd::FileDescriptor[] {
           global::bnet.protocol.Entity.Descriptor, 
-          global::bnet.protocol.exchange.Exchange.Descriptor, 
+          global::bnet.protocol.exchange.ExchangeTypes.Descriptor, 
           }, assigner);
     }
     #endregion

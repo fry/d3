@@ -26,9 +26,16 @@ namespace d3server.Services {
 
 		public override void Bind(IRpcController controller, BindRequest request, Action<BindResponse> done) {
 			var response = BindResponse.CreateBuilder();
+
+			// export all services requested by the client and add their id to the response
 			foreach (var import in request.ImportedServiceHashList) {
 				var index = client.ExportService(import);
 				response.AddImportedServiceId(index);
+			}
+
+			// store which services the client exports to us
+			foreach (var export in request.ExportedServiceList) {
+				client.ImportService(export.Hash, export.Id);
 			}
 
 			done(response.Build());

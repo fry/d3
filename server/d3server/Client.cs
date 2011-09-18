@@ -26,13 +26,15 @@ namespace d3server {
 			public IMessage Message;
 		}
 
-		// TODO: add a service type -> service lookup map
 		// The services the server exports to the client
 		Dictionary<uint, IService> exportedServices = new Dictionary<uint, IService>();
 		// Counter for ID to use for next exported service
 		uint exportCounter = 0;
+
+		// TODO: add a service type -> service lookup map
 		// The services the client exports to the server (or the server imports from the client)
 		Dictionary<uint, IService> importedServices = new Dictionary<uint, IService>();
+
 		// Callback functions waiting for responses to the specified requestID
 		Dictionary<int, ResponseData> awaitingResponse = new Dictionary<int, ResponseData>();
 
@@ -90,6 +92,7 @@ namespace d3server {
 
 		public void ImportService(uint hash, uint index) {
 			var service = registry.CreateStub(hash, this);
+			importedServices[index] = service;
 		}
 
 		public void CallMethod(MethodDescriptor method, IRpcController controller, IMessage request, IMessage responsePrototype, Action<IMessage> done) {

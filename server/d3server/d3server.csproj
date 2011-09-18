@@ -103,8 +103,22 @@
     <Compile Include="ServiceRegistry.cs" />
     <Compile Include="Services\AuthenticationServerImpl.cs" />
     <Compile Include="Services\ChannelImpl.cs" />
+    <Compile Include="Services\ChannelInvitationServiceImpl.cs" />
+    <Compile Include="Services\ChannelOwnerImpl.cs" />
+    <Compile Include="Services\ChatServiceImpl.cs" />
     <Compile Include="Services\ConnectionServiceImpl.cs" />
+    <Compile Include="Services\ExchangeServiceImpl.cs" />
+    <Compile Include="Services\FriendsServiceImpl.cs" />
+    <Compile Include="Services\GameMasterImpl.cs" />
+    <Compile Include="Services\GameUtilitiesImpl.cs" />
+    <Compile Include="Services\PartyServiceImpl.cs" />
+    <Compile Include="Services\SearchServiceImpl.cs" />
+    <Compile Include="Services\StorageServiceImpl.cs" />
+    <Compile Include="Services\UserManagerServiceImpl.cs" />
+    <Compile Include="Services\FollowersServiceImpl.cs" />
+    <Compile Include="Services\NotificationServiceImpl.cs" />
     <Compile Include="Services\PresenceServiceImpl.cs" />
+    <Compile Include="Services\ToonServiceExternalImpl.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

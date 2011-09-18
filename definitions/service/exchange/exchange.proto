@@ -1,6 +1,5 @@
 package bnet.protocol.exchange;
 import "lib/rpc/rpc.proto";
-import "lib/protocol/exchange.proto";
 import "lib/protocol/exchange_object_provider.proto";
 import "lib/protocol/entity.proto";
 import "service/exchange/exchange_types.proto";

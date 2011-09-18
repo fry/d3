@@ -1,6 +1,26 @@
 package bnet.protocol.exchange;
 import "lib/protocol/entity.proto";
-import "lib/protocol/exchange.proto";
+
+message PartitionId {
+	required fixed64 high = 1;
+	required fixed64 low = 2;
+}
+message BlobFrom {
+	required fixed32 source = 1;
+	required bytes data = 2;
+	optional bytes extra_data = 3;
+}
+message BlobOfType {
+	required string type = 1;
+	optional bytes data = 2;
+	optional bytes extra_data = 3;
+}
+message BlobFromOfType {
+	required fixed32 source = 1;
+	required string type = 2;
+	required bytes data = 3;
+}
+
 
 message OrderBook {
 	required .bnet.protocol.exchange.BlobOfType object = 1;
