@@ -8,12 +8,18 @@ message Invitation {
 	optional bool reserved = 2 [default = false];
 	optional bool rejoin = 3 [default = false];
 	optional uint32 service_type = 4;
+	extend .bnet.protocol.invitation.Invitation {
+		optional .bnet.protocol.channel_invitation.Invitation channel_invitation = 105;
+	}
 }
 message SendInvitationRequest {
 	optional .bnet.protocol.EntityId channel_id = 1;
 	optional bool reserved = 2;
 	optional bool rejoin = 3;
 	optional uint32 service_type = 4;
+	extend .bnet.protocol.invitation.SendInvitationRequest {
+		optional .bnet.protocol.channel_invitation.SendInvitationRequest channel_invitation = 105;
+	}
 }
 message InvitationCollection {
 	optional uint32 service_type = 1;

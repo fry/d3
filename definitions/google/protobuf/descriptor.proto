@@ -96,11 +96,13 @@ message FileOptions {
 	optional bool java_generic_services = 17 [default = true];
 	optional bool py_generic_services = 18 [default = true];
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+	extensions 1000 to max;
 }
 message MessageOptions {
 	optional bool message_set_wire_format = 1 [default = false];
 	optional bool no_standard_descriptor_accessor = 2 [default = false];
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+	extensions 1000 to max;
 }
 message FieldOptions {
 	enum CType {
@@ -113,18 +115,23 @@ message FieldOptions {
 	optional bool deprecated = 3 [default = false];
 	optional string experimental_map_key = 9;
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+	extensions 1000 to max;
 }
 message EnumOptions {
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+	extensions 1000 to max;
 }
 message EnumValueOptions {
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+	extensions 1000 to max;
 }
 message ServiceOptions {
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+	extensions 1000 to max;
 }
 message MethodOptions {
 	repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
+	extensions 1000 to max;
 }
 message UninterpretedOption {
 	message NamePart {

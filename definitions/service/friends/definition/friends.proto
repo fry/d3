@@ -31,6 +31,9 @@ message GenericFriendResponse {
 message SendInvitationRequest {
 	optional string target_email = 3;
 	optional string display_string = 4;
+	extend .bnet.protocol.invitation.SendInvitationRequest {
+		optional .bnet.protocol.friends.SendInvitationRequest friend_request = 103;
+	}
 }
 message ViewFriendsRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;

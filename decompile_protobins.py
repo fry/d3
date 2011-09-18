@@ -92,28 +92,52 @@ class ProtobinDecompiler:
 
 		# deserialize fields
 		for field in msg.field:
-			# type name is either another message or a standard type
-			type_name = ""
-			if field.type == pb2.FieldDescriptorProto.TYPE_MESSAGE or field.type == pb2.FieldDescriptorProto.TYPE_ENUM:
-				type_name = field.type_name
-			else:
-				type_name = self.type_map[field.type]
-			
-			# build basic field string with label name
-			field_str = "%s %s %s = %d" % (self.label_map[field.label], type_name, field.name, field.number)
+			self.decompile_field(out, field)
+		
+		# extension ranges
+		for range in msg.extension_range:
+			end_name = range.end
+			if end_name == 0x20000000:
+				end_name = "max"
+			self.write(out, "extensions %s to %s;\n" % (range.start, end_name))
+		
+		# extensions
+		for extension in msg.extension:
+			self.decompile_extension(out, extension)
 
-			# add default value if set
-			if field.HasField("default_value"):
-				def_val = field.default_value
-				# string default values have to be put in quotes
-				if field.type == pb2.FieldDescriptorProto.TYPE_STRING:
-					def_val = "\"%s\"" % def_val
-				field_str += " [default = %s]" % def_val
-			field_str += ";\n"
-			self.write(out, field_str)
 		self.indent_level -= 1
 		self.write(out, "}\n")
 	
+	def decompile_extension(self, out, extension):
+		self.write(out, "extend %s {\n" % extension.extendee)
+		self.indent_level += 1
+
+		self.decompile_field(out, extension)
+
+		self.indent_level -= 1
+		self.write(out, "}\n")
+
+	def decompile_field(self, out, field):
+		# type name is either another message or a standard type
+		type_name = ""
+		if field.type == pb2.FieldDescriptorProto.TYPE_MESSAGE or field.type == pb2.FieldDescriptorProto.TYPE_ENUM:
+			type_name = field.type_name
+		else:
+			type_name = self.type_map[field.type]
+		
+		# build basic field string with label name
+		field_str = "%s %s %s = %d" % (self.label_map[field.label], type_name, field.name, field.number)
+
+		# add default value if set
+		if field.HasField("default_value"):
+			def_val = field.default_value
+			# string default values have to be put in quotes
+			if field.type == pb2.FieldDescriptorProto.TYPE_STRING:
+				def_val = "\"%s\"" % def_val
+			field_str += " [default = %s]" % def_val
+		field_str += ";\n"
+		self.write(out, field_str)
+
 	def decompile_enum_type(self, out, enum):
 		self.write(out, "enum %s {\n" % enum.name)
 		self.indent_level += 1
@@ -137,6 +161,7 @@ class ProtobinDecompiler:
 	
 	def decompile_method(self, out, method):
 		self.write(out, "rpc %s (%s) returns (%s);\n" % (method.name, method.input_type, method.output_type))
+
 
 	def write(self, out, str):
 		out.write("\t" * self.indent_level)

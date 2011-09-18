@@ -31,7 +31,7 @@ def DumpProtoBin(root_dir, file_name, data, length):
 
 # output the definition files to the following folder
 script_path = os.path.dirname(os.path.realpath(__file__))
-out_dir = os.path.join(script_path, "definitions")
+out_dir = os.path.join(script_path, "definitions_bin")
 
 # find the function referencing all the binary protobuf representations
 DescriptorPool__InternalAddGeneratedFile = idc.FindBinary(INF_BASEADDR, SEARCH_DOWN,

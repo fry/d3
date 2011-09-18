@@ -24,4 +24,7 @@ message FieldOperation {
 message ChannelState {
 	optional .bnet.protocol.EntityId entity_id = 1;
 	repeated .bnet.protocol.presence.FieldOperation field_operation = 2;
+	extend .bnet.protocol.channel.ChannelState {
+		optional .bnet.protocol.presence.ChannelState presence = 101;
+	}
 }

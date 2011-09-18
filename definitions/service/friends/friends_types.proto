@@ -9,4 +9,7 @@ message Friend {
 }
 message FriendInvitation {
 	optional bool first_received = 1 [default = false];
+	extend .bnet.protocol.invitation.Invitation {
+		optional .bnet.protocol.friends.FriendInvitation friend_invitation = 103;
+	}
 }

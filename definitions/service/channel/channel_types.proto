@@ -6,15 +6,18 @@ import "lib/protocol/invitation.proto";
 message Message {
 	repeated .bnet.protocol.attribute.Attribute attribute = 1;
 	optional uint32 role = 2;
+	extensions 100 to 10000;
 }
 message ChannelDescription {
 	required .bnet.protocol.EntityId channel_id = 1;
 	optional uint32 current_members = 2;
 	optional .bnet.protocol.channel.ChannelState state = 3;
+	extensions 100 to 10000;
 }
 message ChannelInfo {
 	required .bnet.protocol.channel.ChannelDescription description = 1;
 	repeated .bnet.protocol.channel.Member member = 2;
+	extensions 100 to 10000;
 }
 message GetChannelInfoRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
@@ -73,11 +76,13 @@ message ChannelState {
 	optional string name = 9;
 	optional string delegate_name = 10;
 	optional string channel_type = 11 [default = "default"];
+	extensions 100 to 10000;
 }
 message MemberState {
 	repeated .bnet.protocol.attribute.Attribute attribute = 1;
 	repeated uint32 role = 2;
 	optional uint64 privileges = 3 [default = 0];
+	extensions 100 to 10000;
 }
 message Member {
 	required .bnet.protocol.Identity identity = 1;
