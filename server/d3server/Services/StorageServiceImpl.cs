@@ -30,18 +30,22 @@ namespace d3server.Services {
 					result.SetErrorCode(4);
 				} else if (request.QueryName == "GetHeroDigests") {
 					var hero_digest = D3.Hero.Digest.CreateBuilder();
-					hero_digest.SetVersion(1);
-					hero_digest.SetHeroId(D3.OnlineService.EntityId.CreateBuilder().SetIdHigh(0).SetIdLow(0));
+					hero_digest.SetVersion(891);
+					hero_digest.SetHeroId(D3.OnlineService.EntityId.CreateBuilder().SetIdHigh(216174302532224051).SetIdLow(2345959482769161802));
 					hero_digest.SetHeroName("poop");
-					hero_digest.SetGbidClass(0);
+					hero_digest.SetGbidClass(-930376119);
 					hero_digest.SetLevel(1);
 					hero_digest.SetPlayerFlags(0);
-					hero_digest.SetVisualEquipment(VisualEquipment.CreateBuilder());
+					var eq = VisualEquipment.CreateBuilder();
+					for (int i = 0; i < 8; i++) {
+						eq.AddVisualItem(VisualItem.CreateBuilder().SetEffectLevel(0));
+					}
+					hero_digest.SetVisualEquipment(eq);
 					//hero_digest.SetQuestHistory(QuestHistoryEntry
 					hero_digest.SetLastPlayedAct(0);
-					hero_digest.SetHighestUnlockedAct(1);
-					hero_digest.SetLastPlayedQuest(0);
-					hero_digest.SetLastPlayedQuestStep(0);
+					hero_digest.SetHighestUnlockedAct(0);
+					hero_digest.SetLastPlayedQuest(-1);
+					hero_digest.SetLastPlayedQuestStep(-1);
 					hero_digest.SetLastPlayedDifficulty(0);
 					hero_digest.SetTimePlayed(0);
 					hero_digest.SetHighestUnlockedDifficulty(0);
@@ -49,11 +53,11 @@ namespace d3server.Services {
 				} else if (request.QueryName == "LoadAccountDigest") {
 					var account_digest = D3.Account.Digest.CreateBuilder();
 					account_digest.SetVersion(1);
-					
+
 					// no last played hero
 					var last_played = D3.OnlineService.EntityId.CreateBuilder();
-					last_played.SetIdHigh(0);
-					last_played.SetIdLow(0);
+					last_played.SetIdHigh(216174302532224051);
+					last_played.SetIdLow(2345959482769161802);
 					account_digest.SetLastPlayedHeroId(last_played);
 
 					// default banner
@@ -66,6 +70,10 @@ namespace d3server.Services {
 					account_digest.SetFlags(0);
 
 					data.SetData(account_digest.Build().ToByteString());
+				} else if (request.QueryName == "GetToonSettings") {
+					//response.SetErrorCode(4);
+				} else {
+					throw new ArgumentException("Invalid query name: " + request.QueryName);
 				}
 
 				result.AddData(data);

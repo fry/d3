@@ -5,6 +5,7 @@ using System.Text;
 using bnet.protocol.connection;
 using Google.ProtocolBuffers;
 using bnet.protocol;
+using bnet.protocol.authentication;
 
 namespace d3server.Services {
 	public class ConnectionServiceImpl: ConnectionService {

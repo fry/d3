@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.friends;
+using bnet.protocol.invitation;
 
 namespace d3server.Services {
 	public class FriendsServiceImpl: FriendsService {
@@ -17,7 +18,8 @@ namespace d3server.Services {
 		}
 
 		public override void SendInvitation(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.invitation.SendInvitationRequest request, Action<bnet.protocol.invitation.SendInvitationResponse> done) {
-			throw new NotImplementedException();
+			var response = SendInvitationResponse.CreateBuilder();
+			done(response.Build());
 		}
 
 		public override void AcceptInvitation(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.invitation.GenericRequest request, Action<bnet.protocol.NoData> done) {

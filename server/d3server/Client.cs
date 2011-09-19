@@ -19,7 +19,7 @@ namespace d3server {
 		}
 
 		class SendQueueEntry {
-			public byte ServiceId;
+			public uint ServiceId;
 			public uint MethodId;
 			public ushort RequestId;
 			public uint? ListenerId;
@@ -31,12 +31,18 @@ namespace d3server {
 		// Counter for ID to use for next exported service
 		uint exportCounter = 0;
 
-		// TODO: add a service type -> service lookup map
 		// The services the client exports to the server (or the server imports from the client)
 		Dictionary<uint, IService> importedServices = new Dictionary<uint, IService>();
+		// Maps service name hash to service id
+		Dictionary<uint, uint> importedServicesIds = new Dictionary<uint, uint>();
+		// Maps service type to service
+		Dictionary<Type, IService> importedServicesTypes = new Dictionary<Type, IService>();
+
+		// Counts requests sent from the server side
+		ushort requestCounter = 0;
 
 		// Callback functions waiting for responses to the specified requestID
-		Dictionary<int, ResponseData> awaitingResponse = new Dictionary<int, ResponseData>();
+		Dictionary<ushort, ResponseData> awaitingResponse = new Dictionary<ushort, ResponseData>();
 
 		ServiceRegistry registry;
 		TcpClient socket;
@@ -91,13 +97,58 @@ namespace d3server {
 		}
 
 		public void ImportService(uint hash, uint index) {
-			var service = registry.CreateStub(hash, this);
+			// Create a stub for the imported service with us as the RPC channel
+			var type = registry.GetServiceType(hash);
+			var service = registry.CreateStub(type, this);
+			// Store a reference to the service by index, and a reference to the index by hash
 			importedServices[index] = service;
+			importedServicesIds[hash] = index;
+			importedServicesTypes[type] = service;
+		}
+
+		/// <summary>
+		/// Return a stub to the service exported by the client
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public T GetImportedService<T>() where T: class, IService {
+			IService service;
+			if (!importedServicesTypes.TryGetValue(typeof(T), out service))
+				return null;
+
+			return service as T;
+		}
+
+		public uint GetImportedServiceId(string name) {
+			var hash = ServiceRegistry.GetServiceHash(name);
+			return importedServicesIds[hash];
 		}
 
 		public void CallMethod(MethodDescriptor method, IRpcController controller, IMessage request, IMessage responsePrototype, Action<IMessage> done) {
-			// TODO: send RPC call to client
-			throw new NotImplementedException();
+			var service_id = GetImportedServiceId(method.Service.FullName);
+			var request_id = requestCounter++;
+
+			// Register the handler for the response before sending the packet to avoid highly unlikely race-conditions
+			lock (awaitingResponse) {
+				awaitingResponse[request_id] = new ResponseData {
+					ResponsePrototype = responsePrototype,
+					Callback = done
+				};
+			}
+
+			// Enqueue the request packet
+			lock (sendQueue) {
+				sendQueue.Enqueue(new SendQueueEntry {
+					ServiceId = service_id,
+					ListenerId = 0, // TODO: determine correct value here
+					RequestId = request_id,
+					MethodId = (uint)method.Index + 1,
+					Message = request
+				});
+
+				Monitor.Pulse(sendQueue);
+			}
 		}
 
 		public void SendResponse(ushort requestId, IMessage message) {
@@ -165,8 +216,8 @@ namespace d3server {
 			temp_writer.Flush();
 
 			var buffer = stream.ToArray();
-			//Debug.WriteLine("Sending data: ");
-			//Debug.WriteLine(buffer.ToHexString());
+			Debug.WriteLine("Sending data: ");
+			Debug.WriteLine(buffer.ToHexString());
 
 			writer.WriteRawBytes(buffer);
 			writer.Flush();
@@ -205,10 +256,9 @@ namespace d3server {
 				// Response callback sends the repsponse
 				service.CallMethod(method_descriptor, null, message, m => SendResponse(request_id, m));
 			}
-			Debug.Unindent();
 		}
 
-		void HandleResponse(int requestId, CodedInputStream reader) {
+		void HandleResponse(ushort requestId, CodedInputStream reader) {
 			// Lookup the request id in the dictionary containing pending responses
 			ResponseData response_data;
 			if (!awaitingResponse.TryGetValue(requestId, out response_data))
@@ -225,7 +275,7 @@ namespace d3server {
 
 		IMessage ReadMessage(CodedInputStream reader, IBuilder builder) {
 			reader.ReadMessage(builder, ExtensionRegistry.Empty);
-			return builder.WeakBuild();
+			return builder.WeakBuildPartial();
 		}
 	}
 }

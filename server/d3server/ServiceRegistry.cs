@@ -40,8 +40,8 @@ namespace d3server {
 			return constructor.Invoke(new object[] { client }) as IService;
 		}
 
-		public IService CreateStub(uint hash, Client client) {
-			var stub = GetServiceType(hash).GetMethod("CreateStub").Invoke(null, new object[] { client });
+		public IService CreateStub(Type type, Client client) {
+			var stub = type.GetMethod("CreateStub").Invoke(null, new object[] { client });
 			return stub as IService;
 		}
 	}

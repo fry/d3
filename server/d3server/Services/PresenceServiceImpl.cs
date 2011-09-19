@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.presence;
+using bnet.protocol.channel;
 
 namespace d3server.Services {
 	public class PresenceServiceImpl: PresenceService {
@@ -20,7 +21,7 @@ namespace d3server.Services {
 		}
 
 		public override void Update(Google.ProtocolBuffers.IRpcController controller, UpdateRequest request, Action<bnet.protocol.NoData> done) {
-			throw new NotImplementedException();
+			done(bnet.protocol.NoData.CreateBuilder().Build());
 		}
 
 		public override void Query(Google.ProtocolBuffers.IRpcController controller, QueryRequest request, Action<QueryResponse> done) {

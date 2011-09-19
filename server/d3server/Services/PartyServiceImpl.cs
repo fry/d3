@@ -15,6 +15,7 @@ namespace d3server.Services {
 		public override void CreateChannel(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.CreateChannelRequest request, Action<bnet.protocol.channel.CreateChannelResponse> done) {
 			var response = CreateChannelResponse.CreateBuilder();
 			response.SetObjectId(request.ObjectId);
+			response.SetChannelId(bnet.protocol.EntityId.CreateBuilder().SetLow(11233645142038554527).SetHigh(433661094618860925));
 			done(response.Build());
 		}
 
