@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.channel;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class ChannelOwnerImpl: ChannelOwner {
 		ClientHandler client;
 		public ChannelOwnerImpl(ClientHandler client) {

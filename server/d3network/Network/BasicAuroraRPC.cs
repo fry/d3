@@ -9,7 +9,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO;
 
-namespace d3server.Network {
+namespace d3.Network {
 	public class BasicAuroraRPC<T>: IRpcChannel where T: class {
 		const int RESPONSE_SERVICE_ID = 0xFE;
 

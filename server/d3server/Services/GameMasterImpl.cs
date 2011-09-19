@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.game_master;
 
-namespace d3server.Services {
+namespace d3.Services {
 	using Attribute = bnet.protocol.attribute.Attribute;
 	using bnet.protocol.attribute;
-	using d3server.Network;
+	using d3.Network;
 
 	public class GameMasterImpl: GameMaster {
 		ClientHandler client;

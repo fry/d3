@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.toon.external;
 using bnet.protocol;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class ToonServiceExternalImpl: ToonServiceExternal {
 		ClientHandler client;
 		public ToonServiceExternalImpl(ClientHandler client) {

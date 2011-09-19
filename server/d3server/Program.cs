@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Google.ProtocolBuffers;
 using System.Net.Sockets;
 using System.Net;
-using Google.ProtocolBuffers.Descriptors;
 using System.Threading;
-using d3server.Services;
+using d3.Services;
 using System.Diagnostics;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server {
+namespace d3 {
 	class Program {
 		static void Main(string[] args) {
 			Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));

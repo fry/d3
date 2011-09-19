@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Google.ProtocolBuffers;
 
-namespace d3server {
+namespace d3 {
 	static class Util {
 		public static uint GetServiceHash(string name) {
 			var bytes = Encoding.ASCII.GetBytes(name);

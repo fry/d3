@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.search;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class SearchServiceImpl: SearchService {
 		ClientHandler client;
 		public SearchServiceImpl(ClientHandler client) {

@@ -6,7 +6,7 @@ using Google.ProtocolBuffers;
 using System.Diagnostics;
 using System.Collections.Concurrent;
 
-namespace d3server.Network {
+namespace d3.Network {
 	public class ServiceRegistry<T> {
 		ConcurrentDictionary<uint, Type> services = new ConcurrentDictionary<uint, Type>();
 

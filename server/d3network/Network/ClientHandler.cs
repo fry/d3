@@ -9,7 +9,7 @@ using Google.ProtocolBuffers.Descriptors;
 using System.Diagnostics;
 using System.IO;
 
-namespace d3server.Network {
+namespace d3.Network {
 	public class ClientHandler: BasicAuroraRPC<ClientHandler> {
 		public ClientHandler(ServiceRegistry<ClientHandler> registry): base(registry) {
 			// ConnectionService is expected to be exported on index 0

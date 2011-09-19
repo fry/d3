@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.friends;
 using bnet.protocol.invitation;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class FriendsServiceImpl: FriendsService {
 		ClientHandler client;
 		public FriendsServiceImpl(ClientHandler client) {

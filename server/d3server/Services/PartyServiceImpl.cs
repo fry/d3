@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.party;
 using bnet.protocol.channel;
-using d3server.Network;
+using d3.Network;
 using Google.ProtocolBuffers;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class PartyServiceImpl: PartyService {
 		ClientHandler client;
 		public PartyServiceImpl(ClientHandler client) {

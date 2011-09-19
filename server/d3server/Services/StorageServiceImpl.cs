@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.storage;
 using D3.Hero;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class StorageServiceImpl: StorageService {
 		ClientHandler client;
 		public StorageServiceImpl(ClientHandler client) {

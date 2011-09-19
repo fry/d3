@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.exchange;
-using d3server.Network;
+using d3.Network;
 using bnet.protocol.exchange_object_provider;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class ExchangeServiceImpl: ExchangeService {
 		ClientHandler client;
 		public ExchangeServiceImpl(ClientHandler client) {

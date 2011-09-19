@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using d3server.Network;
-using d3server.Services;
+using d3.Network;
+using d3.Services;
 using System.Net.Sockets;
 using System.Net;
 
-namespace d3server {
+namespace d3 {
 	public class Server {
 		ServiceRegistry<ClientHandler> registry = new ServiceRegistry<ClientHandler>();
 

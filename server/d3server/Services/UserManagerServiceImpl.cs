@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.user_manager;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class UserManagerServiceImpl: UserManagerService {
 		ClientHandler client;
 		public UserManagerServiceImpl(ClientHandler client) {

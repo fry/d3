@@ -6,9 +6,9 @@ using bnet.protocol.connection;
 using Google.ProtocolBuffers;
 using bnet.protocol;
 using bnet.protocol.authentication;
-using d3server.Network;
+using d3.Network;
 
-namespace d3server.Services {
+namespace d3.Services {
 	public class ConnectionServiceImpl: ConnectionService {
 		ClientHandler client;
 		public ConnectionServiceImpl(ClientHandler client) {
