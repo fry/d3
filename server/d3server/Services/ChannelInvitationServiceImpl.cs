@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.channel_invitation;
 using System.Diagnostics;
+using d3server.Network;
 
 namespace d3server.Services {
 	public class ChannelInvitationServiceImpl: ChannelInvitationService {

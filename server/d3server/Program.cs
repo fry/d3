@@ -10,6 +10,7 @@ using Google.ProtocolBuffers.Descriptors;
 using System.Threading;
 using d3server.Services;
 using System.Diagnostics;
+using d3server.Network;
 
 namespace d3server {
 	
@@ -19,7 +20,7 @@ namespace d3server {
 			var listener = new TcpListener(IPAddress.Any, 6666);
 
 			Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
-			var registry = new ServiceRegistry();
+			var registry = new ServiceRegistry<Client>();
 
 			// Services the client implements
 			registry.RegisterService("bnet.protocol.channel.ChannelSubscriber", typeof(bnet.protocol.channel.ChannelSubscriber));

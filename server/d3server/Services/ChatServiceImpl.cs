@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.chat;
+using d3server.Network;
 
 namespace d3server.Services {
 	public class ChatServiceImpl: ChatService {

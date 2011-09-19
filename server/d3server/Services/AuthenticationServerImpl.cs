@@ -5,6 +5,7 @@ using System.Text;
 using bnet.protocol.authentication;
 using bnet.protocol;
 using Google.ProtocolBuffers;
+using d3server.Network;
 
 namespace d3server.Services {
 	public class AuthenticationServerImpl: AuthenticationServer {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.followers;
+using d3server.Network;
 
 namespace d3server.Services {
 	public class FollowersServiceImpl: FollowersService {

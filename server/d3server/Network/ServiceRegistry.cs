@@ -6,23 +6,14 @@ using Google.ProtocolBuffers;
 using System.Diagnostics;
 using System.Collections.Concurrent;
 
-namespace d3server {
-	public class ServiceRegistry {
-		public static uint GetServiceHash(string name) {
-			var bytes = Encoding.ASCII.GetBytes(name);
-			uint result = 0x811C9DC5;
-			for (var i = 0; i < bytes.Length; ++i) {
-				result = 0x1000193 * (bytes[i] ^ result);
-			}
-			return result;
-		}
-
+namespace d3server.Network {
+	public class ServiceRegistry<T> {
 		ConcurrentDictionary<uint, Type> services = new ConcurrentDictionary<uint, Type>();
 
 		public void RegisterService(string name, Type implementation) {
 			Debug.Assert(implementation.GetInterfaces().Contains(typeof(IService)));
 
-			var hash = GetServiceHash(name);
+			var hash = Util.GetServiceHash(name);
 
 			Debug.Assert(services.TryAdd(hash, implementation), String.Format("Service already registered: {0}/{1:X8}", name, hash));
 		}
@@ -34,14 +25,14 @@ namespace d3server {
 			return service_type;
 		}
 
-		public IService CreateBoundService(uint hash, Client client) {
-			var constructor = GetServiceType(hash).GetConstructor(new Type[] { typeof(Client) });
+		public IService CreateBoundService(uint hash, T context) {
+			var constructor = GetServiceType(hash).GetConstructor(new Type[] { typeof(T) });
 
-			return constructor.Invoke(new object[] { client }) as IService;
+			return constructor.Invoke(new object[] { context }) as IService;
 		}
 
-		public IService CreateStub(Type type, Client client) {
-			var stub = type.GetMethod("CreateStub").Invoke(null, new object[] { client });
+		public IService CreateStub(Type type, T context) {
+			var stub = type.GetMethod("CreateStub").Invoke(null, new object[] { context });
 			return stub as IService;
 		}
 	}

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using bnet.protocol.exchange;
+using d3server.Network;
+using bnet.protocol.exchange_object_provider;
 
 namespace d3server.Services {
 	public class ExchangeServiceImpl: ExchangeService {
@@ -84,8 +86,8 @@ namespace d3server.Services {
 			done(response.Build());
 		}
 
-		public override void GetPaymentMethods(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.exchange_object_provider.GetPaymentMethodsRequest request, Action<bnet.protocol.exchange_object_provider.GetPaymentMethodsResponse> done) {
-			throw new NotImplementedException();
+		public override void GetPaymentMethods(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.exchange_object_provider.GetPaymentMethodsRequest request, Action<GetPaymentMethodsResponse> done) {
+			//var response = GetPaymentMethodsResponse.CreateBuilder();
 		}
 
 		public override void ClaimBidItem(Google.ProtocolBuffers.IRpcController controller, ClaimRequest request, Action<bnet.protocol.NoData> done) {

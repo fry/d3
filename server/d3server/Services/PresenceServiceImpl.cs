@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.presence;
 using bnet.protocol.channel;
+using d3server.Network;
 
 namespace d3server.Services {
 	public class PresenceServiceImpl: PresenceService {

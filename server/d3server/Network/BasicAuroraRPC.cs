@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Google.ProtocolBuffers;
+using Google.ProtocolBuffers.Descriptors;
 using System.Net.Sockets;
 using System.Threading;
-using Google.ProtocolBuffers.Descriptors;
 using System.Diagnostics;
 using System.IO;
 
-namespace d3server {
-	public class Client: IRpcChannel {
+namespace d3server.Network {
+	public class BasicAuroraRPC<T>: IRpcChannel where T: class {
 		const int RESPONSE_SERVICE_ID = 0xFE;
 
 		struct ResponseData {
@@ -38,29 +38,20 @@ namespace d3server {
 		// Maps service type to service
 		Dictionary<Type, IService> importedServicesTypes = new Dictionary<Type, IService>();
 
-		// Counts requests sent from the server side
-		ushort requestCounter = 0;
-
 		// Callback functions waiting for responses to the specified requestID
 		Dictionary<ushort, ResponseData> awaitingResponse = new Dictionary<ushort, ResponseData>();
 
-		ServiceRegistry registry;
+		ServiceRegistry<T> registry;
+
+		// Counts requests sent from the server side
+		ushort requestCounter = 0;
+
 		TcpClient socket;
 
 		Queue<SendQueueEntry> sendQueue = new Queue<SendQueueEntry>();
 
-		public Client(ServiceRegistry registry) {
+		public BasicAuroraRPC(ServiceRegistry<T> registry) {
 			this.registry = registry;
-
-			// ConnectionService is expected to be exported on index 0
-			ExportService("bnet.protocol.connection.ConnectionService", 0);
-		}
-
-		public void Start(TcpClient socket) {
-			this.socket = socket;
-
-			new Thread(new ThreadStart(ReadLoop)).Start();
-			new Thread(new ThreadStart(WriteLoop)).Start();
 		}
 
 		/// <summary>
@@ -70,7 +61,7 @@ namespace d3server {
 		/// <param name="overwriteIndex"></param>
 		/// <returns></returns>
 		public uint ExportService(string name, uint? overwriteIndex = null) {
-			var hash = ServiceRegistry.GetServiceHash(name);
+			var hash = Util.GetServiceHash(name);
 			return ExportService(hash, overwriteIndex);
 		}
 
@@ -84,9 +75,9 @@ namespace d3server {
 			// TODO: check if the service is already bound
 
 			// Lookup the service with this hash in the registry
-			var service = registry.CreateBoundService(hash, this);
+			var service = registry.CreateBoundService(hash, this as T);
 			// Determine the index to use
-			uint index = exportCounter ++;
+			uint index = exportCounter++;
 			// If an overwrite index is specified (required for ConnectionService), correct counter
 			if (overwriteIndex.HasValue) {
 				index = overwriteIndex.Value;
@@ -99,7 +90,7 @@ namespace d3server {
 		public void ImportService(uint hash, uint index) {
 			// Create a stub for the imported service with us as the RPC channel
 			var type = registry.GetServiceType(hash);
-			var service = registry.CreateStub(type, this);
+			var service = registry.CreateStub(type, this as T);
 			// Store a reference to the service by index, and a reference to the index by hash
 			importedServices[index] = service;
 			importedServicesIds[hash] = index;
@@ -121,7 +112,7 @@ namespace d3server {
 		}
 
 		public uint GetImportedServiceId(string name) {
-			var hash = ServiceRegistry.GetServiceHash(name);
+			var hash = Util.GetServiceHash(name);
 			return importedServicesIds[hash];
 		}
 
@@ -164,6 +155,13 @@ namespace d3server {
 				// Notify the waiting write loop
 				Monitor.Pulse(sendQueue);
 			}
+		}
+
+		public void Start(TcpClient socket) {
+			this.socket = socket;
+
+			new Thread(new ThreadStart(ReadLoop)).Start();
+			new Thread(new ThreadStart(WriteLoop)).Start();
 		}
 
 		public void Disconnect(string reason) {
@@ -216,8 +214,8 @@ namespace d3server {
 			temp_writer.Flush();
 
 			var buffer = stream.ToArray();
-			Debug.WriteLine("Sending data: ");
-			Debug.WriteLine(buffer.ToHexString());
+			//Debug.WriteLine("Sending data: ");
+			//Debug.WriteLine(buffer.ToHexString());
 
 			writer.WriteRawBytes(buffer);
 			writer.Flush();

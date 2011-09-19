@@ -7,6 +7,7 @@ using bnet.protocol.game_master;
 namespace d3server.Services {
 	using Attribute = bnet.protocol.attribute.Attribute;
 	using bnet.protocol.attribute;
+	using d3server.Network;
 
 	public class GameMasterImpl: GameMaster {
 		Client client;
