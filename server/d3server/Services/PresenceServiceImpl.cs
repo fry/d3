@@ -8,8 +8,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class PresenceServiceImpl: PresenceService {
-		Client client;
-		public PresenceServiceImpl(Client client) {
+		ClientHandler client;
+		public PresenceServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 

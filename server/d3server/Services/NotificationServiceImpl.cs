@@ -7,8 +7,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class NotificationServiceImpl: NotificationService {
-		Client client;
-		public NotificationServiceImpl(Client client) {
+		ClientHandler client;
+		public NotificationServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 

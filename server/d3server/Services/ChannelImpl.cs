@@ -7,8 +7,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class ChannelImpl: Channel {
-		Client client;
-		public ChannelImpl(Client client) {
+		ClientHandler client;
+		public ChannelImpl(ClientHandler client) {
 			this.client = client;
 		}
 

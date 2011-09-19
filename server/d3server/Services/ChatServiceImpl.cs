@@ -7,8 +7,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class ChatServiceImpl: ChatService {
-		Client client;
-		public ChatServiceImpl(Client client) {
+		ClientHandler client;
+		public ChatServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 

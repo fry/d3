@@ -8,13 +8,14 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class FriendsServiceImpl: FriendsService {
-		Client client;
-		public FriendsServiceImpl(Client client) {
+		ClientHandler client;
+		public FriendsServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 
 		public override void SubscribeToFriends(Google.ProtocolBuffers.IRpcController controller, SubscribeToFriendsRequest request, Action<SubscribeToFriendsResponse> done) {
 			var response = SubscribeToFriendsResponse.CreateBuilder();
+			response.SetMaxFriends(127).SetMaxReceivedInvitations(127).SetMaxSentInvitations(127);
 			done(response.Build());
 		}
 

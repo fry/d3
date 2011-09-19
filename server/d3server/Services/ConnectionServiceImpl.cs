@@ -10,8 +10,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class ConnectionServiceImpl: ConnectionService {
-		Client client;
-		public ConnectionServiceImpl(Client client) {
+		ClientHandler client;
+		public ConnectionServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 

@@ -8,8 +8,8 @@ using bnet.protocol.exchange_object_provider;
 
 namespace d3server.Services {
 	public class ExchangeServiceImpl: ExchangeService {
-		Client client;
-		public ExchangeServiceImpl(Client client) {
+		ClientHandler client;
+		public ExchangeServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 
@@ -119,7 +119,8 @@ namespace d3server.Services {
 		}
 
 		public override void GetBidFeeEstimation(Google.ProtocolBuffers.IRpcController controller, GetBidFeeEstimationRequest request, Action<GetFeeEstimationResponse> done) {
-			throw new NotImplementedException();
+			var response = GetFeeEstimationResponse.CreateBuilder();
+			done(response.Build());
 		}
 
 		public override void GetOfferFeeEstimation(Google.ProtocolBuffers.IRpcController controller, GetOfferFeeEstimationRequest request, Action<GetFeeEstimationResponse> done) {

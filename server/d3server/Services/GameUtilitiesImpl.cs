@@ -7,8 +7,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class GameUtilitiesImpl: GameUtilities {
-		Client client;
-		public GameUtilitiesImpl(Client client) {
+		ClientHandler client;
+		public GameUtilitiesImpl(ClientHandler client) {
 			this.client = client;
 		}
 

@@ -7,8 +7,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class UserManagerServiceImpl: UserManagerService {
-		Client client;
-		public UserManagerServiceImpl(Client client) {
+		ClientHandler client;
+		public UserManagerServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 

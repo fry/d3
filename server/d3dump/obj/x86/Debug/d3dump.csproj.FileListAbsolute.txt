@@ -1,0 +1,9 @@
+D:\projects\d3\d3\server\d3dump\bin\Debug\d3dump.exe
+D:\projects\d3\d3\server\d3dump\bin\Debug\d3dump.pdb
+D:\projects\d3\d3\server\d3dump\bin\Debug\d3server.exe
+D:\projects\d3\d3\server\d3dump\bin\Debug\Google.ProtocolBuffers.dll
+D:\projects\d3\d3\server\d3dump\bin\Debug\d3server.pdb
+D:\projects\d3\d3\server\d3dump\bin\Debug\Google.ProtocolBuffers.xml
+D:\projects\d3\d3\server\d3dump\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\projects\d3\d3\server\d3dump\obj\x86\Debug\d3dump.exe
+D:\projects\d3\d3\server\d3dump\obj\x86\Debug\d3dump.pdb

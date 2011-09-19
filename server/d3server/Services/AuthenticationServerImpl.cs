@@ -9,8 +9,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class AuthenticationServerImpl: AuthenticationServer {
-		Client client;
-		public AuthenticationServerImpl(Client client) {
+		ClientHandler client;
+		public AuthenticationServerImpl(ClientHandler client) {
 			this.client = client;
 		}
 

@@ -10,8 +10,8 @@ namespace d3server.Services {
 	using d3server.Network;
 
 	public class GameMasterImpl: GameMaster {
-		Client client;
-		public GameMasterImpl(Client client) {
+		ClientHandler client;
+		public GameMasterImpl(ClientHandler client) {
 			this.client = client;
 		}
 
@@ -34,9 +34,9 @@ namespace d3server.Services {
 						.SetBucketMax(4294967296)
 						.SetWaitMilliseconds(1354)
 						.SetGamesPerHour(0)
-						.SetActiveGames(1)
-						.SetActivePlayers(1)
-						.SetFormingGames(1)
+						.SetActiveGames(69)
+						.SetActivePlayers(75)
+						.SetFormingGames(0)
 						.SetWaitingPlayers(0);
 
 			description.AddStatsBucket(stats_bucket);
@@ -95,7 +95,19 @@ namespace d3server.Services {
 		}
 
 		public override void GetGameStats(Google.ProtocolBuffers.IRpcController controller, GetGameStatsRequest request, Action<GetGameStatsResponse> done) {
-			throw new NotImplementedException();
+			var response = GetGameStatsResponse.CreateBuilder();
+			var stats_bucket = GameStatsBucket.CreateBuilder();
+			stats_bucket.SetBucketMin(0)
+						.SetBucketMax(4294967296)
+						.SetWaitMilliseconds(1354)
+						.SetGamesPerHour(0)
+						.SetActiveGames(69)
+						.SetActivePlayers(75)
+						.SetFormingGames(0)
+						.SetWaitingPlayers(0);
+
+			response.AddStatsBucket(stats_bucket);
+			done(response.Build());
 		}
 	}
 }

@@ -8,8 +8,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class StorageServiceImpl: StorageService {
-		Client client;
-		public StorageServiceImpl(Client client) {
+		ClientHandler client;
+		public StorageServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 
@@ -68,7 +68,7 @@ namespace d3server.Services {
 					account_digest.SetBannerConfiguration(banner);
 
 					// default flags
-					account_digest.SetFlags(0);
+					account_digest.SetFlags((uint)D3.Account.Digest.Types.Flags.HARDCORE_HERO_UNLOCKED);
 
 					data.SetData(account_digest.Build().ToByteString());
 				} else if (request.QueryName == "GetToonSettings") {

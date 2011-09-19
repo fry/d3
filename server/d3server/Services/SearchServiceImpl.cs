@@ -7,8 +7,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class SearchServiceImpl: SearchService {
-		Client client;
-		public SearchServiceImpl(Client client) {
+		ClientHandler client;
+		public SearchServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 

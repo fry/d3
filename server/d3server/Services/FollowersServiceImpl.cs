@@ -7,8 +7,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class FollowersServiceImpl: FollowersService {
-		Client client;
-		public FollowersServiceImpl(Client client) {
+		ClientHandler client;
+		public FollowersServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 

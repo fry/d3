@@ -8,8 +8,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class ToonServiceExternalImpl: ToonServiceExternal {
-		Client client;
-		public ToonServiceExternalImpl(Client client) {
+		ClientHandler client;
+		public ToonServiceExternalImpl(ClientHandler client) {
 			this.client = client;
 		}
 
@@ -25,6 +25,13 @@ namespace d3server.Services {
 		}
 
 		public override void CreateToon(Google.ProtocolBuffers.IRpcController controller, CreateToonRequest request, Action<CreateToonResponse> done) {
+			foreach (var attr in request.AttributeList) {
+				if (attr.Name == "HeroCreateParams") {
+					var create_params = D3.OnlineService.HeroCreateParams.ParseFrom(attr.Value.MessageValue);
+
+				}
+			}
+
 			var response = CreateToonResponse.CreateBuilder();
 			var toon = EntityId.CreateBuilder();
 			toon.SetHigh(216174302532224051);

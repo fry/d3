@@ -8,8 +8,8 @@ using d3server.Network;
 
 namespace d3server.Services {
 	public class ChannelInvitationServiceImpl: ChannelInvitationService {
-		Client client;
-		public ChannelInvitationServiceImpl(Client client) {
+		ClientHandler client;
+		public ChannelInvitationServiceImpl(ClientHandler client) {
 			this.client = client;
 		}
 
