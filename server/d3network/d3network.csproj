@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Network\BasicAuroraRPC.cs" />
-    <Compile Include="Network\ClientHandler.cs" />
     <Compile Include="Network\ServiceRegistry.cs" />
     <Compile Include="pb\bnet\protocol\attribute\Attribute.cs" />
     <Compile Include="pb\bnet\protocol\authentication\Authentication.cs" />

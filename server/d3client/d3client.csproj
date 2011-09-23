@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0F53B868-28AC-4ABA-9D7A-B49047FF8CA7}</ProjectGuid>
+    <ProjectGuid>{E1C5A851-C7E2-4B07-86E2-BBC680322A6D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>d3</RootNamespace>
-    <AssemblyName>d3server</AssemblyName>
+    <RootNamespace>d3client</RootNamespace>
+    <AssemblyName>d3client</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -34,8 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.ProtocolBuffers, Version=2.3.0.277, Culture=neutral, PublicKeyToken=17b3b1f090c3ea48, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Google.ProtocolBuffers">
       <HintPath>..\Google.ProtocolBuffers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -47,28 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
-    <Compile Include="Services\AuthenticationServerImpl.cs" />
-    <Compile Include="Services\ChannelImpl.cs" />
-    <Compile Include="Services\ChannelInvitationServiceImpl.cs" />
-    <Compile Include="Services\ChannelOwnerImpl.cs" />
-    <Compile Include="Services\ChatServiceImpl.cs" />
+    <Compile Include="Services\AuthenticationClientImpl.cs" />
+    <Compile Include="Services\ChannelInvitationNotifyImpl.cs" />
+    <Compile Include="Services\ChannelSubscriberImpl.cs" />
     <Compile Include="Services\ConnectionServiceImpl.cs" />
-    <Compile Include="Services\ExchangeServiceImpl.cs" />
-    <Compile Include="Services\FriendsServiceImpl.cs" />
-    <Compile Include="Services\GameMasterImpl.cs" />
-    <Compile Include="Services\GameUtilitiesImpl.cs" />
-    <Compile Include="Services\PartyServiceImpl.cs" />
-    <Compile Include="Services\SearchServiceImpl.cs" />
-    <Compile Include="Services\StorageServiceImpl.cs" />
-    <Compile Include="Services\UserManagerServiceImpl.cs" />
-    <Compile Include="Services\FollowersServiceImpl.cs" />
-    <Compile Include="Services\NotificationServiceImpl.cs" />
-    <Compile Include="Services\PresenceServiceImpl.cs" />
-    <Compile Include="Services\ToonServiceExternalImpl.cs" />
+    <Compile Include="Services\ExchangeNotifyImpl.cs" />
+    <Compile Include="Services\FollowersNotifyImpl.cs" />
+    <Compile Include="Services\FriendsNotifyImpl.cs" />
+    <Compile Include="Services\GameFactorySubscriberImpl.cs" />
+    <Compile Include="Services\NotificationListenerImpl.cs" />
+    <Compile Include="Services\UserManagerNotifyImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\d3network\d3network.csproj">

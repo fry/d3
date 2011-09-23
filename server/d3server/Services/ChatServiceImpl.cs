@@ -5,7 +5,7 @@ using System.Text;
 using bnet.protocol.chat;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class ChatServiceImpl: ChatService {
 		ClientHandler client;
 		public ChatServiceImpl(ClientHandler client) {

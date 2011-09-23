@@ -26,6 +26,11 @@ namespace d3.Network {
 			public IMessage Message;
 		}
 
+		// Registry to look up services when importing them
+		public readonly ServiceRegistry<T> ImportRegistry;
+		// Registry to look up services when exporting them
+		public readonly ServiceRegistry<T> ExportRegistry;
+
 		// The services the server exports to the client
 		Dictionary<uint, IService> exportedServices = new Dictionary<uint, IService>();
 		// Counter for ID to use for next exported service
@@ -41,8 +46,6 @@ namespace d3.Network {
 		// Callback functions waiting for responses to the specified requestID
 		Dictionary<ushort, ResponseData> awaitingResponse = new Dictionary<ushort, ResponseData>();
 
-		ServiceRegistry<T> registry;
-
 		// Counts requests sent from the server side
 		ushort requestCounter = 0;
 
@@ -50,12 +53,13 @@ namespace d3.Network {
 
 		Queue<SendQueueEntry> sendQueue = new Queue<SendQueueEntry>();
 
-		public BasicAuroraRPC(ServiceRegistry<T> registry) {
-			this.registry = registry;
+		public BasicAuroraRPC(ServiceRegistry<T> import_registry, ServiceRegistry<T> export_registry) {
+			ImportRegistry = import_registry;
+			ExportRegistry = export_registry;
 		}
 
 		/// <summary>
-		/// Export a service to the client based on its name
+		/// Export a service based on its name
 		/// </summary>
 		/// <param name="name">the fully qualified name of the service, i.e.: "bnet.protocol.connection.ConnectionService"</param>
 		/// <param name="overwriteIndex"></param>
@@ -66,16 +70,26 @@ namespace d3.Network {
 		}
 
 		/// <summary>
-		/// Export a service to the client based on its hash
+		/// Export a service based on its hash
 		/// </summary>
 		/// <param name="hash"></param>
 		/// <param name="overwriteIndex"></param>
 		/// <returns></returns>
 		public uint ExportService(uint hash, uint? overwriteIndex = null) {
+			// Lookup the service with this hash in the registry
+			var service = ExportRegistry.CreateBoundService(hash, this as T);
+			return ExportService(service, overwriteIndex);
+		}
+
+		/// <summary>
+		/// Export a service
+		/// </summary>
+		/// <param name="service"></param>
+		/// <param name="overwriteIndex"></param>
+		/// <returns></returns>
+		public uint ExportService(IService service, uint? overwriteIndex = null) {
 			// TODO: check if the service is already bound
 
-			// Lookup the service with this hash in the registry
-			var service = registry.CreateBoundService(hash, this as T);
 			// Determine the index to use
 			uint index = exportCounter++;
 			// If an overwrite index is specified (required for ConnectionService), correct counter
@@ -87,14 +101,32 @@ namespace d3.Network {
 			return index;
 		}
 
-		public void ImportService(uint hash, uint index) {
+		/// <summary>
+		/// Import a service on the given index by its name
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public IService ImportService(string name, uint index) {
+			var hash = Util.GetServiceHash(name);
+			return ImportService(hash, index);
+		}
+
+		/// <summary>
+		/// Import a service from the remote endpoint on the given index by its hash
+		/// </summary>
+		/// <param name="hash"></param>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public IService ImportService(uint hash, uint index) {
 			// Create a stub for the imported service with us as the RPC channel
-			var type = registry.GetServiceType(hash);
-			var service = registry.CreateStub(type, this as T);
+			var type = ImportRegistry.GetServiceType(hash);
+			var service = ImportRegistry.CreateStub(type, this as T);
 			// Store a reference to the service by index, and a reference to the index by hash
 			importedServices[index] = service;
 			importedServicesIds[hash] = index;
 			importedServicesTypes[type] = service;
+			return service;
 		}
 
 		/// <summary>

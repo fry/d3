@@ -6,7 +6,7 @@ using bnet.protocol.toon.external;
 using bnet.protocol;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class ToonServiceExternalImpl: ToonServiceExternal {
 		ClientHandler client;
 		public ToonServiceExternalImpl(ClientHandler client) {

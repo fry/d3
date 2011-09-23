@@ -5,7 +5,7 @@ using System.Text;
 using bnet.protocol.notification;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class NotificationServiceImpl: NotificationService {
 		ClientHandler client;
 		public NotificationServiceImpl(ClientHandler client) {

@@ -7,7 +7,7 @@ using bnet.protocol.channel;
 using d3.Network;
 using Google.ProtocolBuffers;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class PartyServiceImpl: PartyService {
 		ClientHandler client;
 		public PartyServiceImpl(ClientHandler client) {

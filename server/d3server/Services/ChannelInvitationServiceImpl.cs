@@ -6,7 +6,7 @@ using bnet.protocol.channel_invitation;
 using System.Diagnostics;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class ChannelInvitationServiceImpl: ChannelInvitationService {
 		ClientHandler client;
 		public ChannelInvitationServiceImpl(ClientHandler client) {

@@ -7,7 +7,7 @@ using bnet.protocol;
 using Google.ProtocolBuffers;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class AuthenticationServerImpl: AuthenticationServer {
 		ClientHandler client;
 		public AuthenticationServerImpl(ClientHandler client) {

@@ -6,7 +6,7 @@ using bnet.protocol.friends;
 using bnet.protocol.invitation;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class FriendsServiceImpl: FriendsService {
 		ClientHandler client;
 		public FriendsServiceImpl(ClientHandler client) {

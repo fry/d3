@@ -6,7 +6,7 @@ using bnet.protocol.exchange;
 using d3.Network;
 using bnet.protocol.exchange_object_provider;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class ExchangeServiceImpl: ExchangeService {
 		ClientHandler client;
 		public ExchangeServiceImpl(ClientHandler client) {

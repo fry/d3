@@ -10,10 +10,14 @@ namespace d3.Network {
 	public class ServiceRegistry<T> {
 		ConcurrentDictionary<uint, Type> services = new ConcurrentDictionary<uint, Type>();
 
+		public uint GetServiceHash(string name) {
+			return Util.GetServiceHash(name);
+		}
+
 		public void RegisterService(string name, Type implementation) {
 			Debug.Assert(implementation.GetInterfaces().Contains(typeof(IService)));
 
-			var hash = Util.GetServiceHash(name);
+			var hash = GetServiceHash(name);
 
 			Debug.Assert(services.TryAdd(hash, implementation), String.Format("Service already registered: {0}/{1:X8}", name, hash));
 		}
@@ -32,7 +36,8 @@ namespace d3.Network {
 		}
 
 		public IService CreateStub(Type type, T context) {
-			var stub = type.GetMethod("CreateStub").Invoke(null, new object[] { context });
+			var cons = type.GetMethod("CreateStub");
+			var stub = cons.Invoke(null, new object[] { context });
 			return stub as IService;
 		}
 	}

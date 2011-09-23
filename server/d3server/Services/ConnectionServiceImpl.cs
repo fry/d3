@@ -8,7 +8,7 @@ using bnet.protocol;
 using bnet.protocol.authentication;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class ConnectionServiceImpl: ConnectionService {
 		ClientHandler client;
 		public ConnectionServiceImpl(ClientHandler client) {

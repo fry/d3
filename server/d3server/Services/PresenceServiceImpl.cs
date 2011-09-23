@@ -6,7 +6,7 @@ using bnet.protocol.presence;
 using bnet.protocol.channel;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class PresenceServiceImpl: PresenceService {
 		ClientHandler client;
 		public PresenceServiceImpl(ClientHandler client) {

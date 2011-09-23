@@ -5,7 +5,7 @@ using System.Text;
 using bnet.protocol.followers;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class FollowersServiceImpl: FollowersService {
 		ClientHandler client;
 		public FollowersServiceImpl(ClientHandler client) {

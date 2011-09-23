@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using bnet.protocol.game_master;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	using Attribute = bnet.protocol.attribute.Attribute;
 	using bnet.protocol.attribute;
 	using d3.Network;

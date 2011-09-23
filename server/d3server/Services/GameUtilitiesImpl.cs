@@ -5,7 +5,7 @@ using System.Text;
 using bnet.protocol.game_utilities;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class GameUtilitiesImpl: GameUtilities {
 		ClientHandler client;
 		public GameUtilitiesImpl(ClientHandler client) {

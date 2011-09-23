@@ -5,7 +5,7 @@ using System.Text;
 using bnet.protocol.channel;
 using d3.Network;
 
-namespace d3.Services {
+namespace d3.Server.Services {
 	public class ChannelImpl: Channel {
 		ClientHandler client;
 		public ChannelImpl(ClientHandler client) {
