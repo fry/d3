@@ -15,3 +15,9 @@ back into plain text .proto files. Requires the Google Protocol Buffers Python
 library.
 
 Usage: decompile_protobins.py in_folder out_folder
+
+server
+------
+This folder contains my attempts at implementing parts of the server and
+client. There is no intention to get a fully-working server or client
+working.
