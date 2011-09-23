@@ -6,6 +6,7 @@ using d3.Network;
 using d3.Server.Services;
 using System.Net.Sockets;
 using System.Net;
+using System.Diagnostics;
 
 namespace d3.Server {
 	public class Server {
@@ -52,8 +53,11 @@ namespace d3.Server {
 			var listener = new TcpListener(IPAddress.Any, port);
 			listener.Start();
 
+			Debug.WriteLine("Listening on {0}", listener.LocalEndpoint);
+
 			while (true) {
 				var socket = listener.AcceptTcpClient();
+				Debug.WriteLine("Connection from {0}", socket.Client.RemoteEndPoint);
 				var client = new ClientHandler(ImportRegistry, ExportRegistry);
 				client.Start(socket);
 			}

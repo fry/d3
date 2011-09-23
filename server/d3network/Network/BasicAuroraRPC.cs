@@ -97,6 +97,8 @@ namespace d3.Network {
 				index = overwriteIndex.Value;
 				exportCounter = index + 1;
 			}
+
+			Debug.WriteLine("Exporting service '{0}' on index {1}", service.GetType().FullName, index);
 			exportedServices.Add(index, service);
 			return index;
 		}
@@ -122,6 +124,8 @@ namespace d3.Network {
 			// Create a stub for the imported service with us as the RPC channel
 			var type = ImportRegistry.GetServiceType(hash);
 			var service = ImportRegistry.CreateStub(type, this as T);
+
+			Debug.WriteLine("Importing service '{0}' on {1}", service.GetType().FullName, index);
 			// Store a reference to the service by index, and a reference to the index by hash
 			importedServices[index] = service;
 			importedServicesIds[hash] = index;

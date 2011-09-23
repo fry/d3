@@ -80,21 +80,43 @@ namespace d3.Client {
 			
 		}
 
-		void OnConnectResponse(ConnectResponse response) {
+
+		void Bind(IEnumerable<string> exports, IEnumerable<string> imports) {
 			var bind_args = BindRequest.CreateBuilder();
-			var hash_auth = connection.ExportRegistry.GetServiceHash("bnet.protocol.authentication.AuthenticationClient");
-			var export_auth_id = connection.ExportService(hash_auth, 2);
-			bind_args.AddExportedService(new BoundService.Builder {
-				Hash = hash_auth,
-				Id = export_auth_id
-			});
 
-			var hash_auth_server = connection.ImportRegistry.GetServiceHash("bnet.protocol.authentication.AuthenticationServer");
-			bind_args.AddImportedServiceHash(hash_auth_server);
+			// Services we export
+			foreach (var export in exports) {
+				var hash = Util.GetServiceHash(export);
+				var id = connection.ExportService(hash);
+				bind_args.AddExportedService(new BoundService.Builder {
+					Hash = hash,
+					Id = id
+				});
+			}
 
-			connectionService.Bind(null, bind_args.Build(), r => {
-				connection.ImportService(hash_auth_server, r.ImportedServiceIdList[0]);
+			var imports_array = imports.ToArray();
+			// Services we want to import
+			foreach (var import in imports_array) {
+				var hash = Util.GetServiceHash(import);
+				bind_args.AddImportedServiceHash(hash);
+			}
+
+			// Handle the response and import the services
+			connectionService.Bind(null, bind_args.Build(), response => {
+				for (int i = 0; i < imports_array.Length; i++) {
+					connection.ImportService(imports_array[i], response.ImportedServiceIdList[i]);
+				}
 			});
+		}
+
+		void OnConnectResponse(ConnectResponse response) {
+			Bind(
+				new List<string> {
+					"bnet.protocol.authentication.AuthenticationClient"
+				},
+				new List<string> {
+					"bnet.protocol.authentication.AuthenticationServer"
+				});
 		}
 	}
 

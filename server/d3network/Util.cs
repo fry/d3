@@ -5,7 +5,7 @@ using System.Text;
 using Google.ProtocolBuffers;
 
 namespace d3 {
-	static class Util {
+	public static class Util {
 		public static uint GetServiceHash(string name) {
 			var bytes = Encoding.ASCII.GetBytes(name);
 			uint result = 0x811C9DC5;
