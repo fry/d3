@@ -54,7 +54,6 @@ class ProtobinDecompiler:
 			print "Descriptor dump:"
 			print descriptor
 			raise
-		print "Decompiled %s" % file_name
 	
 	def decompile_file_descriptor(self, out, descriptor):
 		# deserialize package name and dependencies
@@ -167,20 +166,22 @@ class ProtobinDecompiler:
 		out.write("\t" * self.indent_level)
 		out.write(str)
 
-decomp = ProtobinDecompiler()
+if __name__ == '__main__':
+	decomp = ProtobinDecompiler()
 
-if len(sys.argv) < 3:
-	print "Usage: %s in_folder out_folder" % sys.argv[0]
-	sys.exit()
+	if len(sys.argv) < 3:
+		print "Usage: %s in_folder out_folder" % sys.argv[0]
+		sys.exit()
 
-in_dir = sys.argv[1]
-out_dir = sys.argv[2]
+	in_dir = sys.argv[1]
+	out_dir = sys.argv[2]
 
-in_files = []
-for root, dirs, files in os.walk(in_dir):
-	for file in files:
-		if file.endswith(".protobin"):
-			in_files.append(os.path.join(root, file))
+	in_files = []
+	for root, dirs, files in os.walk(in_dir):
+		for file in files:
+			if file.endswith(".protobin"):
+				in_files.append(os.path.join(root, file))
 
-for file in in_files:
-	decomp.decompile(file, out_dir)
+	for file in in_files:
+		print "Decompiling %s" % file
+		decomp.decompile(file, out_dir)
