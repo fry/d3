@@ -1,5 +1,5 @@
 package bnet.protocol.chat;
-import "service/channel/channel_types.proto";
+import "service/channel/definition/channel_types.proto";
 
 message ChannelState {
 	optional string identity = 1;

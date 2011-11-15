@@ -1,0 +1,19 @@
+package bnet.protocol.exchange_risk;
+import "lib/protocol/exchange.proto";
+
+message ReportAuthorizeRiskVerdictRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 auth_id = 2;
+	required uint64 result = 3;
+	optional uint64 verdict = 4;
+}
+message ReportSettleRiskVerdictRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 settle_id = 2;
+	required uint64 result = 3;
+	optional uint64 verdict = 4;
+}
+message DelaySettleRiskVerdictRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 settle_id = 2;
+}

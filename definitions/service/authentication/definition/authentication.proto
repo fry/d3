@@ -1,0 +1,37 @@
+package bnet.protocol.authentication;
+import "lib/rpc/rpc.proto";
+import "lib/protocol/content_handle.proto";
+import "lib/protocol/entity.proto";
+
+message ModuleLoadRequest {
+	required .bnet.protocol.ContentHandle module_handle = 1;
+	optional bytes message = 2;
+}
+message ModuleLoadResponse {
+	optional int32 module_id = 2;
+}
+message ModuleMessageRequest {
+	required int32 module_id = 1;
+	optional bytes message = 2;
+}
+message LogonRequest {
+	optional string program = 1;
+	optional string platform = 2;
+	optional string locale = 3;
+	optional string email = 4;
+	optional uint64 listener_id = 5;
+	optional string version = 6;
+	optional int32 application_version = 7;
+}
+message LogonResponse {
+	required .bnet.protocol.EntityId account = 1;
+	required .bnet.protocol.EntityId game_account = 2;
+}
+service AuthenticationClient {
+	rpc ModuleLoad (.bnet.protocol.authentication.ModuleLoadRequest) returns (.bnet.protocol.authentication.ModuleLoadResponse);
+	rpc ModuleMessage (.bnet.protocol.authentication.ModuleMessageRequest) returns (.bnet.protocol.NoData);
+}
+service AuthenticationServer {
+	rpc Logon (.bnet.protocol.authentication.LogonRequest) returns (.bnet.protocol.authentication.LogonResponse);
+	rpc ModuleMessage (.bnet.protocol.authentication.ModuleMessageRequest) returns (.bnet.protocol.NoData);
+}

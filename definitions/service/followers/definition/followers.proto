@@ -16,8 +16,7 @@ message SubscribeToFollowersResponse {
 }
 message StartFollowingRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
-	optional .bnet.protocol.EntityId target_id = 2;
-	optional string follower_name = 3;
+	required .bnet.protocol.EntityId target_id = 2;
 }
 message StartFollowingResponse {
 	optional .bnet.protocol.followers.FollowedUser followed_user = 2;

@@ -1,24 +1,26 @@
 
 Account.proto
-D3.AccountAttributeSerializer.protoItems.protoOnlineService.protoItemCrafting.proto"’
+D3.AccountAttributeSerializer.protoItems.protoOnlineService.protoItemCrafting.proto"—
 BannerConfiguration
-banner_index (:0
+banner_shape (:0
 
-sigil_main (:0
-sigil_accent (:-1
-pattern_color_index (:0!
-background_color_index (:0
-sigil_color_index (:0
-placement_index (:0
-pattern (:0 
-use_sigil_variant	 (:false"È
+sigil_main (:0
+sigil_accent (:0
+pattern_color (:0
+background_color (:0
+sigil_color (:0
+sigil_placement (:0
+pattern (:0 
+use_sigil_variant	 (:false
+epic_banner
+ (:0"È
 Digest
 version (7
 last_played_hero_id (2.D3.OnlineService.EntityId=
 banner_configuration (2.D3.Account.BannerConfiguration
 flags (:0"#
 Flags
-HARDCORE_HERO_UNLOCKED"Ð
+HARDCORE_HERO_UNLOCKED"„
 SavedDefinition
 version ("
 digest (2.D3.Account.DigestA
@@ -26,4 +28,10 @@ sigil_main (:0
 normal_shared_saved_items (2.D3.Items.ItemList7
 hardcore_shared_saved_items (2.D3.Items.ItemList=
 crafter_saved_data (2!.D3.ItemCrafting.CrafterSavedData
-seen_tutorials (
+seen_tutorials (&
+num_vote_kicks_participated_in ( 
+num_vote_kicks_initiated	 ( 
+num_public_games_no_kick
+ (
+times_vote_kicked (+
+gold_id (2.D3.OnlineService.EntityId

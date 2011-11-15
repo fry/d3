@@ -1,0 +1,35 @@
+package bnet.protocol.challenge;
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/rpc/rpc.proto";
+
+message Challenge {
+	required uint32 type = 1;
+	optional string info = 2;
+	optional string answer = 3;
+}
+message ChallengePickedRequest {
+	required uint32 challenge = 1;
+}
+message ChallengeAnsweredRequest {
+	required string answer = 1;
+}
+message SendChallengeToUserRequest {
+	optional .bnet.protocol.ProcessId peer_id = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+	repeated .bnet.protocol.challenge.Challenge challenges = 3;
+}
+message SendChallengeToUserResponse {
+	required .bnet.protocol.challenge.Challenge challenge = 1;
+}
+message ChallengeUserRequest {
+	repeated .bnet.protocol.challenge.Challenge challenges = 1;
+}
+service ChallengeService {
+	rpc ChallengePicked (.bnet.protocol.challenge.ChallengePickedRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc ChallengeAnswered (.bnet.protocol.challenge.ChallengeAnsweredRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc SendChallengeToUser (.bnet.protocol.challenge.SendChallengeToUserRequest) returns (.bnet.protocol.challenge.SendChallengeToUserResponse);
+}
+service ChallengeNotify {
+	rpc ChallengeUser (.bnet.protocol.challenge.ChallengeUserRequest) returns (.bnet.protocol.NO_RESPONSE);
+}

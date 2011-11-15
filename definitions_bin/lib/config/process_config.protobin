@@ -32,9 +32,11 @@
 RPCServerConfig
 name (	1
 listen (2!.bnet.protocol.config.ListenPoint0
-connect (2.bnet.protocol.config.ServerSet"µ
+connect (2.bnet.protocol.config.ServerSet"–
 ProcessConfig
-process_name (	5
+process_name (	-
+!cpu_affinity_main_event_processor (B0
+$cpu_affinity_network_event_processor (B5
 server (2%.bnet.protocol.config.RPCServerConfig0
 resource (2.bnet.protocol.config.Resource4
 service (2#.bnet.protocol.config.ServiceConfig&

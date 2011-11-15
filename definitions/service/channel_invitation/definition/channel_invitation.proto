@@ -3,7 +3,7 @@ import "lib/protocol/entity.proto";
 import "lib/protocol/invitation.proto";
 import "lib/rpc/rpc.proto";
 import "service/channel/definition/channel.proto";
-import "service/channel_invitation/channel_invitation_types.proto";
+import "service/channel_invitation/definition/channel_invitation_types.proto";
 
 message AcceptInvitationRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;

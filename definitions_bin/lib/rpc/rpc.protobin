@@ -7,11 +7,25 @@
 next (2.bnet.protocol.Address")
 	ProcessId
 label (
-epoch ("J
+epoch ("M
 ObjectAddress&
-host (2.bnet.protocol.ProcessId
-	object_id ("
-NoData:3
+host (2.bnet.protocol.ProcessId
+	object_id (:0"
+NoData"z
+	ErrorInfo4
+object_address (2.bnet.protocol.ObjectAddress
+status (
+service_hash (
+	method_id ("�
+Header
+
+service_id (
+	method_id (
+token (
+	object_id (:0
+size (:0
+status (:0'
+error (2.bnet.protocol.ErrorInfo:3
 	method_id.google.protobuf.MethodOptionsІ (:.
 cost.google.protobuf.MethodOptionsц (:1
 timeout.google.protobuf.MethodOptions҆ (

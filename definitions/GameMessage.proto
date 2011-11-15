@@ -3,6 +3,7 @@ import "Hero.proto";
 import "OnlineService.proto";
 import "Settings.proto";
 import "Account.proto";
+import "Items.proto";
 
 message HeroDigestList {
 	required .D3.OnlineService.EntityId account_id = 1;
@@ -38,4 +39,23 @@ message HeroDigestBanner {
 }
 message GameCurrentPlayers {
 	repeated .D3.GameMessage.HeroDigestBanner players = 1;
+}
+message AccountVersionList {
+	required .D3.OnlineService.EntityId account_id = 1;
+}
+message AccountVersionSync {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required uint64 version = 2;
+}
+message TooltipIds {
+	required uint32 locale = 1;
+	repeated .D3.OnlineService.ItemId ids = 2;
+}
+message TooltipGenerators {
+	required uint32 locale = 1;
+	required .D3.Items.ItemList items = 2;
+}
+message TutorialMessage {
+	required uint32 tutorial_sno = 1;
+	optional string ui_anchor_name = 2;
 }

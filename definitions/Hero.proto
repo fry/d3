@@ -25,7 +25,7 @@ message QuestRewardHistoryEntry {
 message Digest {
 	required uint32 version = 1;
 	required .D3.OnlineService.EntityId hero_id = 2;
-	required string hero_name = 3;
+	optional string hero_name = 3;
 	required sfixed32 gbid_class = 4;
 	required sint32 level = 5;
 	required uint32 player_flags = 6;
@@ -105,4 +105,8 @@ message Escrow {
 	optional .D3.Items.Generator generator = 2;
 	optional .D3.Hero.SavedData hero_data = 3;
 	optional uint32 state = 4;
+	repeated .D3.OnlineService.ItemId serviced_tokens = 5;
+}
+message HeroList {
+	repeated .D3.OnlineService.EntityId hero_ids = 1;
 }

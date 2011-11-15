@@ -1,0 +1,61 @@
+
+Profile.proto
+D3.ProfileAttributeSerializer.protoItems.protoOnlineService.protoGBHandle.proto"P
+	ClassInfo
+playtime (
+highest_level (
+highest_difficulty ("4
+SkillWithRune
+skill (:-1
+rune (:-1";
+SkillsWithRunes(
+runes (2.D3.Profile.SkillWithRune"ù
+HeroProfile
+monsters_killed (
+elites_killed (
+gold_collected (
+highest_level (
+highest_difficulty (
+create_time (
+hardcore (:false
+attack (
+	precision	 (
+defense
+ (
+vitality (
+armor (
+dps (
+resist_arcane (
+resist_fire (
+resist_lightning (
+resist_poison (
+resist_cold (%
+	equipment (2.D3.Items.ItemList6
+sno_active_skills (2.D3.Profile.SkillsWithRunes
+
+sno_traits (
+
+death_time (&
+killer (2.D3.GameBalance.Handle-
+kill_location (2.D3.GameBalance.Handle
+epitaph (	"9
+HeroProfileList&
+heros (2.D3.Profile.HeroProfile"­
+AccountProfile
+highest_difficulty (!
+highest_boss_difficulty_1 (!
+highest_boss_difficulty_2 (!
+highest_boss_difficulty_3 (!
+highest_boss_difficulty_4 (
+monsters_killed (
+elites_killed (
+gold_collected (
+highest_hardcore_level	 (
+harcore_monsters_killed
+ (.
+class_barbarian (2.D3.Profile.ClassInfo0
+class_demonhunter (2.D3.Profile.ClassInfo)
+
+class_monk (2.D3.Profile.ClassInfo0
+class_witchdoctor (2.D3.Profile.ClassInfo+
+class_wizard (2.D3.Profile.ClassInfo

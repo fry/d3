@@ -1,0 +1,93 @@
+package bnet.protocol.game_utilities;
+import "service/game_master/definition/game_master.proto";
+import "service/server_pool/definition/server_pool.proto";
+import "service/toon/definition/toon.proto";
+import "lib/protocol/attribute.proto";
+import "lib/protocol/entity.proto";
+import "lib/rpc/rpc.proto";
+
+message ClientRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional .bnet.protocol.ProcessId host = 2;
+	optional .bnet.protocol.EntityId bnet_account_id = 3;
+	optional .bnet.protocol.EntityId game_account_id = 4;
+	optional .bnet.protocol.EntityId toon_id = 5;
+}
+message ClientResponse {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+}
+message ServerRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	required fixed32 program = 2;
+	optional .bnet.protocol.ProcessId host = 3;
+}
+message ServerResponse {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+}
+message CreateToonRequest {
+	required .bnet.protocol.EntityId bnet_account_id = 1;
+	required .bnet.protocol.EntityId game_account_id = 2;
+	required string name = 4;
+	repeated .bnet.protocol.attribute.Attribute attribute = 5;
+	optional .bnet.protocol.ProcessId host = 6;
+	required uint32 token = 7;
+	required .bnet.protocol.ProcessId sender = 8;
+}
+message DeleteToonRequest {
+	optional .bnet.protocol.EntityId bnet_account_id = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+	required .bnet.protocol.EntityId toon_id = 3;
+	optional .bnet.protocol.ProcessId host = 4;
+}
+message TransferToonRequest {
+	message Account {
+		required .bnet.protocol.EntityId bnet_account_id = 1;
+		required .bnet.protocol.EntityId game_account_id = 2;
+	}
+	required .bnet.protocol.EntityId toon_id = 1;
+	optional .bnet.protocol.game_utilities.TransferToonRequest.Account source = 2;
+	optional .bnet.protocol.game_utilities.TransferToonRequest.Account target = 3;
+	optional .bnet.protocol.ProcessId host = 4;
+}
+message SelectToonRequest {
+	required .bnet.protocol.EntityId bnet_account_id = 1;
+	required .bnet.protocol.EntityId game_account_id = 2;
+	required .bnet.protocol.EntityId toon_id = 3;
+	optional .bnet.protocol.ProcessId host = 4;
+}
+message PresenceChannelCreatedRequest {
+	required .bnet.protocol.EntityId id = 1;
+	optional .bnet.protocol.EntityId toon_id = 2;
+	optional .bnet.protocol.EntityId game_account_id = 3;
+	optional .bnet.protocol.EntityId bnet_account_id = 4;
+	optional .bnet.protocol.ProcessId host = 5;
+}
+message PlayerVariablesRequest {
+	required .bnet.protocol.EntityId bnet_account_id = 1;
+	required .bnet.protocol.EntityId game_account_id = 2;
+	required .bnet.protocol.EntityId toon_id = 3;
+	repeated string variable = 4;
+	optional .bnet.protocol.ProcessId host = 5;
+}
+message GameVariablesRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	repeated string variable = 2;
+	optional .bnet.protocol.ProcessId host = 3;
+}
+message VariablesResponse {
+	repeated float value = 1;
+}
+service GameUtilities {
+	rpc ProcessClientRequest (.bnet.protocol.game_utilities.ClientRequest) returns (.bnet.protocol.game_utilities.ClientResponse);
+	rpc CreateToon (.bnet.protocol.game_utilities.CreateToonRequest) returns (.bnet.protocol.NoData);
+	rpc DeleteToon (.bnet.protocol.game_utilities.DeleteToonRequest) returns (.bnet.protocol.NoData);
+	rpc TransferToon (.bnet.protocol.game_utilities.TransferToonRequest) returns (.bnet.protocol.NoData);
+	rpc SelectToon (.bnet.protocol.game_utilities.SelectToonRequest) returns (.bnet.protocol.NoData);
+	rpc PresenceChannelCreated (.bnet.protocol.game_utilities.PresenceChannelCreatedRequest) returns (.bnet.protocol.NoData);
+	rpc GetPlayerVariables (.bnet.protocol.game_utilities.PlayerVariablesRequest) returns (.bnet.protocol.game_utilities.VariablesResponse);
+	rpc GetGameVariables (.bnet.protocol.game_utilities.GameVariablesRequest) returns (.bnet.protocol.game_utilities.VariablesResponse);
+	rpc GetLoad (.bnet.protocol.server_pool.GetLoadRequest) returns (.bnet.protocol.server_pool.ServerState);
+	rpc CreateToonEntity (.bnet.protocol.toon.CreateToonEntityRequest) returns (.bnet.protocol.toon.CreateToonEntityResponse);
+	rpc FinalizeToonCreation (.bnet.protocol.toon.FinalizeToonCreationRequest) returns (.bnet.protocol.NoData);
+	rpc ProcessServerRequest (.bnet.protocol.game_utilities.ServerRequest) returns (.bnet.protocol.game_utilities.ServerResponse);
+}

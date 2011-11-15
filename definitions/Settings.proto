@@ -6,4 +6,5 @@ message ToonSettings {
 message GameAccountSettings {
 	optional int32 use_last_hero = 1 [default = 0];
 	optional int32 show_offline_toast = 2 [default = 0];
+	optional string rmt_last_used_currency = 3;
 }

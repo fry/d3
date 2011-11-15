@@ -1,6 +1,6 @@
 
 GameMessage.protoD3.GameMessage
-Hero.protoOnlineService.protoSettings.protoAccount.proto"f
+Hero.protoOnlineService.protoSettings.protoAccount.protoItems.proto"f
 HeroDigestList.
 
 account_id (2.D3.OnlineService.EntityId$
@@ -28,4 +28,21 @@ slot_index (:0
 hero_digest (2.D3.Hero.Digest/
 banner (2.D3.Account.BannerConfiguration"G
 GameCurrentPlayers1
-players (2 .D3.GameMessage.HeroDigestBanner
+players (2 .D3.GameMessage.HeroDigestBanner"D
+AccountVersionList.
+
+account_id (2.D3.OnlineService.EntityId"U
+AccountVersionSync.
+
+account_id (2.D3.OnlineService.EntityId
+version ("C
+
+TooltipIds
+locale (%
+ids (2.D3.OnlineService.ItemId"F
+TooltipGenerators
+locale (!
+items (2.D3.Items.ItemList"?
+TutorialMessage
+tutorial_sno (
+ui_anchor_name (	

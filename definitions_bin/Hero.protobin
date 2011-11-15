@@ -21,7 +21,7 @@ difficulty (:0"È
 Digest
 version (+
 hero_id (2.D3.OnlineService.EntityId
-	hero_name (	
+	hero_name (	
 
 gbid_class (
 level (
@@ -92,9 +92,12 @@ saved_data (2.D3.Hero.SavedData(
 NameSequence
 sequence (:0"
 NameText
-name (	"w
+name (	"ª
 Escrow
 version (&
 	generator (2.D3.Items.Generator%
 	hero_data (2.D3.Hero.SavedData
-state (
+state (1
+serviced_tokens (2.D3.OnlineService.ItemId"8
+HeroList,
+hero_ids (2.D3.OnlineService.EntityId

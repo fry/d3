@@ -1,0 +1,65 @@
+package D3.Profile;
+import "AttributeSerializer.proto";
+import "Items.proto";
+import "OnlineService.proto";
+import "GBHandle.proto";
+
+message ClassInfo {
+	required uint64 playtime = 1;
+	required uint32 highest_level = 2;
+	required uint32 highest_difficulty = 3;
+}
+message SkillWithRune {
+	required sfixed32 skill = 1 [default = -1];
+	optional sfixed32 rune = 2 [default = -1];
+}
+message SkillsWithRunes {
+	repeated .D3.Profile.SkillWithRune runes = 1;
+}
+message HeroProfile {
+	optional uint64 monsters_killed = 1;
+	optional uint64 elites_killed = 2;
+	optional uint64 gold_collected = 3;
+	optional uint32 highest_level = 4;
+	optional uint32 highest_difficulty = 5;
+	optional uint32 create_time = 6;
+	optional bool hardcore = 7 [default = false];
+	optional uint32 attack = 8;
+	optional uint32 precision = 9;
+	optional uint32 defense = 10;
+	optional uint32 vitality = 11;
+	optional uint32 armor = 12;
+	optional float dps = 13;
+	optional uint32 resist_arcane = 14;
+	optional uint32 resist_fire = 15;
+	optional uint32 resist_lightning = 16;
+	optional uint32 resist_poison = 17;
+	optional uint32 resist_cold = 18;
+	optional .D3.Items.ItemList equipment = 19;
+	optional .D3.Profile.SkillsWithRunes sno_active_skills = 20;
+	repeated sfixed32 sno_traits = 21;
+	optional uint32 death_time = 22;
+	optional .D3.GameBalance.Handle killer = 23;
+	optional .D3.GameBalance.Handle kill_location = 24;
+	optional string epitaph = 25;
+}
+message HeroProfileList {
+	repeated .D3.Profile.HeroProfile heros = 1;
+}
+message AccountProfile {
+	optional uint32 highest_difficulty = 1;
+	optional uint32 highest_boss_difficulty_1 = 2;
+	optional uint32 highest_boss_difficulty_2 = 3;
+	optional uint32 highest_boss_difficulty_3 = 4;
+	optional uint32 highest_boss_difficulty_4 = 5;
+	optional uint64 monsters_killed = 6;
+	optional uint64 elites_killed = 7;
+	optional uint64 gold_collected = 8;
+	optional uint64 highest_hardcore_level = 9;
+	optional uint64 harcore_monsters_killed = 10;
+	optional .D3.Profile.ClassInfo class_barbarian = 11;
+	optional .D3.Profile.ClassInfo class_demonhunter = 12;
+	optional .D3.Profile.ClassInfo class_monk = 13;
+	optional .D3.Profile.ClassInfo class_witchdoctor = 14;
+	optional .D3.Profile.ClassInfo class_wizard = 15;
+}

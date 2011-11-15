@@ -1,154 +1,0 @@
-
-service/exchange/exchange.protobnet.protocol.exchangelib/rpc/rpc.protolib/protocol/exchange.proto+lib/protocol/exchange_object_provider.protolib/protocol/entity.proto%service/exchange/exchange_types.proto"ä
-CreateOrderBookRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId5
-
-order_book (2!.bnet.protocol.exchange.OrderBook"0
-CreateOrderBookResponse
-order_book_id ("ò
-PlaceOfferOnOrderBookRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId=
-offer_creation (2%.bnet.protocol.exchange.OfferCreation"H
-PlaceOfferOnOrderBookResponse
-order_book_id (
-offer_id ("€
-(PlaceOfferCreateOrderBookIfNeededRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId5
-
-order_book (2!.bnet.protocol.exchange.OrderBook=
-offer_creation (2%.bnet.protocol.exchange.OfferCreation"T
-)PlaceOfferCreateOrderBookIfNeededResponse
-order_book_id (
-offer_id ("í
-PlaceBidOnOrderBookRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId9
-bid_creation (2#.bnet.protocol.exchange.BidCreation"D
-PlaceBidOnOrderBookResponse
-order_book_id (
-bid_id ("’
-&PlaceBidCreateOrderBookIfNeededRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId5
-
-order_book (2!.bnet.protocol.exchange.OrderBook9
-bid_creation (2#.bnet.protocol.exchange.BidCreation"P
-'PlaceBidCreateOrderBookIfNeededResponse
-order_book_id (
-bid_id ("®
-QueryOffersByOrderBookRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId<
-filter (2,.bnet.protocol.exchange.QueryFilterByOrderId
-status ("l
-QueryOffersByOrderBookResponse5
-offers (2%.bnet.protocol.exchange.OfferExtended
-total_count ("¶
-QueryBidsByOrderBookRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId<
-filter (2,.bnet.protocol.exchange.QueryFilterByOrderId
-status ("f
-QueryBidsByOrderBookResponse1
-bids (2#.bnet.protocol.exchange.BidExtended
-total_count ("—
-"QueryOffersByAccountForItemRequest:
-account_for_item (2 .bnet.protocol.exchange.BlobFrom@
-filter (20.bnet.protocol.exchange.QueryFilterByCreatedTime-
-bnet_account (2.bnet.protocol.EntityId"q
-#QueryOffersByAccountForItemResponse5
-offers (2%.bnet.protocol.exchange.OfferExtended
-total_count ("œ
- QueryBidsByAccountForItemRequest:
-account_for_item (2 .bnet.protocol.exchange.BlobFrom@
-filter (20.bnet.protocol.exchange.QueryFilterByCreatedTime-
-bnet_account (2.bnet.protocol.EntityId"k
-!QueryBidsByAccountForItemResponse1
-bids (2#.bnet.protocol.exchange.BidExtended
-total_count ("Y
-QueryOrderBooksSummaryRequest8
-handles (2'.bnet.protocol.exchange.OrderBookHandle"_
-QueryOrderBooksSummaryResponse=
-order_books (2(.bnet.protocol.exchange.OrderBookSummary"ù
-"QuerySettlementsByOrderBookRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId<
-filter (2,.bnet.protocol.exchange.QueryFilterByOrderId"^
-#QuerySettlementsByOrderBookResponse7
-settlements (2".bnet.protocol.exchange.Settlement"í
-%SubscribeOrderBookStatusChangeRequest
-	object_id (=
-min_partition_id (2#.bnet.protocol.exchange.PartitionId=
-max_partition_id (2#.bnet.protocol.exchange.PartitionId
-program (
-status (
-currency (	
-
-specialist (
-	bootstrap (")
-'UnsubscribeOrderBookStatusChangeRequest"a
-!SubscribeOrderStatusChangeRequest)
-agent_id (2.bnet.protocol.EntityId
-	object_id ("c
-#UnsubscribeOrderStatusChangeRequest)
-agent_id (2.bnet.protocol.EntityId
-	object_id ("ä
-ClaimRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId
-order_id (-
-bnet_account (2.bnet.protocol.EntityId"õ
-CancelRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId
-order_id (
-reason (-
-bnet_account (2.bnet.protocol.EntityId"*
-GetConfigurationRequest
-program ("U
-GetConfigurationResponse9
-configs (2(.bnet.protocol.exchange.SpecialistConfig"í
-GetOfferFeeEstimationRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId7
-data (2).bnet.protocol.exchange.FeeEstimationData"ê
-GetBidFeeEstimationRequest9
-partition_id (2#.bnet.protocol.exchange.PartitionId7
-data (2).bnet.protocol.exchange.FeeEstimationData".
-GetFeeEstimationResponse
-
-fee_amount ("}
-OrderBookNotificationRequestD
-notifications (2-.bnet.protocol.exchange.OrderBookNotification
-boot_strap_last ("_
-OfferNotificationRequest4
-offer (2%.bnet.protocol.exchange.OfferExtended
-event ("Y
-BidNotificationRequest0
-bid (2#.bnet.protocol.exchange.BidExtended
-event (2—
-ExchangeServicex
-CreateOrderBook..bnet.protocol.exchange.CreateOrderBookRequest/.bnet.protocol.exchange.CreateOrderBookResponse"Äµä
-PlaceOfferOnOrderBook4.bnet.protocol.exchange.PlaceOfferOnOrderBookRequest5.bnet.protocol.exchange.PlaceOfferOnOrderBookResponse"ÄµÆ
-!PlaceOfferCreateOrderBookIfNeeded@.bnet.protocol.exchange.PlaceOfferCreateOrderBookIfNeededRequestA.bnet.protocol.exchange.PlaceOfferCreateOrderBookIfNeededResponse"ÄµÑ
-PlaceBidOnOrderBook2.bnet.protocol.exchange.PlaceBidOnOrderBookRequest3.bnet.protocol.exchange.PlaceBidOnOrderBookResponse"Äµ®
-PlaceBidCreateOrderBookIfNeeded>.bnet.protocol.exchange.PlaceBidCreateOrderBookIfNeededRequest?.bnet.protocol.exchange.PlaceBidCreateOrderBookIfNeededResponse"Äµç
-QueryOffersByOrderBook5.bnet.protocol.exchange.QueryOffersByOrderBookRequest6.bnet.protocol.exchange.QueryOffersByOrderBookResponse"Äµá
-QueryBidsByOrderBook3.bnet.protocol.exchange.QueryBidsByOrderBookRequest4.bnet.protocol.exchange.QueryBidsByOrderBookResponse"Äµú
-QueryOffersByAccountForItem:.bnet.protocol.exchange.QueryOffersByAccountForItemRequest;.bnet.protocol.exchange.QueryOffersByAccountForItemResponse"Äµñ
-QueryBidsByAccountForItem8.bnet.protocol.exchange.QueryBidsByAccountForItemRequest9.bnet.protocol.exchange.QueryBidsByAccountForItemResponse"Äµ	ç
-QueryOrderBooksSummary5.bnet.protocol.exchange.QueryOrderBooksSummaryRequest6.bnet.protocol.exchange.QueryOrderBooksSummaryResponse"Äµú
-QuerySettlementsByOrderBook:.bnet.protocol.exchange.QuerySettlementsByOrderBookRequest;.bnet.protocol.exchange.QuerySettlementsByOrderBookResponse"Äµn
-ReportAuthorize>.bnet.protocol.exchange_object_provider.ReportAuthorizeRequest.bnet.protocol.NoData"Äµh
-ReportSettle;.bnet.protocol.exchange_object_provider.ReportSettleRequest.bnet.protocol.NoData"Äµh
-ReportCancel;.bnet.protocol.exchange_object_provider.ReportCancelRequest.bnet.protocol.NoData"Äµ|
-SubscribeOrderBookStatusChange=.bnet.protocol.exchange.SubscribeOrderBookStatusChangeRequest.bnet.protocol.NoData"ÄµÄ
- UnsubscribeOrderBookStatusChange?.bnet.protocol.exchange.UnsubscribeOrderBookStatusChangeRequest.bnet.protocol.NoData"Äµt
-SubscribeOrderStatusChange9.bnet.protocol.exchange.SubscribeOrderStatusChangeRequest.bnet.protocol.NoData"Äµx
-UnsubscribeOrderStatusChange;.bnet.protocol.exchange.UnsubscribeOrderStatusChangeRequest.bnet.protocol.NoData"Äµû
-GetPaymentMethods@.bnet.protocol.exchange_object_provider.GetPaymentMethodsRequestA.bnet.protocol.exchange_object_provider.GetPaymentMethodsResponse"ÄµQ
-ClaimBidItem$.bnet.protocol.exchange.ClaimRequest.bnet.protocol.NoData"ÄµR
-ClaimBidMoney$.bnet.protocol.exchange.ClaimRequest.bnet.protocol.NoData"ÄµS
-ClaimOfferItem$.bnet.protocol.exchange.ClaimRequest.bnet.protocol.NoData"ÄµT
-ClaimOfferMoney$.bnet.protocol.exchange.ClaimRequest.bnet.protocol.NoData"ÄµO
-	CancelBid%.bnet.protocol.exchange.CancelRequest.bnet.protocol.NoData"ÄµQ
-CancelOffer%.bnet.protocol.exchange.CancelRequest.bnet.protocol.NoData"Äµ{
-GetConfiguration/.bnet.protocol.exchange.GetConfigurationRequest0.bnet.protocol.exchange.GetConfigurationResponse"ÄµÅ
-GetBidFeeEstimation2.bnet.protocol.exchange.GetBidFeeEstimationRequest0.bnet.protocol.exchange.GetFeeEstimationResponse"ÄµÖ
-GetOfferFeeEstimation4.bnet.protocol.exchange.GetOfferFeeEstimationRequest0.bnet.protocol.exchange.GetFeeEstimationResponse"Äµ2·
-ExchangeNotifyu
-NotifyOrderBookStatusChange4.bnet.protocol.exchange.OrderBookNotificationRequest.bnet.protocol.NO_RESPONSE"Äµm
-NotifyOfferStatusChange0.bnet.protocol.exchange.OfferNotificationRequest.bnet.protocol.NO_RESPONSE"Äµi
-NotifyBidStatusChange..bnet.protocol.exchange.BidNotificationRequest.bnet.protocol.NO_RESPONSE"ÄµBÄ 

@@ -1,4 +1,5 @@
 package bnet.protocol.attribute;
+import "lib/protocol/entity.proto";
 
 message Variant {
 	optional bool bool_value = 2;
@@ -9,6 +10,7 @@ message Variant {
 	optional bytes message_value = 7;
 	optional string fourcc_value = 8;
 	optional uint64 uint_value = 9;
+	optional .bnet.protocol.EntityId entityid_value = 10;
 }
 message Attribute {
 	required string name = 1;

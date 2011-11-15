@@ -1,0 +1,27 @@
+package bnet.protocol.search;
+
+message Statistic {
+	optional uint64 id = 1 [default = 0];
+	required int32 value = 2;
+}
+message Filter {
+	enum Comparand {
+		EQUALS = 0;
+		LESS_THAN = 1;
+		LESS_THAN_OR_EQUALS = 2;
+		GREATER_THAN = 3;
+		GREATER_THAN_OR_EQUALS = 4;
+	}
+	enum SortDirection {
+		ASC = 0;
+		DESC = 1;
+	}
+	required .bnet.protocol.search.Statistic statistic = 1;
+	required .bnet.protocol.search.Filter.Comparand comparand = 2;
+	optional .bnet.protocol.search.Filter.SortDirection sort_direction = 3 [default = ASC];
+}
+message Object {
+	required bytes id = 1;
+	optional bytes data = 2;
+	repeated .bnet.protocol.search.Statistic statistics = 3;
+}

@@ -2,7 +2,7 @@ package bnet.protocol.channel;
 import "lib/protocol/attribute.proto";
 import "lib/protocol/entity.proto";
 import "lib/rpc/rpc.proto";
-import "service/channel/channel_types.proto";
+import "service/channel/definition/channel_types.proto";
 
 message AddMemberRequest {
 	optional .bnet.protocol.EntityId agent_id = 1;
@@ -75,13 +75,6 @@ service Channel {
 	rpc UpdateMemberState (.bnet.protocol.channel.UpdateMemberStateRequest) returns (.bnet.protocol.NoData);
 	rpc Dissolve (.bnet.protocol.channel.DissolveRequest) returns (.bnet.protocol.NoData);
 	rpc SetRoles (.bnet.protocol.channel.SetRolesRequest) returns (.bnet.protocol.NoData);
-}
-service ChannelOwner {
-	rpc GetChannelId (.bnet.protocol.channel.GetChannelIdRequest) returns (.bnet.protocol.channel.GetChannelIdResponse);
-	rpc CreateChannel (.bnet.protocol.channel.CreateChannelRequest) returns (.bnet.protocol.channel.CreateChannelResponse);
-	rpc JoinChannel (.bnet.protocol.channel.JoinChannelRequest) returns (.bnet.protocol.channel.JoinChannelResponse);
-	rpc FindChannel (.bnet.protocol.channel.FindChannelRequest) returns (.bnet.protocol.channel.FindChannelResponse);
-	rpc GetChannelInfo (.bnet.protocol.channel.GetChannelInfoRequest) returns (.bnet.protocol.channel.GetChannelInfoResponse);
 }
 service ChannelSubscriber {
 	rpc NotifyAdd (.bnet.protocol.channel.AddNotification) returns (.bnet.protocol.NO_RESPONSE);

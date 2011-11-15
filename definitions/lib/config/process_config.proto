@@ -46,6 +46,8 @@ message RPCServerConfig {
 }
 message ProcessConfig {
 	required string process_name = 1;
+	repeated uint32 cpu_affinity_main_event_processor = 7;
+	repeated uint32 cpu_affinity_network_event_processor = 8;
 	repeated .bnet.protocol.config.RPCServerConfig server = 2;
 	repeated .bnet.protocol.config.Resource resource = 3;
 	repeated .bnet.protocol.config.ServiceConfig service = 4;
