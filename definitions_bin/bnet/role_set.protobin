@@ -1,0 +1,26 @@
+
+bnet/role_set.protobnet.protocolbnet/attribute.proto"(
+	Privilege
+name (	
+value ("f
+RoleSetConfig+
+	privilege (2.bnet.protocol.Privilege(
+role_set (2.bnet.protocol.RoleSet"Ð
+Role
+
+id (
+name (	
+	privilege (	
+assignable_role (B
+required (:false
+unique (:false
+relegation_role (5
+	attribute (2".bnet.protocol.attribute.Attribute"Î
+RoleSet
+program (	
+service (	
+subtype (	:default!
+role (2.bnet.protocol.Role
+default_role (B
+max_members (5
+	attribute (2".bnet.protocol.attribute.Attribute

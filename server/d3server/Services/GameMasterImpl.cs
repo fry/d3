@@ -8,6 +8,7 @@ namespace d3.Server.Services {
 	using Attribute = bnet.protocol.attribute.Attribute;
 	using bnet.protocol.attribute;
 	using d3.Network;
+	using Google.ProtocolBuffers;
 
 	public class GameMasterImpl: GameMaster {
 		ClientHandler client;
@@ -47,7 +48,41 @@ namespace d3.Server.Services {
 		}
 
 		public override void FindGame(Google.ProtocolBuffers.IRpcController controller, FindGameRequest request, Action<FindGameResponse> done) {
-			throw new NotImplementedException();
+			FindGameResponse.Builder findGameResponse = FindGameResponse.CreateBuilder();
+			findGameResponse.SetRequestId(12526585062881647236);
+
+			done(findGameResponse.Build());
+
+			//client.ListenerId = request.ObjectId;
+
+			GameFoundNotification.Builder gameFoundNotification = GameFoundNotification.CreateBuilder();
+
+			GameHandle.Builder gameHandle = GameHandle.CreateBuilder();
+			gameHandle.SetFactoryId(request.FactoryId);
+			gameHandle.SetGameId(bnet.protocol.EntityId.CreateBuilder().SetHigh(433661094641971304).SetLow(11017467167309309688).Build());
+
+			ConnectInfo.Builder connectInfo = ConnectInfo.CreateBuilder();
+			connectInfo.SetToonId(new bnet.protocol.EntityId.Builder {
+				High = 216174302532224051,
+				Low = 2
+			}.Build());
+			connectInfo.SetHost("127.0.0.1");
+			connectInfo.SetPort(6665);
+			connectInfo.SetToken(ByteString.CopyFrom(new byte[] { 0x07, 0x34, 0x02, 0x60, 0x91, 0x93, 0x76, 0x46, 0x28, 0x84 }));
+			connectInfo.AddAttribute(Attribute
+										 .CreateBuilder()
+										 .SetName("SGameId")
+										 .SetValue(Variant
+													   .CreateBuilder()
+													   .SetIntValue(2014314530)
+													   .Build())
+										 .Build());
+
+			gameFoundNotification.SetRequestId(12526585062881647236);
+			gameFoundNotification.SetGameHandle(gameHandle.Build());
+			gameFoundNotification.AddConnectInfo(connectInfo.Build());
+
+			client.GetImportedService<GameFactorySubscriber>().NotifyGameFound(controller, gameFoundNotification.Build(), r => { });
 		}
 
 		public override void CancelFindGame(Google.ProtocolBuffers.IRpcController controller, CancelFindGameRequest request, Action<bnet.protocol.NoData> done) {

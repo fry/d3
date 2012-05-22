@@ -1,0 +1,7 @@
+package bnet.protocol;
+import "google/protobuf/descriptor.proto";
+
+enum LogOption {
+	HIDDEN = 1;
+	HEX = 2;
+}

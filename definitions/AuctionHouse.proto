@@ -1,0 +1,46 @@
+package D3.AuctionHouse;
+import "GBHandle.proto";
+import "OnlineService.proto";
+import "Items.proto";
+import "Hero.proto";
+
+message InventoryOperation {
+	enum Operation {
+		REMOVE = 0;
+		UPDATE = 1;
+	}
+	required .D3.AuctionHouse.InventoryOperation.Operation operation = 1;
+	required .D3.OnlineService.EntityId transaction_hero_id = 2;
+	required .D3.OnlineService.ItemId id = 3;
+	optional sint32 item_slot = 4;
+	optional sint32 square_index = 5;
+	optional .D3.Items.Generator generator = 6;
+}
+message InventoryOperations {
+	repeated .D3.AuctionHouse.InventoryOperation operations = 1;
+}
+message Item {
+	required .D3.OnlineService.ItemId id = 1;
+	required .D3.Items.Generator generator = 2;
+}
+message Escrow {
+	enum Version {
+		CURRENT_VERSION = 1;
+	}
+	required uint32 version = 1;
+	optional .D3.AuctionHouse.Item item = 2;
+	optional .D3.Hero.SavedData hero = 3;
+	repeated .D3.OnlineService.EntityId serviced_tokens = 4;
+}
+message AuthorizeInfo {
+	required .D3.OnlineService.EntityId location_id = 1;
+	required .D3.OnlineService.EntityId transaction_hero_id = 2;
+	optional .D3.OnlineService.ItemId item_id = 3;
+}
+message ClaimInfo {
+	required .D3.OnlineService.EntityId transaction_hero_id = 1;
+}
+message AccountInfo {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId escrow_id = 2;
+}

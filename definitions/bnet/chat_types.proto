@@ -1,0 +1,13 @@
+package bnet.protocol.chat;
+import "bnet/channel_types.proto";
+
+message ChannelState {
+	optional string identity = 1;
+	optional fixed32 program = 2;
+	optional fixed32 locale = 3;
+	optional bool public = 4 [default = false];
+	optional uint32 bucket_index = 5;
+	extend .bnet.protocol.channel.ChannelState {
+		optional .bnet.protocol.chat.ChannelState chat = 100;
+	}
+}

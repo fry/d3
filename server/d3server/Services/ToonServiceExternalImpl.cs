@@ -15,6 +15,10 @@ namespace d3.Server.Services {
 
 		public override void ToonList(Google.ProtocolBuffers.IRpcController controller, ToonListRequest request, Action<ToonListResponse> done) {
 			var response = ToonListResponse.CreateBuilder();
+			response.AddToons(new EntityId.Builder {
+				High = 0x300016200004433,
+				Low = 2
+			});
 			done(response.Build());
 		}
 
@@ -34,8 +38,8 @@ namespace d3.Server.Services {
 
 			var response = CreateToonResponse.CreateBuilder();
 			var toon = EntityId.CreateBuilder();
-			toon.SetHigh(216174302532224051);
-			toon.SetLow(2345959482769161802);
+			toon.SetHigh(0x300016200004433);
+			toon.SetLow(2);
 			response.SetToon(toon);
 			done(response.Build());
 		}

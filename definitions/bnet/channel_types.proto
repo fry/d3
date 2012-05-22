@@ -1,0 +1,60 @@
+package bnet.protocol.channel;
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+import "bnet/invitation_types.proto";
+
+message Message {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional uint32 role = 2;
+	extensions 100 to 10000;
+}
+message FindChannelOptions {
+	optional uint32 start_index = 1 [default = 0];
+	optional uint32 max_results = 2 [default = 16];
+	optional string name = 3;
+	optional fixed32 program = 4;
+	optional fixed32 locale = 5;
+	optional uint32 capacity_full = 6;
+	required .bnet.protocol.attribute.AttributeFilter attribute_filter = 7;
+	extensions 100 to 10000;
+}
+message ChannelDescription {
+	required .bnet.protocol.EntityId channel_id = 1;
+	optional uint32 current_members = 2;
+	optional .bnet.protocol.channel.ChannelState state = 3;
+}
+message ChannelInfo {
+	required .bnet.protocol.channel.ChannelDescription description = 1;
+	repeated .bnet.protocol.channel.Member member = 2;
+	extensions 100 to 10000;
+}
+message ChannelState {
+	enum PrivacyLevel {
+		PRIVACY_LEVEL_OPEN = 1;
+		PRIVACY_LEVEL_OPEN_INVITATION_AND_FRIEND = 2;
+		PRIVACY_LEVEL_OPEN_INVITATION = 3;
+		PRIVACY_LEVEL_CLOSED = 4;
+	}
+	optional uint32 max_members = 1;
+	optional uint32 min_members = 2;
+	repeated .bnet.protocol.attribute.Attribute attribute = 3;
+	repeated .bnet.protocol.invitation.Invitation invitation = 4;
+	optional uint32 max_invitations = 5;
+	optional uint32 reason = 6;
+	optional .bnet.protocol.channel.ChannelState.PrivacyLevel privacy_level = 7 [default = PRIVACY_LEVEL_OPEN];
+	optional string name = 8;
+	optional string delegate_name = 9;
+	optional string channel_type = 10 [default = "default"];
+	extensions 100 to 10000;
+}
+message MemberState {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	repeated uint32 role = 2;
+	optional uint64 privileges = 3 [default = 0];
+	optional .bnet.protocol.AccountInfo info = 4;
+	extensions 100 to 10000;
+}
+message Member {
+	required .bnet.protocol.Identity identity = 1;
+	required .bnet.protocol.channel.MemberState state = 2;
+}

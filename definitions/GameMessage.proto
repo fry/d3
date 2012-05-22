@@ -4,6 +4,7 @@ import "OnlineService.proto";
 import "Settings.proto";
 import "Account.proto";
 import "Items.proto";
+import "CS.proto";
 
 message HeroDigestList {
 	required .D3.OnlineService.EntityId account_id = 1;
@@ -14,7 +15,8 @@ message ClientToonSettings {
 	required .D3.Client.ToonSettings client_toon_settings = 2;
 }
 message HeroDigestListRequest {
-	repeated .D3.OnlineService.EntityId toon_id = 1;
+	required .D3.OnlineService.EntityId account_id = 1;
+	repeated .D3.OnlineService.EntityId toon_id = 2;
 }
 message HeroDigestResponse {
 	required .D3.OnlineService.EntityId toon_id = 1;
@@ -42,6 +44,7 @@ message GameCurrentPlayers {
 }
 message AccountVersionList {
 	required .D3.OnlineService.EntityId account_id = 1;
+	optional bool return_snapshots = 2 [default = false];
 }
 message AccountVersionSync {
 	required .D3.OnlineService.EntityId account_id = 1;
@@ -58,4 +61,118 @@ message TooltipGenerators {
 message TutorialMessage {
 	required uint32 tutorial_sno = 1;
 	optional string ui_anchor_name = 2;
+}
+message TutorialState {
+	required bytes seen_tutorials = 1;
+}
+message DeleteHero {
+	required .D3.OnlineService.EntityId hero_id = 1;
+}
+message UndeleteHero {
+	required .D3.OnlineService.EntityId undelete_hero_id = 1;
+	optional .D3.OnlineService.EntityId replace_hero_id = 2;
+}
+message GetFallenHeros {
+	required .D3.OnlineService.EntityId account_id = 1;
+}
+message ArchiveHardcore {
+	required .D3.OnlineService.EntityId hero_id = 1;
+	required string epitaph = 2;
+}
+message DeleteFallenHero {
+	required .D3.OnlineService.EntityId hero_id = 1;
+}
+message ServerDeleteHero {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId hero_id = 2;
+}
+message ServerUndeleteHero {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId undelete_hero_id = 2;
+	optional .D3.OnlineService.EntityId replace_hero_id = 3;
+}
+message ServerForceRenameHero {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId hero_id = 2;
+}
+message ServerFetchHeros {
+	required .D3.OnlineService.EntityId account_id = 1;
+}
+message ServerFetchInventory {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId hero_id = 2;
+}
+message ServerSnapshot {
+	required .D3.OnlineService.EntityId account_id = 1;
+}
+message ServerSnapshotResponse {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required uint64 version = 2;
+}
+message ServerFetchSnapshot {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required uint64 version = 2;
+}
+message ServerRevokeItem {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId hero_id = 2;
+	required .D3.OnlineService.ItemId item_id = 3;
+}
+message RenameHero {
+	required .D3.OnlineService.EntityId hero_id = 1;
+	required string new_name = 2;
+}
+message GetGameAccountSettings {
+}
+message SetGameAccountSettings {
+	required .D3.Client.GameAccountSettings settings = 1;
+}
+message GetToonSettings {
+	required .D3.OnlineService.EntityId hero_id = 1;
+}
+message SetToonSettings {
+	required .D3.OnlineService.EntityId hero_id = 1;
+	required .D3.Client.ToonSettings settings = 2;
+}
+message GetAccountDigest {
+}
+message GetHeroItems {
+	required .D3.OnlineService.EntityId hero_id = 1;
+}
+message GetAccountItems {
+	required bool hardcore = 1;
+}
+message GetAccountProfile {
+	required .D3.OnlineService.EntityId account_id = 1;
+}
+message GetHeroProfiles {
+	required .D3.OnlineService.EntityId account_id = 1;
+	repeated .D3.OnlineService.EntityId hero_ids = 2;
+}
+message GetAccountPrefs {
+}
+message SetAccountPrefs {
+	required .D3.Client.Preferences prefs = 1;
+}
+message GetHeroDigest {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId hero_id = 2;
+}
+message GetHeroIds {
+	required .D3.OnlineService.EntityId account_id = 1;
+}
+message GetDeletedHero {
+}
+message CSGetSnapshots {
+}
+message CSPullSnapshot {
+	required uint64 version = 1;
+}
+message CSPushSnapshot {
+	required .D3.CS.Snapshot data = 1;
+}
+message CSRestoreToSnapshot {
+	required uint64 version = 1;
+}
+message CSWriteSnapshot {
 }

@@ -6,6 +6,7 @@ using bnet.protocol.party;
 using bnet.protocol.channel;
 using d3.Network;
 using Google.ProtocolBuffers;
+using bnet.protocol;
 
 namespace d3.Server.Services {
 	public class PartyServiceImpl: PartyService {
@@ -21,7 +22,7 @@ namespace d3.Server.Services {
 			response.SetChannelId(channel_id);
 			done(response.Build());
 
-			var field1 = bnet.protocol.presence.Field.CreateBuilder()
+			/*var field1 = bnet.protocol.presence.Field.CreateBuilder()
 				.SetKey(bnet.protocol.presence.FieldKey.CreateBuilder().SetProgram(16974).SetGroup(3).SetField(3).SetIndex(0))
 				.SetValue(bnet.protocol.attribute.Variant.CreateBuilder().SetBoolValue(true));
 
@@ -50,7 +51,49 @@ namespace d3.Server.Services {
 			var notif = bnet.protocol.channel.UpdateChannelStateNotification.CreateBuilder().SetStateChange(channelState).Build();
 
 			var serv = client.GetImportedService<ChannelSubscriber>();
-			serv.NotifyUpdateChannelState(null, notif, d => { });
+			serv.NotifyUpdateChannelState(null, notif, d => { });*/
+
+			var notification = new AddNotification.Builder {
+				Self = new Member.Builder {
+					Identity = new Identity.Builder {
+						AccountId = new EntityId.Builder {
+							High = 0x100000000000000,
+							Low = 1234
+						}.Build(),
+						GameAccountId = new EntityId.Builder {
+							High = 0x200006200004433,
+							Low = 1234,
+						}.Build(),
+						ToonId = new EntityId.Builder {
+							High = 0x300016200004433,
+							Low = 2,
+						}.Build()
+					}.Build(),
+					State = new MemberState.Builder {
+						Privileges = 64511,
+					}.AddRole(2).Build(),
+
+				}.Build(),
+
+				ChannelState = new ChannelState.Builder {
+					MaxMembers = 8,
+					MinMembers = 1,
+					MaxInvitations = 12,
+					PrivacyLevel = ChannelState.Types.PrivacyLevel.PRIVACY_LEVEL_OPEN_INVITATION
+				}.Build()
+			}.AddMember(new Member.Builder {
+				Identity = new Identity.Builder {
+					ToonId = new EntityId.Builder {
+						High = 0x300016200004433,
+						Low = 2,
+					}.Build()
+				}.Build(),
+				State = new MemberState.Builder {
+					Privileges = 64511,
+				}.AddRole(2).Build(),
+			}.Build());
+
+			client.GetImportedService<ChannelSubscriber>().NotifyAdd(null, notification.Build(), null);
 		}
 
 		public override void JoinChannel(Google.ProtocolBuffers.IRpcController controller, bnet.protocol.channel.JoinChannelRequest request, Action<bnet.protocol.channel.JoinChannelResponse> done) {

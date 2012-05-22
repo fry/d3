@@ -1,0 +1,229 @@
+
+bnet/exchange_types.protobnet.protocol.exchangebnet/entity.protobnet/exchange.proto"§
+	OrderBook2
+object (2".bnet.protocol.exchange.BlobOfType
+program (
+compatibility (
+currency (	
+
+specialist (
+allowed_realm ("c
+OrderBookHandle9
+partition_id (2#.bnet.protocol.exchange.PartitionId
+order_book_id ("™
+OrderBookNotification5
+
+order_book (2!.bnet.protocol.exchange.OrderBook9
+partition_id (2#.bnet.protocol.exchange.PartitionId
+order_book_id (
+trade_now_price (:0
+winning_price (:0
+status (
+update_time (
+closed_time (:0
+filled_amount	 ("˚
+OrderBookSummary9
+partition_id (2#.bnet.protocol.exchange.PartitionId
+order_book_id (
+result (5
+
+order_book (2!.bnet.protocol.exchange.OrderBook
+amount (
+best_offer_price (
+best_bid_price (
+end_time (
+status	 (
+created_time
+ (
+active_time (
+closed_time (
+reason (
+out_bid_unit_price ("Õ
+Order
+amount (
+
+start_time (
+end_time (;
+account_for_money (2 .bnet.protocol.exchange.BlobFrom:
+account_for_item (2 .bnet.protocol.exchange.BlobFrom-
+bnet_account (2.bnet.protocol.EntityId-
+game_account (2.bnet.protocol.EntityId7
+
+session_id (2#.bnet.protocol.exchange.PartitionId"™
+	Extension9
+partition_id (2#.bnet.protocol.exchange.PartitionId
+order_book_id (
+order_id (
+filled_amount (
+order_status (
+authorized_time (
+created_time (
+closed_time (
+reason	 (5
+
+order_book
+ (2!.bnet.protocol.exchange.OrderBook
+order_book_status (
+money_to_claim (
+items_to_claim (
+risk_delayed (:false
+fail_order_action (
+fail_object_type (
+fail_error_code (
+fail_extra_error_code (
+refunded (
+filled_fund_amount ("|
+Offer,
+order (2.bnet.protocol.exchange.Order
+trade_now_price (
+reserve_price (
+out_bid_price ("í
+OfferExtended,
+offer (2.bnet.protocol.exchange.Offer4
+	extension (2!.bnet.protocol.exchange.Extension
+current_winning_price ("µ
+OfferCreation,
+offer (2.bnet.protocol.exchange.Offer
+auction_duration (
+auction_start_delay (?
+billing_address (2&.bnet.protocol.exchange.BillingAddress"g
+Bid,
+order (2.bnet.protocol.exchange.Order
+current_unit_price (
+max_unit_price ("ä
+BidExtended(
+bid (2.bnet.protocol.exchange.Bid4
+	extension (2!.bnet.protocol.exchange.Extension
+offer_out_bid_price (
+offer_trade_now_price (#
+offer_current_winning_price (
+bid_current_unit_price (
+bid_max_unit_price ("Ã
+BidCreation(
+bid (2.bnet.protocol.exchange.Bid
+auction_duration (
+auction_start_delay (?
+billing_address (2&.bnet.protocol.exchange.BillingAddress
+fill_or_kill (:false"ù
+OrderExtended
+
+order_type (9
+bid_extended (2#.bnet.protocol.exchange.BidExtended=
+offer_extended (2%.bnet.protocol.exchange.OfferExtended"S
+QueryFilterByOrderId
+
+max_result (
+ref_order_id (
+	ref_price ("H
+QueryFilterByCreatedTime
+
+max_result (
+ref_created_time ("ˆ
+QueryOrderFilter
+currency (	
+
+specialist (
+
+order_type (
+	claimable (:0
+order_status_mask (
+rollup (:falseE
+time_filter (20.bnet.protocol.exchange.QueryFilterByCreatedTime
+order_book_status ("ó
+CurrencyConfig
+currency (	
+	tick_size (
+min_unit_price (
+max_unit_price (
+min_total_price (
+max_total_price ("Ø
+SpecialistConfig
+
+specialist (
+auction_durations (B 
+auction_start_delays (B$
+anti_sniping_extension_delay (
+max_items_amount (:0 
+starting_unit_price_rule ( 
+reserved_unit_price_rule (!
+trade_now_unit_price_rule (
+current_unit_price_rule	 (
+maximum_unit_price_rule
+ (?
+currency_config (2&.bnet.protocol.exchange.CurrencyConfig
+fill_or_kill_rule ("ı
+FeeEstimationData
+program (
+
+specialist (
+currency (	
+source (
+money_amount (
+item_amount (-
+bnet_account (2.bnet.protocol.EntityId?
+billing_address (2&.bnet.protocol.exchange.BillingAddress"°
+	FeeDetail
+rownum (
+fee_auth_detail_id (
+fee_id (
+
+fee_amount (
+discount_amount (
+fee_group_id (
+fee_group_name (	
+flat_fee_amount (
+scaling_fee_rate	 (
+max_fee_amount
+ (
+fee_description (	
+is_tax (
+coupon_book_id (
+coupon_type (
+coupon_description (	
+left_over_coupon_credit (
+left_over_coupon_charge ("2
+PriceDetail
+trade_price (
+amount ("%
+Count
+count (
+limit ("F
+AdvancedSubscription
+program (
+event (
+reason ("É
+HistoryData
+order_book_id (9
+partition_id (2#.bnet.protocol.exchange.PartitionId
+	action_id (
+parent_settle_id (
+parent_settled (
+authorized_amount (
+authorized_fee_amount (
+amount (
+
+fee_amount	 (
+deferred
+ (
+has_been_deferred (
+progress (
+created (
+risk_completed (
+risk_result (
+risk_verdict (
+	completed (
+result_code (:
+account_for_item (2 .bnet.protocol.exchange.BlobFrom;
+account_for_money (2 .bnet.protocol.exchange.BlobFrom
+
+order_type (
+order_id (
+auth_id (
+auth_object_type (
+trans_direction (	
+auth_complete_progress (
+auth_filled_progress (
+auth_total_progress (;
+auth_handle (2&.bnet.protocol.exchange.BlobFromOfType
+auth_deferred (2
+token (2#.bnet.protocol.exchange.PartitionId

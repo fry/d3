@@ -1,0 +1,29 @@
+package bnet.protocol.channel_invitation;
+import "bnet/invitation_types.proto";
+import "bnet/entity.proto";
+import "bnet/channel_types.proto";
+
+message ChannelInvitation {
+	required .bnet.protocol.channel.ChannelDescription channel_description = 1;
+	optional bool reserved = 2 [default = false];
+	optional bool rejoin = 3 [default = false];
+	required uint32 service_type = 4;
+	extend .bnet.protocol.invitation.Invitation {
+		optional .bnet.protocol.channel_invitation.ChannelInvitation channel_invitation = 105;
+	}
+}
+message ChannelInvitationParams {
+	required .bnet.protocol.EntityId channel_id = 1;
+	optional bool reserved = 2;
+	optional bool rejoin = 3;
+	required uint32 service_type = 4;
+	extend .bnet.protocol.invitation.InvitationParams {
+		optional .bnet.protocol.channel_invitation.ChannelInvitationParams channel_params = 105;
+	}
+}
+message InvitationCollection {
+	optional uint32 service_type = 1;
+	optional uint32 max_received_invitations = 2;
+	optional uint64 object_id = 3;
+	repeated .bnet.protocol.invitation.Invitation received_invitation = 4;
+}

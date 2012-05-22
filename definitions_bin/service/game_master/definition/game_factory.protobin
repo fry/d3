@@ -1,9 +1,0 @@
-
-1service/game_master/definition/game_factory.protobnet.protocol.game_masterlib/protocol/attribute.protolib/protocol/entity.proto"Ê
-GameProperties?
-creation_attributes (2".bnet.protocol.attribute.Attribute8
-filter (2(.bnet.protocol.attribute.AttributeFilter
-create (:false
-open (:true
-
-program_id (

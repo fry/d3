@@ -1,0 +1,12 @@
+package bnet.protocol.resources;
+import "bnet/content_handle.proto";
+import "bnet/rpc.proto";
+
+message ContentHandleRequest {
+	required fixed32 program_id = 1;
+	required fixed32 stream_id = 2;
+	optional fixed32 locale = 3 [default = 1701729619];
+}
+service Resources {
+	rpc GetContentHandle (.bnet.protocol.resources.ContentHandleRequest) returns (.bnet.protocol.ContentHandle);
+}

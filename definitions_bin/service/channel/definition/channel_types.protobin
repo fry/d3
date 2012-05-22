@@ -1,40 +1,0 @@
-
-.service/channel/definition/channel_types.protobnet.protocol.channellib/protocol/attribute.protolib/protocol/entity.protolib/protocol/invitation.proto"U
-Message5
-	attribute (2".bnet.protocol.attribute.Attribute
-role (*dêN"ï
-ChannelDescription+
-
-channel_id (2.bnet.protocol.EntityId
-current_members (2
-state (2#.bnet.protocol.channel.ChannelState*dêN"É
-ChannelInfo>
-description (2).bnet.protocol.channel.ChannelDescription-
-member (2.bnet.protocol.channel.Member*dêN"û
-ChannelState
-max_members (
-min_members (5
-	attribute (2".bnet.protocol.attribute.Attribute8
-
-invitation (2$.bnet.protocol.invitation.Invitation
-max_invitations (
-reason ([
-privacy_level (20.bnet.protocol.channel.ChannelState.PrivacyLevel:PRIVACY_LEVEL_OPEN
-public (
-name	 (	
-delegate_name
- (	
-channel_type (	:default"ë
-PrivacyLevel
-PRIVACY_LEVEL_OPEN,
-(PRIVACY_LEVEL_OPEN_INVITATION_AND_FRIEND!
-PRIVACY_LEVEL_OPEN_INVITATION
-PRIVACY_LEVEL_CLOSED*dêN"t
-MemberState5
-	attribute (2".bnet.protocol.attribute.Attribute
-role (B
-
-privileges (:0*dêN"f
-Member)
-identity (2.bnet.protocol.Identity1
-state (2".bnet.protocol.channel.MemberState

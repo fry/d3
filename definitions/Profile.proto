@@ -5,16 +5,24 @@ import "OnlineService.proto";
 import "GBHandle.proto";
 
 message ClassInfo {
-	required uint64 playtime = 1;
-	required uint32 highest_level = 2;
-	required uint32 highest_difficulty = 3;
+	optional uint64 playtime = 1 [default = 0];
+	optional uint32 highest_level = 2 [default = 0];
+	optional uint32 highest_difficulty = 3 [default = 0];
 }
 message SkillWithRune {
 	required sfixed32 skill = 1 [default = -1];
-	optional sfixed32 rune = 2 [default = -1];
+	optional sint32 rune_type = 2 [default = -1];
 }
 message SkillsWithRunes {
 	repeated .D3.Profile.SkillWithRune runes = 1;
+}
+message PassiveSkills {
+	repeated sfixed32 sno_traits = 1;
+}
+message KillerInfo {
+	optional int32 sno_killer = 1 [default = -1];
+	optional uint32 rarity = 2;
+	repeated int32 rare_name_gbids = 3;
 }
 message HeroProfile {
 	optional uint64 monsters_killed = 1;
@@ -24,9 +32,9 @@ message HeroProfile {
 	optional uint32 highest_difficulty = 5;
 	optional uint32 create_time = 6;
 	optional bool hardcore = 7 [default = false];
-	optional uint32 attack = 8;
-	optional uint32 precision = 9;
-	optional uint32 defense = 10;
+	optional uint32 strength = 8;
+	optional uint32 dexterity = 9;
+	optional uint32 intelligence = 10;
 	optional uint32 vitality = 11;
 	optional uint32 armor = 12;
 	optional float dps = 13;
@@ -37,11 +45,15 @@ message HeroProfile {
 	optional uint32 resist_cold = 18;
 	optional .D3.Items.ItemList equipment = 19;
 	optional .D3.Profile.SkillsWithRunes sno_active_skills = 20;
-	repeated sfixed32 sno_traits = 21;
+	optional .D3.Profile.PassiveSkills sno_traits = 21;
 	optional uint32 death_time = 22;
-	optional .D3.GameBalance.Handle killer = 23;
-	optional .D3.GameBalance.Handle kill_location = 24;
-	optional string epitaph = 25;
+	optional .D3.Profile.KillerInfo killer_info = 23;
+	optional uint32 sno_kill_location = 24;
+	optional .D3.OnlineService.EntityId hero_id = 27;
+	optional float damage_increase = 28;
+	optional float crit_chance = 29;
+	optional float damage_reduction = 30;
+	optional uint32 life = 31;
 }
 message HeroProfileList {
 	repeated .D3.Profile.HeroProfile heros = 1;
@@ -52,11 +64,11 @@ message AccountProfile {
 	optional uint32 highest_boss_difficulty_2 = 3;
 	optional uint32 highest_boss_difficulty_3 = 4;
 	optional uint32 highest_boss_difficulty_4 = 5;
-	optional uint64 monsters_killed = 6;
-	optional uint64 elites_killed = 7;
-	optional uint64 gold_collected = 8;
+	optional uint64 monsters_killed = 6 [default = 0];
+	optional uint64 elites_killed = 7 [default = 0];
+	optional uint64 gold_collected = 8 [default = 0];
 	optional uint64 highest_hardcore_level = 9;
-	optional uint64 harcore_monsters_killed = 10;
+	optional uint64 hardcore_monsters_killed = 10;
 	optional .D3.Profile.ClassInfo class_barbarian = 11;
 	optional .D3.Profile.ClassInfo class_demonhunter = 12;
 	optional .D3.Profile.ClassInfo class_monk = 13;

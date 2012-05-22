@@ -1,8 +1,8 @@
 
-ItemCrafting.protoD3.ItemCrafting"_
+ItemCrafting.protoD3.ItemCrafting"j
 CrafterData
-recipes (
-available_enchants (
+recipes (%
+deprecated_available_enchants (
 level (
 cooldown_end ("F
 CrafterSavedData2

@@ -1,0 +1,32 @@
+package bnet.protocol.exchange;
+import "bnet/field_options.proto";
+
+message PartitionId {
+	required fixed64 high = 1;
+	required fixed64 low = 2;
+}
+message BlobFrom {
+	required fixed32 source = 1;
+	required bytes data = 2;
+	optional bytes extra_data = 3;
+}
+message BlobOfType {
+	required string type = 1;
+	optional bytes data = 2;
+	optional bytes extra_data = 3;
+}
+message BlobFromOfType {
+	required fixed32 source = 1;
+	required string type = 2;
+	required bytes data = 3;
+}
+message ActionResultDetail {
+	required uint32 category = 1;
+	optional uint32 result_reason = 2;
+}
+message BillingAddress {
+	required int32 country_id = 1;
+	optional string city = 2;
+	optional string state = 3;
+	optional string postal_code = 4;
+}

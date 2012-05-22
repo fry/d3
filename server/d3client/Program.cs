@@ -6,6 +6,10 @@ using d3.Network;
 using d3.Client.Services;
 using System.Net.Sockets;
 using bnet.protocol.connection;
+using System.Diagnostics;
+using bnet.protocol.game_master;
+using bnet.protocol.attribute;
+using bnet.protocol.authentication;
 
 namespace d3.Client {
 	public class Connection: BasicAuroraRPC<Connection> {
@@ -81,7 +85,7 @@ namespace d3.Client {
 		}
 
 
-		void Bind(IEnumerable<string> exports, IEnumerable<string> imports) {
+		void Bind(IEnumerable<string> exports, IEnumerable<string> imports, Action done = null) {
 			var bind_args = BindRequest.CreateBuilder();
 
 			// Services we export
@@ -106,6 +110,9 @@ namespace d3.Client {
 				for (int i = 0; i < imports_array.Length; i++) {
 					connection.ImportService(imports_array[i], response.ImportedServiceIdList[i]);
 				}
+
+				if (done != null)
+					done();
 			});
 		}
 
@@ -116,12 +123,25 @@ namespace d3.Client {
 				},
 				new List<string> {
 					"bnet.protocol.authentication.AuthenticationServer"
+				}, delegate {
+					var auth_server = connection.GetImportedService<AuthenticationServer>();
+					var request = LogonRequest.CreateBuilder();
+					request.Email = "e.siew@londeroth.org";
+					request.Locale = "enUS";
+					request.Platform = "Win";
+					request.Program = "D3";
+					request.Version = "Aurora 130e70d23c_public/198 (Sep 20 2011 15:32:21)";
+					request.ListenerId = 2;
+					auth_server.Logon(null, request.Build(), logon_response => {
+						Console.WriteLine(logon_response);
+					});
 				});
 		}
 	}
 
 	class Program {
 		static void Main(string[] args) {
+			Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
 			var client = new Client("12.129.236.246", 1119);
 			client.Start();
 			Console.ReadLine();

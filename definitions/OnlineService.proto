@@ -31,10 +31,10 @@ message GameCreateParams {
 	optional .D3.OnlineService.CoopCreateParams coop = 3;
 	optional .D3.OnlineService.PvPCreateParams pvp = 4;
 	optional string name = 5;
-	required bool is_private = 6 [default = true];
 }
 message HeroCreateParams {
-	required sfixed32 gbid_class = 1 [default = -1];
-	required bool is_hardcore = 2 [default = false];
-	required bool is_female = 3 [default = false];
+	required string name = 1;
+	required sfixed32 gbid_class = 2 [default = -1];
+	required bool is_hardcore = 3 [default = false];
+	required bool is_female = 4 [default = false];
 }

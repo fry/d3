@@ -1,0 +1,48 @@
+
+bnet/channel_types.protobnet.protocol.channelbnet/attribute.protobnet/entity.protobnet/invitation_types.proto"U
+Message5
+	attribute (2".bnet.protocol.attribute.Attribute
+role (*dêN"÷
+FindChannelOptions
+start_index (:0
+max_results (:16
+name (	
+program (
+locale (
+capacity_full (B
+attribute_filter (2(.bnet.protocol.attribute.AttributeFilter*dêN"é
+ChannelDescription+
+
+channel_id (2.bnet.protocol.EntityId
+current_members (2
+state (2#.bnet.protocol.channel.ChannelState"É
+ChannelInfo>
+description (2).bnet.protocol.channel.ChannelDescription-
+member (2.bnet.protocol.channel.Member*dêN"é
+ChannelState
+max_members (
+min_members (5
+	attribute (2".bnet.protocol.attribute.Attribute8
+
+invitation (2$.bnet.protocol.invitation.Invitation
+max_invitations (
+reason ([
+privacy_level (20.bnet.protocol.channel.ChannelState.PrivacyLevel:PRIVACY_LEVEL_OPEN
+name (	
+delegate_name	 (	
+channel_type
+ (	:default"ë
+PrivacyLevel
+PRIVACY_LEVEL_OPEN,
+(PRIVACY_LEVEL_OPEN_INVITATION_AND_FRIEND!
+PRIVACY_LEVEL_OPEN_INVITATION
+PRIVACY_LEVEL_CLOSED*dêN"û
+MemberState5
+	attribute (2".bnet.protocol.attribute.Attribute
+role (B
+
+privileges (:0(
+info (2.bnet.protocol.AccountInfo*dêN"f
+Member)
+identity (2.bnet.protocol.Identity1
+state (2".bnet.protocol.channel.MemberState

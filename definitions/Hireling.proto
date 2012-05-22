@@ -5,8 +5,8 @@ message Info {
 	required sfixed32 gbid_name = 2 [default = -1];
 	required sint32 level = 3;
 	required uint32 attribute_experience_next = 4;
-	repeated sint32 power_key_params = 11;
-	required bool dead = 12;
+	repeated sint32 power_key_params = 5;
+	required bool dead = 6;
 }
 message SavedData {
 	repeated .D3.Hireling.Info hirelings = 1;

@@ -1,0 +1,14 @@
+Binaries
+*/bin
+*/obj
+*/Debug
+*/Release
+*.user
+*.suo
+_ReSharper.*
+*.sln.cache
+*.pdb
+ipch
+.svn
+*.sdf
+*.opensdf

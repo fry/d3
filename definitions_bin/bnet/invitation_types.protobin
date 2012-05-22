@@ -1,0 +1,43 @@
+
+bnet/invitation_types.protobnet.protocol.invitationbnet/attribute.protobnet/entity.proto"˝
+
+Invitation
+
+id (1
+inviter_identity (2.bnet.protocol.Identity1
+invitee_identity (2.bnet.protocol.Identity
+inviter_name (	
+invitee_name (	
+invitation_message (	
+creation_time (
+expiration_time (*dêN"«
+
+Suggestion+
+
+channel_id (2.bnet.protocol.EntityId-
+suggester_id (2.bnet.protocol.EntityId-
+suggestee_id (2.bnet.protocol.EntityId
+suggester_name (	
+suggestee_name (	"Q
+InvitationParams
+invitation_message (	
+expiration_time (:0*dêN"∞
+SendInvitationRequest/
+agent_identity (2.bnet.protocol.Identity*
+	target_id (2.bnet.protocol.EntityId:
+params (2*.bnet.protocol.invitation.InvitationParams"R
+SendInvitationResponse8
+
+invitation (2$.bnet.protocol.invitation.Invitation"ù
+UpdateInvitationRequest/
+agent_identity (2.bnet.protocol.Identity
+invitation_id (:
+params (2*.bnet.protocol.invitation.InvitationParams"ﬂ
+GenericRequest)
+agent_id (2.bnet.protocol.EntityId*
+	target_id (2.bnet.protocol.EntityId
+invitation_id (
+invitee_name (	
+inviter_name (	
+previous_role (B
+desired_role (B

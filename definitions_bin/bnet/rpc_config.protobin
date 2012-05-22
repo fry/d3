@@ -1,0 +1,22 @@
+
+bnet/rpc_config.protobnet.protocol.configbnet/rpc.proto"§
+RPCMethodConfig
+service_name (	
+method_name (	
+fixed_call_cost (:1
+fixed_packet_size (:0
+variable_multiplier (:0
+
+multiplier (:1
+rate_limit_count (
+rate_limit_seconds (
+max_packet_size	 (
+max_encoded_size
+ (
+timeout ("®
+RPCMeterConfig5
+method (2%.bnet.protocol.config.RPCMethodConfig
+income_per_second (:1
+initial_balance (
+cap_balance (
+startup_period (:0

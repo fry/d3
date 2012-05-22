@@ -1,0 +1,58 @@
+package bnet.protocol.achievements;
+
+enum ModiferTargetType {
+	SUBJECT = 1400201834;
+	OBJECT = 5202538;
+}
+message Attribute {
+	required string key = 1;
+	required string value = 2;
+}
+message CriteriaModifier {
+	required uint64 necessary_condition = 1;
+	required fixed32 target = 2;
+	required uint32 operand = 3;
+	required uint64 comparand = 4;
+}
+message CriteriaEvent {
+	required uint64 id = 1;
+	optional uint64 comparand = 2 [default = 0];
+	repeated .bnet.protocol.achievements.CriteriaModifier modifier = 3;
+	optional uint32 timer_duration = 4;
+}
+message StaticCategoryDefinition {
+	required uint32 id = 1;
+	optional uint64 parent_id = 2;
+	optional uint64 OBSOLETE_featured_achievement_id = 3;
+	required uint32 order_hint = 4;
+	repeated .bnet.protocol.achievements.Attribute attributes = 5;
+}
+message StaticAchievementDefinition {
+	required uint64 id = 1;
+	optional uint64 superseding_achievement_id = 2;
+	required uint32 category_id = 3;
+	optional uint32 minimum_criteria = 4;
+	required uint32 points_value = 5;
+	required uint32 flags = 6;
+	required uint32 order_hint = 7;
+	optional uint64 criteria_shared_with_achievement_id = 8;
+	repeated .bnet.protocol.achievements.Attribute attributes = 9;
+}
+message StaticCriteriaDefinition {
+	required uint64 criteria_id = 1;
+	required uint64 parent_achievement_id = 2;
+	optional .bnet.protocol.achievements.CriteriaEvent start_event = 3;
+	optional .bnet.protocol.achievements.CriteriaEvent advance_event = 4;
+	optional .bnet.protocol.achievements.CriteriaEvent fail_event = 5;
+	required uint64 necessary_quantity = 6;
+	optional uint32 order_hint = 7;
+	required fixed32 evalutation_class = 8;
+	required uint32 flags = 9;
+	repeated .bnet.protocol.achievements.Attribute attributes = 10;
+}
+message AchievementFile {
+	repeated .bnet.protocol.achievements.StaticCategoryDefinition category = 1;
+	repeated .bnet.protocol.achievements.StaticAchievementDefinition achievement = 2;
+	repeated .bnet.protocol.achievements.StaticCriteriaDefinition criteria = 3;
+	repeated .bnet.protocol.achievements.Attribute attributes = 4;
+}

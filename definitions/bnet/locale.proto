@@ -1,0 +1,10 @@
+package bnet.protocol.config;
+
+message Locale {
+	required string identifier = 1;
+	required string description = 2;
+	repeated string flag = 3;
+}
+message Locales {
+	repeated .bnet.protocol.config.Locale locale = 1;
+}

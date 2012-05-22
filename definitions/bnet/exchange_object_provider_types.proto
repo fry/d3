@@ -1,0 +1,61 @@
+package bnet.protocol.exchange_object_provider;
+import "bnet/entity.proto";
+import "bnet/exchange.proto";
+
+message ReportAuthorizeRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.PartitionId token = 2;
+	required uint64 result = 3;
+	optional .bnet.protocol.exchange.BlobFromOfType auth_handle = 4;
+	optional bool defer_delivery = 5;
+	required .bnet.protocol.EntityId bnet_account_id = 6;
+	optional .bnet.protocol.exchange.ActionResultDetail result_detail = 7;
+	optional string avs_result = 8;
+	optional string cvv_result = 9;
+	optional .bnet.protocol.exchange.BlobFrom notification_extra_info = 10;
+}
+message ReportSettleRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.PartitionId token = 2;
+	required uint64 result = 3;
+	optional .bnet.protocol.exchange.BlobFrom notification_extra_info = 4;
+	optional .bnet.protocol.exchange.ActionResultDetail result_detail = 5;
+}
+message ReportCancelRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.PartitionId token = 2;
+	required uint64 result = 3;
+	optional .bnet.protocol.exchange.BlobFrom notification_extra_info = 4;
+	optional .bnet.protocol.exchange.ActionResultDetail result_detail = 5;
+}
+message ReportRefundRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.PartitionId token = 2;
+	required uint64 result = 3;
+	optional .bnet.protocol.exchange.BlobFrom notification_extra_info = 4;
+	optional .bnet.protocol.exchange.ActionResultDetail result_detail = 5;
+}
+message GetPaymentMethodsRequest {
+	optional .bnet.protocol.EntityId bnet_account = 1;
+	optional .bnet.protocol.EntityId game_account = 2;
+	required string currency = 3;
+	required uint32 cash_in_out_mask = 4;
+	optional bool refresh_payment_method_cache = 5 [default = false];
+	optional bool refresh_e_balance_cache = 6 [default = false];
+	optional bool sms_enable = 7 [default = false];
+}
+message PaymentMethod {
+	required .bnet.protocol.exchange.BlobFrom account = 1;
+	optional string description = 2;
+	optional uint64 amount = 3;
+	optional uint32 cash_in_out_mask = 4 [default = 3];
+	optional .bnet.protocol.exchange.BillingAddress billing_address = 5;
+	required uint64 wallet_id = 6;
+	optional uint32 cap_restriction = 7;
+	optional uint64 authenticator_cap = 8;
+	optional uint64 soft_cap = 9;
+	optional bool active = 10 [default = true];
+}
+message GetPaymentMethodsResponse {
+	repeated .bnet.protocol.exchange_object_provider.PaymentMethod methods = 1;
+}

@@ -8,4 +8,11 @@
 start_time (
 seconds_to_search (7
 game_params (2".D3.OnlineService.GameCreateParams
-remove_reason (
+remove_reason ("s
+EnterGamePartyMember.
+
+account_id (2.D3.OnlineService.EntityId+
+hero_id (2.D3.OnlineService.EntityId"j
+EnterGamePartyMemberList5
+member (2%.D3.PartyMessage.EnterGamePartyMember
+requester_index (

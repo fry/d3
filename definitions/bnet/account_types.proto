@@ -1,0 +1,90 @@
+package bnet.protocol.account;
+
+message AccountId {
+	required fixed32 id = 1;
+}
+message AccountLicense {
+	required uint32 id = 1;
+	optional uint64 expires = 2;
+}
+message AccountCredential {
+	required uint32 id = 1;
+	optional bytes data = 2;
+}
+message AccountBlob {
+	required fixed32 id = 2;
+	required uint32 region = 3;
+	repeated string email = 4;
+	required uint64 flags = 5;
+	optional uint64 secure_release = 6;
+	optional uint64 whitelist_start = 7;
+	optional uint64 whitelist_end = 8;
+	required string full_name = 10;
+	repeated .bnet.protocol.account.AccountLicense licenses = 20;
+	repeated .bnet.protocol.account.AccountCredential credentials = 21;
+	repeated .bnet.protocol.account.GameAccountLink account_links = 22;
+	optional string battle_tag = 23;
+	optional fixed32 default_currency = 25;
+	optional uint32 legal_region = 26;
+	optional fixed32 legal_locale = 27;
+	required uint64 cache_expiration = 30;
+}
+message AccountBlobList {
+	repeated .bnet.protocol.account.AccountBlob blob = 1;
+}
+message GameAccountHandle {
+	required fixed32 id = 1;
+	required fixed32 program = 2;
+	required uint32 region = 3;
+}
+message GameAccountLink {
+	required .bnet.protocol.account.GameAccountHandle game_account = 1;
+	required string name = 2;
+}
+message GameAccountBlob {
+	required .bnet.protocol.account.GameAccountHandle game_account = 1;
+	optional string name = 2 [default = ""];
+	optional uint32 realm_permissions = 3 [default = 0];
+	required uint32 status = 4;
+	optional uint64 flags = 5 [default = 0];
+	optional uint32 billing_flags = 6 [default = 0];
+	required uint64 cache_expiration = 7;
+	optional uint64 subscription_expiration = 10;
+	optional uint32 units_remaining = 11;
+	repeated .bnet.protocol.account.AccountLicense licenses = 20;
+}
+message GameAccountBlobList {
+	repeated .bnet.protocol.account.GameAccountBlob blob = 1;
+}
+message AccountReference {
+	optional fixed32 id = 1;
+	optional string email = 2;
+	optional .bnet.protocol.account.GameAccountHandle handle = 3;
+	optional string battle_tag = 4;
+	optional uint32 region = 10 [default = 0];
+}
+message Wallet {
+	required uint32 region = 1;
+	required uint64 wallet_id = 2;
+	required uint32 wallet_type = 3;
+	optional string description = 4;
+	required uint32 country_id = 5;
+	optional string state = 6;
+	optional string city = 7;
+	optional string postal_code = 8;
+	optional bytes payment_info = 9;
+	optional string bin = 10;
+	optional string locale_id = 11;
+	optional string street = 12;
+	optional string first_name = 13;
+	optional string last_name = 14;
+	optional uint64 birth_date = 15;
+}
+message Wallets {
+	repeated .bnet.protocol.account.Wallet wallets = 1;
+}
+message CurrencyRestriction {
+	required string currency = 1;
+	required string authenticator_cap = 2;
+	required string soft_cap = 3;
+}

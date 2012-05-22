@@ -1,0 +1,24 @@
+package bnet.protocol;
+import "bnet/content_handle.proto";
+import "bnet/attribute.proto";
+
+message Payload {
+	required string content_handle = 1;
+	required uint32 data_size = 2;
+	repeated .bnet.protocol.attribute.Attribute custom = 3;
+}
+message Dependency {
+	required string resource_handle = 1;
+	repeated .bnet.protocol.attribute.Attribute custom = 2;
+}
+message Metadata {
+	repeated .bnet.protocol.Dependency dependency = 1;
+	repeated .bnet.protocol.Payload payload = 2;
+}
+message IndexEntry {
+	required string name = 1;
+	required string url = 2;
+}
+message ResourceIndex {
+	repeated .bnet.protocol.IndexEntry entry = 1;
+}

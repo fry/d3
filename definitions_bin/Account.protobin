@@ -20,18 +20,21 @@ sigil_main (:0
 banner_configuration (2.D3.Account.BannerConfiguration
 flags (:0"#
 Flags
-HARDCORE_HERO_UNLOCKED"„
+HARDCORE_HERO_UNLOCKED"Ð
 SavedDefinition
 version ("
 digest (2.D3.Account.DigestA
-saved_attributes (2'.D3.AttributeSerializer.SavedAttributes5
-normal_shared_saved_items (2.D3.Items.ItemList7
-hardcore_shared_saved_items (2.D3.Items.ItemList=
-crafter_saved_data (2!.D3.ItemCrafting.CrafterSavedData
-seen_tutorials (&
-num_vote_kicks_participated_in ( 
-num_vote_kicks_initiated	 ( 
-num_public_games_no_kick
- (
-times_vote_kicked (+
-gold_id (2.D3.OnlineService.EntityId
+saved_attributes (2'.D3.AttributeSerializer.SavedAttributesJ
+saved_attributes_hardcore (2'.D3.AttributeSerializer.SavedAttributes5
+normal_shared_saved_items (2.D3.Items.ItemList7
+hardcore_shared_saved_items (2.D3.Items.ItemList>
+crafter_normal_data (2!.D3.ItemCrafting.CrafterSavedData@
+crafter_hardcore_data (2!.D3.ItemCrafting.CrafterSavedData
+seen_tutorials	 (&
+num_vote_kicks_participated_in
+ ( 
+num_vote_kicks_initiated ( 
+num_public_games_no_kick (
+times_vote_kicked (2
+gold_id_normal (2.D3.OnlineService.EntityId4
+gold_id_hardcore (2.D3.OnlineService.EntityId

@@ -4,26 +4,26 @@
 item_name_is_prefix (:false!
 sno_affix_string_list (:-1#
 affix_string_list_index (:-1"
-item_string_list_index (:-1"¨
+item_string_list_index (:-1"¿
 	Generator
 seed (:0)
 	gb_handle (2.D3.GameBalance.Handle
 base_affixes (.
-rare_item_name (2.D3.Items.RareItemName
-enchant_affix (:-1
-socket_affix (:-1
-flags (:0
+rare_item_name (2.D3.Items.RareItemName
+enchant_affix (:-1
+flags (:0
 
-durability (
+durability (
 
-stack_size	 (
-dye_type
- (
-item_quality_level (
-item_binding_level (
-max_durability (-
-contents (2.D3.Items.EmbeddedGenerator
-attuned_skill (:-1"a
+stack_size (
+dye_type	 (:0
+item_quality_level
+ (:1
+item_binding_level (:0
+max_durability (:0-
+contents (2.D3.Items.EmbeddedGenerator 
+item_unlock_timestamp (:0
+enchant_range_val (:0"a
 EmbeddedGenerator$
 id (2.D3.OnlineService.ItemId&
 	generator (2.D3.Items.Generator"š
@@ -35,20 +35,6 @@ stack_size	 (
 	item_slot (
 square_index (
 used_socket_count (:0&
-	generator (2.D3.Items.Generator"s
-AuctionAccountInfo.
-
-account_id (2.D3.OnlineService.EntityId-
-	escrow_id (2.D3.OnlineService.EntityId"[
-AuctionItem$
-id (2.D3.OnlineService.ItemId&
-	generator (2.D3.Items.Generator"W
-AuctionInfo$
-id (2.D3.OnlineService.ItemId"
-owner (2.D3.Items.Ownership".
+	generator (2.D3.Items.Generator".
 ItemList"
-items (2.D3.Items.SavedItem"„
-	Ownership3
-owner_entity_id (2.D3.OnlineService.EntityId
-delete_time (-
-	escrow_id (2.D3.OnlineService.EntityId
+items (2.D3.Items.SavedItem

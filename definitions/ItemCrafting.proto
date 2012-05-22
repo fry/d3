@@ -2,7 +2,7 @@ package D3.ItemCrafting;
 
 message CrafterData {
 	repeated sfixed32 recipes = 1;
-	repeated sfixed32 available_enchants = 2;
+	repeated sfixed32 deprecated_available_enchants = 2;
 	required int32 level = 3;
 	required sfixed64 cooldown_end = 4;
 }

@@ -1,0 +1,140 @@
+package bnet.protocol.achievements;
+import "bnet/rpc.proto";
+import "bnet/entity.proto";
+import "bnet/content_handle.proto";
+
+message AchievementUpdateRecord {
+	required uint64 achievement_id = 1;
+	required int32 completion = 2;
+}
+message CriteriaUpdateRecord {
+	required uint32 criteria_Id_32_and_flags_8 = 1;
+	optional uint32 start_time_32 = 2 [default = 0];
+	optional uint32 quantity_32 = 3 [default = 0];
+}
+message PostUpdateRecord {
+	required .bnet.protocol.EntityId target_id = 1;
+	repeated .bnet.protocol.achievements.CriteriaUpdateRecord criteria = 2;
+}
+message PostUpdateRequest {
+	repeated .bnet.protocol.achievements.PostUpdateRecord post_update_record = 1;
+	optional fixed32 program_id = 2 [default = 0];
+	optional uint32 ati_id = 3 [default = 0];
+}
+message PostUpdateResponse {
+	repeated uint32 error_code = 1;
+}
+message RegisterWithServiceRequest {
+	required .bnet.protocol.EntityId target_id = 1;
+	required uint64 object_id = 2;
+	optional uint32 registration_flags = 3;
+	optional fixed32 program_id = 4 [default = 0];
+	optional uint32 ati_id = 5 [default = 0];
+}
+message RegisterWithServiceResponse {
+	optional .bnet.protocol.achievements.Snapshot snapshot = 1;
+	optional uint32 registration_flags = 2;
+}
+message UnregisterFromServiceRequest {
+	required .bnet.protocol.EntityId target_id = 1;
+	required uint64 object_id = 2;
+	optional uint32 ati_id = 3 [default = 0];
+}
+message Snapshot {
+	repeated .bnet.protocol.achievements.AchievementUpdateRecord achievement_snapshot = 1;
+	repeated .bnet.protocol.achievements.CriteriaUpdateRecord criteria_snapshot = 2;
+	optional uint64 header = 3 [default = 0];
+}
+message RequestSnapshotRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+	required uint32 filter = 2;
+	optional fixed32 program_id = 3 [default = 0];
+}
+message RequestSnapshotResponse {
+	optional .bnet.protocol.achievements.Snapshot snapshot = 1;
+}
+message InitializeRequest {
+	optional fixed32 program_id = 1 [default = 0];
+	required uint64 object_id = 2;
+}
+message InitializeResponse {
+	required .bnet.protocol.ContentHandle content_handle = 1;
+	optional uint32 max_records_per_update = 2 [default = 0];
+	optional uint32 max_criteria_per_record = 3 [default = 0];
+	optional uint32 max_achievements_per_record = 4 [default = 0];
+	optional uint32 max_registrations = 5 [default = 0];
+	optional uint64 flush_frequency = 6 [default = 0];
+}
+message StaticDataHash {
+	required fixed32 program_id = 1;
+	required string hash = 2;
+}
+message ValidateStaticDataRequest {
+	repeated .bnet.protocol.achievements.StaticDataHash static_data_hash = 1;
+}
+message SnapshotUpdateNotification {
+	required .bnet.protocol.EntityId target_id = 1;
+	required .bnet.protocol.achievements.Snapshot snapshot = 2;
+}
+message FlushFrequencyUpdateNotification {
+	required uint64 flush_frequency = 1;
+}
+message AchievementStats {
+	required uint64 id = 1;
+	required uint64 count = 2;
+}
+message GetAchievementStatsRequest {
+	required fixed32 program_id = 1;
+}
+message GetAchievementStatsResponse {
+	repeated .bnet.protocol.achievements.AchievementStats stats = 1;
+}
+message GetCriteriaStatsRequest {
+	required fixed32 program_id = 1;
+}
+message GetCriteriaStatsResponse {
+	repeated .bnet.protocol.achievements.AchievementStats stats = 1;
+}
+message RevokeAchievementRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+	required uint64 id = 2;
+}
+message RevokeAchievementResponse {
+	optional uint32 revoked_count = 1 [default = 0];
+}
+message UpdateCriteriaRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+	required uint64 id = 2;
+	required uint64 quantity = 3;
+	optional uint32 flags = 4 [default = 0];
+}
+message GrantAchievementRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+	required uint64 id = 2;
+}
+message GrantAchievementResponse {
+	optional uint32 granted_count = 1 [default = 0];
+}
+message CacheKillRequest {
+	optional .bnet.protocol.EntityId entity_id = 1;
+}
+service AchievementsService {
+	rpc PostUpdate (.bnet.protocol.achievements.PostUpdateRequest) returns (.bnet.protocol.achievements.PostUpdateResponse);
+	rpc RegisterWithService (.bnet.protocol.achievements.RegisterWithServiceRequest) returns (.bnet.protocol.achievements.RegisterWithServiceResponse);
+	rpc RequestSnapshot (.bnet.protocol.achievements.RequestSnapshotRequest) returns (.bnet.protocol.achievements.RequestSnapshotResponse);
+	rpc UnregisterFromService (.bnet.protocol.achievements.UnregisterFromServiceRequest) returns (.bnet.protocol.NoData);
+	rpc Initialize (.bnet.protocol.achievements.InitializeRequest) returns (.bnet.protocol.achievements.InitializeResponse);
+	rpc ValidateStaticData (.bnet.protocol.achievements.ValidateStaticDataRequest) returns (.bnet.protocol.NoData);
+}
+service AchievementsNotify {
+	rpc NotifySnapshotUpdate (.bnet.protocol.achievements.SnapshotUpdateNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyFlushFrequencyUpdate (.bnet.protocol.achievements.FlushFrequencyUpdateNotification) returns (.bnet.protocol.NO_RESPONSE);
+}
+service AchievementsUtils {
+	rpc GetAchievementStats (.bnet.protocol.achievements.GetAchievementStatsRequest) returns (.bnet.protocol.achievements.GetAchievementStatsResponse);
+	rpc GetCriteriaStats (.bnet.protocol.achievements.GetCriteriaStatsRequest) returns (.bnet.protocol.achievements.GetCriteriaStatsResponse);
+	rpc RevokeAchievement (.bnet.protocol.achievements.RevokeAchievementRequest) returns (.bnet.protocol.achievements.RevokeAchievementResponse);
+	rpc UpdateCriteria (.bnet.protocol.achievements.UpdateCriteriaRequest) returns (.bnet.protocol.NoData);
+	rpc GrantAchievement (.bnet.protocol.achievements.GrantAchievementRequest) returns (.bnet.protocol.achievements.GrantAchievementResponse);
+	rpc CacheKill (.bnet.protocol.achievements.CacheKillRequest) returns (.bnet.protocol.NoData);
+}

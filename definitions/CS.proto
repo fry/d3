@@ -1,0 +1,48 @@
+package D3.CS;
+import "AttributeSerializer.proto";
+import "Items.proto";
+import "OnlineService.proto";
+import "ItemCrafting.proto";
+import "Hero.proto";
+import "Account.proto";
+import "Profile.proto";
+
+message ToolTip {
+	required .D3.OnlineService.ItemId itemId = 1;
+	required uint32 ItemQualityLevel = 2;
+	required string Name = 3;
+	required string Type = 4;
+	required int32 SetItem = 5;
+	required string Flavor = 6;
+	required string Cost = 7;
+	required string Durability = 8;
+	required string ClassReqs = 9;
+	required string Requirements = 10;
+	required string Enhancement = 11;
+	required uint64 StackCount = 12;
+	required uint32 NumSockets = 13;
+	required uint32 FilledSockets = 14;
+}
+message TooltipList {
+	repeated .D3.CS.ToolTip tooltips = 1;
+}
+message FallenHero {
+	required .D3.Profile.HeroProfile profile = 1;
+	required .D3.Hero.Digest digest = 2;
+	required string time = 3;
+}
+message Snapshot {
+	required uint64 version = 1;
+	required .D3.Account.SavedDefinition definition = 2;
+	repeated .D3.Hero.SavedDefinition heros = 3;
+	required .D3.Profile.AccountProfile account_profile = 4;
+	required .D3.Profile.HeroProfileList hero_profiles = 5;
+	repeated .D3.CS.FallenHero fallen_heros = 6;
+}
+message SnapshotVersion {
+	required uint64 version = 1;
+	required .D3.CS.Snapshot snapshot = 2;
+}
+message SnapshotVersions {
+	repeated .D3.CS.SnapshotVersion versions = 1;
+}

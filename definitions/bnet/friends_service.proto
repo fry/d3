@@ -1,0 +1,89 @@
+package bnet.protocol.friends;
+import "bnet/friends_types.proto";
+import "bnet/invitation_types.proto";
+import "bnet/role_set.proto";
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+import "bnet/rpc.proto";
+
+message SubscribeToFriendsRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required uint64 object_id = 2;
+}
+message SubscribeToFriendsResponse {
+	optional uint32 max_friends = 1;
+	optional uint32 max_received_invitations = 2;
+	optional uint32 max_sent_invitations = 3;
+	repeated .bnet.protocol.Role role = 4;
+	repeated .bnet.protocol.friends.Friend friends = 5;
+	repeated .bnet.protocol.invitation.Invitation sent_invitations = 6;
+	repeated .bnet.protocol.invitation.Invitation received_invitations = 7;
+}
+message UnsubscribeToFriendsRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	optional uint64 object_id = 2;
+}
+message GenericFriendRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+}
+message GenericFriendResponse {
+	optional .bnet.protocol.friends.Friend target_friend = 1;
+}
+message AssignRoleRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+	repeated int32 role = 3;
+}
+message ViewFriendsRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+	required .bnet.protocol.attribute.AttributeFilter filter = 3;
+	optional uint32 start_index = 4 [default = 0];
+	optional uint32 max_results = 5 [default = 100];
+}
+message ViewFriendsResponse {
+	repeated .bnet.protocol.friends.Friend friends = 1;
+	optional uint32 total_results = 2;
+}
+message UpdateFriendStateRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+	repeated .bnet.protocol.attribute.Attribute attribute = 3;
+	optional uint64 attributes_epoch = 4;
+}
+message FriendNotification {
+	required .bnet.protocol.friends.Friend target = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+}
+message UpdateFriendStateNotification {
+	required .bnet.protocol.friends.Friend changed_friend = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+}
+message InvitationNotification {
+	required .bnet.protocol.invitation.Invitation invitation = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+	optional uint32 reason = 3 [default = 0];
+}
+service FriendsService {
+	rpc SubscribeToFriends (.bnet.protocol.friends.SubscribeToFriendsRequest) returns (.bnet.protocol.friends.SubscribeToFriendsResponse);
+	rpc SendInvitation (.bnet.protocol.invitation.SendInvitationRequest) returns (.bnet.protocol.NoData);
+	rpc AcceptInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc RevokeInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc DeclineInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc IgnoreInvitation (.bnet.protocol.invitation.GenericRequest) returns (.bnet.protocol.NoData);
+	rpc AssignRole (.bnet.protocol.friends.AssignRoleRequest) returns (.bnet.protocol.NoData);
+	rpc RemoveFriend (.bnet.protocol.friends.GenericFriendRequest) returns (.bnet.protocol.friends.GenericFriendResponse);
+	rpc ViewFriends (.bnet.protocol.friends.ViewFriendsRequest) returns (.bnet.protocol.friends.ViewFriendsResponse);
+	rpc UpdateFriendState (.bnet.protocol.friends.UpdateFriendStateRequest) returns (.bnet.protocol.NoData);
+	rpc UnsubscribeToFriends (.bnet.protocol.friends.UnsubscribeToFriendsRequest) returns (.bnet.protocol.NoData);
+}
+service FriendsNotify {
+	rpc NotifyFriendAdded (.bnet.protocol.friends.FriendNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyFriendRemoved (.bnet.protocol.friends.FriendNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyReceivedInvitationAdded (.bnet.protocol.friends.InvitationNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyReceivedInvitationRemoved (.bnet.protocol.friends.InvitationNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifySentInvitationAdded (.bnet.protocol.friends.InvitationNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifySentInvitationRemoved (.bnet.protocol.friends.InvitationNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyUpdateFriendState (.bnet.protocol.friends.UpdateFriendStateNotification) returns (.bnet.protocol.NO_RESPONSE);
+}

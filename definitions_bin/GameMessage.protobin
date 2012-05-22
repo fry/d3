@@ -1,15 +1,17 @@
 
 GameMessage.protoD3.GameMessage
-Hero.protoOnlineService.protoSettings.protoAccount.protoItems.proto"f
+Hero.protoOnlineService.protoSettings.protoAccount.protoItems.protoCS.proto"f
 HeroDigestList.
 
 account_id (2.D3.OnlineService.EntityId$
 digest_list (2.D3.Hero.Digest"x
 ClientToonSettings+
 toon_id (2.D3.OnlineService.EntityId5
-client_toon_settings (2.D3.Client.ToonSettings"D
-HeroDigestListRequest+
-toon_id (2.D3.OnlineService.EntityId"x
+client_toon_settings (2.D3.Client.ToonSettings"t
+HeroDigestListRequest.
+
+account_id (2.D3.OnlineService.EntityId+
+toon_id (2.D3.OnlineService.EntityId"x
 HeroDigestResponse+
 toon_id (2.D3.OnlineService.EntityId
 success ($
@@ -28,10 +30,11 @@ slot_index (:0
 hero_digest (2.D3.Hero.Digest/
 banner (2.D3.Account.BannerConfiguration"G
 GameCurrentPlayers1
-players (2 .D3.GameMessage.HeroDigestBanner"D
+players (2 .D3.GameMessage.HeroDigestBanner"e
 AccountVersionList.
 
-account_id (2.D3.OnlineService.EntityId"U
+account_id (2.D3.OnlineService.EntityId
+return_snapshots (:false"U
 AccountVersionSync.
 
 account_id (2.D3.OnlineService.EntityId
@@ -45,4 +48,100 @@ TooltipIds
 items (2.D3.Items.ItemList"?
 TutorialMessage
 tutorial_sno (
-ui_anchor_name (	
+ui_anchor_name (	"'
+TutorialState
+seen_tutorials ("9
+
+DeleteHero+
+hero_id (2.D3.OnlineService.EntityId"y
+UndeleteHero4
+undelete_hero_id (2.D3.OnlineService.EntityId3
+replace_hero_id (2.D3.OnlineService.EntityId"@
+GetFallenHeros.
+
+account_id (2.D3.OnlineService.EntityId"O
+ArchiveHardcore+
+hero_id (2.D3.OnlineService.EntityId
+epitaph (	"?
+DeleteFallenHero+
+hero_id (2.D3.OnlineService.EntityId"o
+ServerDeleteHero.
+
+account_id (2.D3.OnlineService.EntityId+
+hero_id (2.D3.OnlineService.EntityId"¯
+ServerUndeleteHero.
+
+account_id (2.D3.OnlineService.EntityId4
+undelete_hero_id (2.D3.OnlineService.EntityId3
+replace_hero_id (2.D3.OnlineService.EntityId"t
+ServerForceRenameHero.
+
+account_id (2.D3.OnlineService.EntityId+
+hero_id (2.D3.OnlineService.EntityId"B
+ServerFetchHeros.
+
+account_id (2.D3.OnlineService.EntityId"s
+ServerFetchInventory.
+
+account_id (2.D3.OnlineService.EntityId+
+hero_id (2.D3.OnlineService.EntityId"@
+ServerSnapshot.
+
+account_id (2.D3.OnlineService.EntityId"Y
+ServerSnapshotResponse.
+
+account_id (2.D3.OnlineService.EntityId
+version ("V
+ServerFetchSnapshot.
+
+account_id (2.D3.OnlineService.EntityId
+version ("š
+ServerRevokeItem.
+
+account_id (2.D3.OnlineService.EntityId+
+hero_id (2.D3.OnlineService.EntityId)
+item_id (2.D3.OnlineService.ItemId"K
+
+RenameHero+
+hero_id (2.D3.OnlineService.EntityId
+new_name (	"
+GetGameAccountSettings"J
+SetGameAccountSettings0
+settings (2.D3.Client.GameAccountSettings">
+GetToonSettings+
+hero_id (2.D3.OnlineService.EntityId"i
+SetToonSettings+
+hero_id (2.D3.OnlineService.EntityId)
+settings (2.D3.Client.ToonSettings"
+GetAccountDigest";
+GetHeroItems+
+hero_id (2.D3.OnlineService.EntityId"#
+GetAccountItems
+hardcore ("C
+GetAccountProfile.
+
+account_id (2.D3.OnlineService.EntityId"o
+GetHeroProfiles.
+
+account_id (2.D3.OnlineService.EntityId,
+hero_ids (2.D3.OnlineService.EntityId"
+GetAccountPrefs"8
+SetAccountPrefs%
+prefs (2.D3.Client.Preferences"l
+GetHeroDigest.
+
+account_id (2.D3.OnlineService.EntityId+
+hero_id (2.D3.OnlineService.EntityId"<
+
+GetHeroIds.
+
+account_id (2.D3.OnlineService.EntityId"
+GetDeletedHero"
+CSGetSnapshots"!
+CSPullSnapshot
+version ("/
+CSPushSnapshot
+data (2.D3.CS.Snapshot"&
+CSRestoreToSnapshot
+version ("
+CSWriteSnapshot

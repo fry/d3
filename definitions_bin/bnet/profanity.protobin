@@ -1,0 +1,8 @@
+
+bnet/profanity.protobnet.protocol.profanity")
+
+WordFilter
+type (	
+regex (	"C
+WordFilters4
+filters (2#.bnet.protocol.profanity.WordFilter

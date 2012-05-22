@@ -1,15 +1,24 @@
 
 Profile.proto
-D3.ProfileAttributeSerializer.protoItems.protoOnlineService.protoGBHandle.proto"P
-	ClassInfo
-playtime (
-highest_level (
-highest_difficulty ("4
+D3.ProfileAttributeSerializer.protoItems.protoOnlineService.protoGBHandle.proto"Y
+	ClassInfo
+playtime (:0
+highest_level (:0
+highest_difficulty (:0"9
 SkillWithRune
-skill (:-1
-rune (:-1";
+skill (:-1
+	rune_type (:-1";
 SkillsWithRunes(
-runes (2.D3.Profile.SkillWithRune"ù
+runes (2.D3.Profile.SkillWithRune"#
+PassiveSkills
+
+sno_traits ("M
+
+KillerInfo
+
+sno_killer (:-1
+rarity (
+rare_name_gbids ("þ
 HeroProfile
 monsters_killed (
 elites_killed (
@@ -17,10 +26,10 @@ D3.ProfileAttributeSerializer.protoItems.protoOnlineService.protoGBHandl
 highest_level (
 highest_difficulty (
 create_time (
-hardcore (:false
-attack (
-	precision	 (
-defense
+hardcore (:false
+strength (
+	dexterity	 (
+intelligence
  (
 vitality (
 armor (
@@ -31,27 +40,31 @@ D3.ProfileAttributeSerializer.protoItems.protoOnlineService.protoGBHandl
 resist_poison (
 resist_cold (%
 	equipment (2.D3.Items.ItemList6
-sno_active_skills (2.D3.Profile.SkillsWithRunes
+sno_active_skills (2.D3.Profile.SkillsWithRunes-
 
-sno_traits (
+sno_traits (2.D3.Profile.PassiveSkills
 
-death_time (&
-killer (2.D3.GameBalance.Handle-
-kill_location (2.D3.GameBalance.Handle
-epitaph (	"9
+death_time (+
+killer_info (2.D3.Profile.KillerInfo
+sno_kill_location (+
+hero_id (2.D3.OnlineService.EntityId
+damage_increase (
+crit_chance (
+damage_reduction (
+life ("9
 HeroProfileList&
-heros (2.D3.Profile.HeroProfile"­
+heros (2.D3.Profile.HeroProfile"·
 AccountProfile
 highest_difficulty (!
 highest_boss_difficulty_1 (!
 highest_boss_difficulty_2 (!
 highest_boss_difficulty_3 (!
-highest_boss_difficulty_4 (
-monsters_killed (
-elites_killed (
-gold_collected (
-highest_hardcore_level	 (
-harcore_monsters_killed
+highest_boss_difficulty_4 (
+monsters_killed (:0
+elites_killed (:0
+gold_collected (:0
+highest_hardcore_level	 ( 
+hardcore_monsters_killed
  (.
 class_barbarian (2.D3.Profile.ClassInfo0
 class_demonhunter (2.D3.Profile.ClassInfo)

@@ -1,8 +1,110 @@
 
 Settings.proto	D3.Client"#
 ToonSettings
-ui_flags (:0"n
+ui_flags (:0"w
+ActionBinding
+key_1 (:-1
+key_modifier_flags_1 (:0
+key_2 (:-1
+key_modifier_flags_2 (:0"¸
 GameAccountSettings
 use_last_hero (:0
 show_offline_toast (:0
-rmt_last_used_currency (	
+rmt_last_used_currency (	(
+coop_last_create_game_privacy (:1
+rmt_preferred_currency (	"ä"
+Preferences
+version (
+flags (:0"
+items_on_ground_setting (:0:
+action_binding_inventory (2.D3.Client.ActionBinding9
+action_binding_hireling (2.D3.Client.ActionBinding7
+action_binding_skills (2.D3.Client.ActionBinding7
+action_binding_questsJ (2.D3.Client.ActionBinding5
+action_binding_lore (2.D3.Client.ActionBinding7
+action_binding_social	 (2.D3.Client.ActionBinding9
+action_binding_worldmap
+ (2.D3.Client.ActionBinding5
+action_binding_help (2.D3.Client.ActionBinding>
+action_binding_recentplayers (2.D3.Client.ActionBinding:
+action_binding_chatlobby (2.D3.Client.ActionBinding=
+action_binding_achievements (2.D3.Client.ActionBinding8
+action_binding_profile (2.D3.Client.ActionBinding=
+action_binding_auctionhouse (2.D3.Client.ActionBinding6
+action_binding_clear (2.D3.Client.ActionBinding8
+action_binding_console (2.D3.Client.ActionBinding4
+action_binding_map (2.D3.Client.ActionBinding;
+action_binding_skillcycle (2.D3.Client.ActionBindingD
+"action_binding_togglemonsterhpbars (2.D3.Client.ActionBindingC
+!action_binding_toggleplayerhpbars (2.D3.Client.ActionBindingD
+"action_binding_toggledamagenumbers (2.D3.Client.ActionBindingD
+"action_binding_toggleitemsonground (2.D3.Client.ActionBinding:
+action_binding_rewhisper (2.D3.Client.ActionBinding=
+action_binding_whisperreply (2.D3.Client.ActionBinding9
+action_binding_voiceptt (2.D3.Client.ActionBinding7
+action_binding_skill1 (2.D3.Client.ActionBinding7
+action_binding_skill2 (2.D3.Client.ActionBinding7
+action_binding_skill3 (2.D3.Client.ActionBinding7
+action_binding_skill4 (2.D3.Client.ActionBinding7
+action_binding_potion  (2.D3.Client.ActionBinding;
+action_binding_bannerdrop! (2.D3.Client.ActionBinding5
+action_binding_zoom" (2.D3.Client.ActionBinding<
+action_binding_emotefollow# (2.D3.Client.ActionBinding:
+action_binding_emotegive$ (2.D3.Client.ActionBinding<
+action_binding_emotethanks% (2.D3.Client.ActionBinding;
+action_binding_emotesorry& (2.D3.Client.ActionBinding9
+action_binding_emotebye' (2.D3.Client.ActionBinding9
+action_binding_emotedie( (2.D3.Client.ActionBinding9
+action_binding_emoterun) (2.D3.Client.ActionBinding:
+action_binding_emotewait* (2.D3.Client.ActionBinding8
+action_binding_emotego+ (2.D3.Client.ActionBinding:
+action_binding_emotehelp, (2.D3.Client.ActionBinding9
+action_binding_emoteyes- (2.D3.Client.ActionBinding8
+action_binding_emoteno. (2.D3.Client.ActionBinding:
+action_binding_emotestay/ (2.D3.Client.ActionBinding<
+action_binding_emoteattack0 (2.D3.Client.ActionBinding=
+action_binding_emoteretreat1 (2.D3.Client.ActionBinding:
+action_binding_emotehold2 (2.D3.Client.ActionBindingC
+!action_binding_emotetakeobjective3 (2.D3.Client.ActionBinding;
+action_binding_emotelaugh4 (2.D3.Client.ActionBinding=
+action_binding_holdposition5 (2.D3.Client.ActionBindingE
+#action_binding_systemmastervolumeup6 (2.D3.Client.ActionBindingG
+%action_binding_systemmastervolumedown7 (2.D3.Client.ActionBindingB
+ action_binding_systemtogglemusic8 (2.D3.Client.ActionBindingB
+ action_binding_systemtogglesound9 (2.D3.Client.ActionBindingA
+action_binding_systemscreenshot: (2.D3.Client.ActionBinding>
+action_binding_stoneofrecall; (2.D3.Client.ActionBinding=
+action_binding_bannerscreen< (2.D3.Client.ActionBinding4
+action_binding_lmb= (2.D3.Client.ActionBinding4
+action_binding_rmb> (2.D3.Client.ActionBinding5
+action_binding_walk? (2.D3.Client.ActionBinding@
+action_binding_systemtogglefps@ (2.D3.Client.ActionBinding
+notify_durationd (:0"í
+Flags
+SHOW_ITEM_TOOLTIP_ON_DROP
+SHOW_MONSTER_HP_BARS
+SHOW_PLAYER_HP_BARS
+SHOW_ITEMS_ON_GROUND
+SHOW_DAMAGE_NUMBERS
+SHOW_CRITICALS	
+SHOW_DEFENSIVE_MESSAGES
+
+INVENTORY_ZOOM
+AUTO_EQUIP_ITEMS
+SHOW_TUTORIALS
+SHOW_BREAD_CRUMB
+DISABLE_OS_SHORTCUTS
+SHOW_HEAL_NUMBERS
+SHOW_PLAYER_NAMES
+SHOW_HP_BAR_NUMBERS
+
+SHOW_CLOCK
+SHOW_ADVANCED_TOOLTIPS
+ELECTIVE_MODE
+NOTIFY_FRIEND_ONLINE
+NOTIFY_FRIEND_OFFLINE
+NOTIFY_FRIEND_REQUEST
+NOTIFY_FRIEND_ACHIEVEMENT
+NOTIFY_DISPLAY_WINDOW
+MATURE_LANGUAGE_FILTER
+ALLOW_QUICK_JOIN

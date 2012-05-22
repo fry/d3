@@ -157,11 +157,13 @@ namespace d3.Network {
 			var request_id = requestCounter++;
 
 			// Register the handler for the response before sending the packet to avoid highly unlikely race-conditions
-			lock (awaitingResponse) {
-				awaitingResponse[request_id] = new ResponseData {
-					ResponsePrototype = responsePrototype,
-					Callback = done
-				};
+			if (done != null) {
+				lock (awaitingResponse) {
+					awaitingResponse[request_id] = new ResponseData {
+						ResponsePrototype = responsePrototype,
+						Callback = done
+					};
+				}
 			}
 
 			// Enqueue the request packet
@@ -296,7 +298,7 @@ namespace d3.Network {
 			// Lookup the request id in the dictionary containing pending responses
 			ResponseData response_data;
 			if (!awaitingResponse.TryGetValue(requestId, out response_data))
-				throw new ArgumentException("No pending response with the id " + requestId);
+				return;
 
 			// Retrieve the correct prototype and create a builder
 			var message_builder = response_data.ResponsePrototype.WeakCreateBuilderForType();

@@ -1,0 +1,18 @@
+package bnet.protocol.user_manager;
+import "bnet/entity.proto";
+import "bnet/attribute.proto";
+
+message RecentPlayer {
+	required .bnet.protocol.EntityId entity = 1;
+	optional string program_id = 2;
+	optional fixed64 timestamp_played = 3;
+	repeated .bnet.protocol.attribute.Attribute attributes = 4;
+	optional fixed32 id = 5 [default = 0];
+	optional fixed32 counter = 6 [default = 0];
+}
+message BlockedEntity {
+	required .bnet.protocol.EntityId id = 1;
+	optional string name = 2;
+	repeated uint32 role = 3;
+	optional uint64 privileges = 4 [default = 0];
+}

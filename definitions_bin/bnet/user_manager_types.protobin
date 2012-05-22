@@ -1,0 +1,17 @@
+
+bnet/user_manager_types.protobnet.protocol.user_managerbnet/entity.protobnet/attribute.proto"À
+RecentPlayer'
+entity (2.bnet.protocol.EntityId
+
+program_id (	
+timestamp_played (6
+
+attributes (2".bnet.protocol.attribute.Attribute
+id (:0
+counter (:0"k
+BlockedEntity#
+id (2.bnet.protocol.EntityId
+name (	
+role (B
+
+privileges (:0

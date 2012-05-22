@@ -1,0 +1,63 @@
+package bnet.protocol.user_manager;
+import "bnet/user_manager_types.proto";
+import "bnet/entity.proto";
+import "bnet/role_set.proto";
+import "bnet/rpc.proto";
+
+message SubscribeToUserManagerRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required uint64 object_id = 2;
+}
+message SubscribeToUserManagerResponse {
+	repeated .bnet.protocol.user_manager.BlockedEntity blocked_entities = 1;
+	repeated .bnet.protocol.user_manager.RecentPlayer recent_players = 2;
+	repeated .bnet.protocol.Role role = 3;
+}
+message AddRecentPlayersRequest {
+	repeated .bnet.protocol.user_manager.RecentPlayer players = 1;
+}
+message AddRecentPlayersResponse {
+	repeated .bnet.protocol.user_manager.RecentPlayer players_added = 1;
+	repeated fixed32 players_removed = 3;
+}
+message ClearRecentPlayersResponse {
+	repeated fixed32 players_removed = 1;
+}
+message BlockEntityRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+	optional uint32 role = 3;
+}
+message UnblockEntityRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+}
+message EntityBlockedNotification {
+	required .bnet.protocol.user_manager.BlockedEntity blocked_entity = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+}
+message EntityUnblockedNotification {
+	required .bnet.protocol.user_manager.BlockedEntity unblocked_entity = 1;
+	optional .bnet.protocol.EntityId game_account_id = 2;
+}
+message RecentPlayersAddedNotification {
+	repeated .bnet.protocol.user_manager.RecentPlayer added_players = 1;
+}
+message RecentPlayersRemovedNotification {
+	repeated .bnet.protocol.user_manager.RecentPlayer removed_players = 1;
+}
+service UserManagerService {
+	rpc SubscribeToUserManager (.bnet.protocol.user_manager.SubscribeToUserManagerRequest) returns (.bnet.protocol.user_manager.SubscribeToUserManagerResponse);
+	rpc AddRecentPlayers (.bnet.protocol.user_manager.AddRecentPlayersRequest) returns (.bnet.protocol.user_manager.AddRecentPlayersResponse);
+	rpc ClearRecentPlayers (.bnet.protocol.NoData) returns (.bnet.protocol.user_manager.ClearRecentPlayersResponse);
+	rpc BlockEntity (.bnet.protocol.user_manager.BlockEntityRequest) returns (.bnet.protocol.NoData);
+	rpc UnblockEntity (.bnet.protocol.user_manager.UnblockEntityRequest) returns (.bnet.protocol.NoData);
+	rpc BlockEntityForSession (.bnet.protocol.user_manager.BlockEntityRequest) returns (.bnet.protocol.NoData);
+	rpc LoadBlockList (.bnet.protocol.EntityId) returns (.bnet.protocol.NoData);
+}
+service UserManagerNotify {
+	rpc NotifyEntityBlocked (.bnet.protocol.user_manager.EntityBlockedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyEntityUnblocked (.bnet.protocol.user_manager.EntityUnblockedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyRecentPlayersAdded (.bnet.protocol.user_manager.RecentPlayersAddedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyRecentPlayersRemoved (.bnet.protocol.user_manager.RecentPlayersRemovedNotification) returns (.bnet.protocol.NO_RESPONSE);
+}

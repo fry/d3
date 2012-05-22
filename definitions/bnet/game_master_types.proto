@@ -1,0 +1,41 @@
+package bnet.protocol.game_master;
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+
+message Player {
+	enum Type {
+		HUMAN = 0;
+		COMPUTER = 1;
+	}
+	optional .bnet.protocol.game_master.Player.Type type = 1 [default = HUMAN];
+	optional .bnet.protocol.Identity identity = 2;
+	repeated .bnet.protocol.attribute.Attribute attribute = 3;
+}
+message ConnectInfo {
+	required .bnet.protocol.EntityId member_id = 1;
+	required string host = 2;
+	required int32 port = 3;
+	optional bytes token = 4;
+	repeated .bnet.protocol.attribute.Attribute attribute = 5;
+}
+message GameStatsBucket {
+	optional float bucket_min = 1 [default = 0];
+	optional float bucket_max = 2 [default = 4.2949673e+009];
+	optional uint32 wait_milliseconds = 3 [default = 0];
+	optional uint32 games_per_hour = 4 [default = 0];
+	optional uint32 active_games = 5 [default = 0];
+	optional uint32 active_players = 6 [default = 0];
+	optional uint32 forming_games = 7 [default = 0];
+	optional uint32 waiting_players = 8 [default = 0];
+}
+message GameFactoryDescription {
+	required fixed64 id = 1;
+	optional string name = 2;
+	repeated .bnet.protocol.attribute.Attribute attribute = 3;
+	repeated .bnet.protocol.game_master.GameStatsBucket stats_bucket = 4;
+	optional fixed64 unseeded_id = 5 [default = 0];
+}
+message GameHandle {
+	required fixed64 factory_id = 1;
+	required .bnet.protocol.EntityId game_id = 2;
+}

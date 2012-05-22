@@ -1,0 +1,16 @@
+package bnet.protocol.session;
+import "bnet/attribute.proto";
+import "bnet/rpc.proto";
+import "bnet/entity.proto";
+
+message SessionNotification {
+	required uint32 session_type = 1;
+	optional fixed64 expiration_timestamp = 2;
+	optional uint32 minutes_remaining = 3;
+	optional uint32 cais_played_minutes = 4;
+	optional uint32 cais_rested_minutes = 5;
+	optional bool benefactor = 6;
+}
+service SessionNotify {
+	rpc Update (.bnet.protocol.session.SessionNotification) returns (.bnet.protocol.NO_RESPONSE);
+}

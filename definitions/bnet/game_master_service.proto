@@ -1,0 +1,134 @@
+package bnet.protocol.game_master;
+import "bnet/game_factory.proto";
+import "bnet/server_pool_service.proto";
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+import "bnet/rpc.proto";
+import "bnet/game_master_types.proto";
+
+message JoinGameRequest {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+	repeated .bnet.protocol.game_master.Player player = 2;
+}
+message JoinGameResponse {
+	optional fixed64 request_id = 1;
+	optional bool queued = 2 [default = false];
+	repeated .bnet.protocol.game_master.ConnectInfo connect_info = 3;
+}
+message ListFactoriesRequest {
+	required .bnet.protocol.attribute.AttributeFilter filter = 1;
+	optional uint32 start_index = 2 [default = 0];
+	optional uint32 max_results = 3 [default = 100];
+}
+message ListFactoriesResponse {
+	repeated .bnet.protocol.game_master.GameFactoryDescription description = 1;
+	optional uint32 total_results = 2;
+}
+message FindGameRequest {
+	repeated .bnet.protocol.game_master.Player player = 1;
+	optional fixed64 factory_id = 2;
+	optional .bnet.protocol.game_master.GameProperties properties = 3;
+	optional uint64 factory_object_id = 4;
+	optional fixed64 request_id = 5;
+}
+message FindGameResponse {
+	optional fixed64 request_id = 1;
+	optional fixed64 factory_id = 2;
+	optional bool queued = 3 [default = false];
+}
+message CancelGameEntryRequest {
+	required fixed64 request_id = 1;
+	optional fixed64 factory_id = 2;
+	repeated .bnet.protocol.game_master.Player player = 3;
+}
+message GameEndedNotification {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+	optional uint32 reason = 2 [default = 0];
+}
+message PlayerLeftNotification {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+	required .bnet.protocol.EntityId member_id = 2;
+	optional uint32 reason = 3 [default = 1];
+}
+message RegisterServerRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional .bnet.protocol.server_pool.ServerState state = 2;
+	required fixed32 program_id = 3;
+}
+message UnregisterServerRequest {
+}
+message RegisterUtilitiesRequest {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	optional .bnet.protocol.server_pool.ServerState state = 2;
+	required fixed32 program_id = 3;
+}
+message UnregisterUtilitiesRequest {
+}
+message SubscribeRequest {
+	required uint64 object_id = 1;
+}
+message SubscribeResponse {
+	optional uint64 subscription_id = 1;
+}
+message UnsubscribeRequest {
+	required uint64 subscription_id = 1;
+}
+message ChangeGameRequest {
+	required .bnet.protocol.game_master.GameHandle game_handle = 1;
+	optional bool open = 2;
+	repeated .bnet.protocol.attribute.Attribute attribute = 3;
+	optional bool replace = 4 [default = false];
+}
+message GetFactoryInfoRequest {
+	required fixed64 factory_id = 1;
+}
+message GetFactoryInfoResponse {
+	repeated .bnet.protocol.attribute.Attribute attribute = 1;
+	repeated .bnet.protocol.game_master.GameStatsBucket stats_bucket = 2;
+}
+message GetGameStatsRequest {
+	required fixed64 factory_id = 1;
+	required .bnet.protocol.attribute.AttributeFilter filter = 2;
+}
+message GetGameStatsResponse {
+	repeated .bnet.protocol.game_master.GameStatsBucket stats_bucket = 1;
+}
+message FactoryUpdateNotification {
+	enum Operation {
+		ADD = 1;
+		REMOVE = 2;
+		CHANGE = 3;
+	}
+	required .bnet.protocol.game_master.FactoryUpdateNotification.Operation op = 1;
+	required .bnet.protocol.game_master.GameFactoryDescription description = 2;
+	optional fixed32 program_id = 3;
+}
+message GameFoundNotification {
+	required fixed64 request_id = 1;
+	optional uint32 error_code = 2 [default = 0];
+	optional .bnet.protocol.game_master.GameHandle game_handle = 3;
+	repeated .bnet.protocol.game_master.ConnectInfo connect_info = 4;
+}
+service GameMaster {
+	rpc JoinGame (.bnet.protocol.game_master.JoinGameRequest) returns (.bnet.protocol.game_master.JoinGameResponse);
+	rpc ListFactories (.bnet.protocol.game_master.ListFactoriesRequest) returns (.bnet.protocol.game_master.ListFactoriesResponse);
+	rpc FindGame (.bnet.protocol.game_master.FindGameRequest) returns (.bnet.protocol.game_master.FindGameResponse);
+	rpc CancelGameEntry (.bnet.protocol.game_master.CancelGameEntryRequest) returns (.bnet.protocol.NoData);
+	rpc GameEnded (.bnet.protocol.game_master.GameEndedNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc PlayerLeft (.bnet.protocol.game_master.PlayerLeftNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc RegisterServer (.bnet.protocol.game_master.RegisterServerRequest) returns (.bnet.protocol.NoData);
+	rpc UnregisterServer (.bnet.protocol.game_master.UnregisterServerRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc RegisterUtilities (.bnet.protocol.game_master.RegisterUtilitiesRequest) returns (.bnet.protocol.NoData);
+	rpc UnregisterUtilities (.bnet.protocol.game_master.UnregisterUtilitiesRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc Subscribe (.bnet.protocol.game_master.SubscribeRequest) returns (.bnet.protocol.game_master.SubscribeResponse);
+	rpc Unsubscribe (.bnet.protocol.game_master.UnsubscribeRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc ChangeGame (.bnet.protocol.game_master.ChangeGameRequest) returns (.bnet.protocol.NoData);
+	rpc GetFactoryInfo (.bnet.protocol.game_master.GetFactoryInfoRequest) returns (.bnet.protocol.game_master.GetFactoryInfoResponse);
+	rpc GetGameStats (.bnet.protocol.game_master.GetGameStatsRequest) returns (.bnet.protocol.game_master.GetGameStatsResponse);
+}
+service GameMasterSubscriber {
+	rpc NotifyFactoryUpdate (.bnet.protocol.game_master.FactoryUpdateNotification) returns (.bnet.protocol.NO_RESPONSE);
+}
+service GameFactorySubscriber {
+	rpc NotifyGameFound (.bnet.protocol.game_master.GameFoundNotification) returns (.bnet.protocol.NO_RESPONSE);
+}

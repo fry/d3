@@ -1,0 +1,234 @@
+package bnet.protocol.exchange;
+import "bnet/entity.proto";
+import "bnet/exchange.proto";
+
+message OrderBook {
+	required .bnet.protocol.exchange.BlobOfType object = 1;
+	required fixed32 program = 2;
+	required uint32 compatibility = 3;
+	required string currency = 4;
+	required int32 specialist = 5;
+	required uint32 allowed_realm = 6;
+}
+message OrderBookHandle {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 order_book_id = 2;
+}
+message OrderBookNotification {
+	required .bnet.protocol.exchange.OrderBook order_book = 1;
+	required .bnet.protocol.exchange.PartitionId partition_id = 2;
+	required uint64 order_book_id = 3;
+	optional uint64 trade_now_price = 4 [default = 0];
+	optional uint64 winning_price = 5 [default = 0];
+	required uint32 status = 6;
+	required uint64 update_time = 7;
+	optional uint64 closed_time = 8 [default = 0];
+	required uint64 filled_amount = 9;
+}
+message OrderBookSummary {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 order_book_id = 2;
+	required uint32 result = 3;
+	optional .bnet.protocol.exchange.OrderBook order_book = 4;
+	optional uint64 amount = 5;
+	optional uint64 best_offer_price = 6;
+	optional uint64 best_bid_price = 7;
+	optional uint64 end_time = 8;
+	optional int32 status = 9;
+	optional uint64 created_time = 10;
+	optional uint64 active_time = 11;
+	optional uint64 closed_time = 12;
+	optional uint32 reason = 13;
+	optional uint64 out_bid_unit_price = 14;
+}
+message Order {
+	required uint32 amount = 1;
+	optional uint64 start_time = 2;
+	optional uint64 end_time = 3;
+	optional .bnet.protocol.exchange.BlobFrom account_for_money = 4;
+	optional .bnet.protocol.exchange.BlobFrom account_for_item = 5;
+	optional .bnet.protocol.EntityId bnet_account = 6;
+	optional .bnet.protocol.EntityId game_account = 7;
+	optional .bnet.protocol.exchange.PartitionId session_id = 8;
+}
+message Extension {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 order_book_id = 2;
+	required uint64 order_id = 3;
+	optional uint64 filled_amount = 4;
+	optional int32 order_status = 5;
+	optional uint64 authorized_time = 6;
+	optional uint64 created_time = 7;
+	optional uint64 closed_time = 8;
+	optional uint32 reason = 9;
+	optional .bnet.protocol.exchange.OrderBook order_book = 10;
+	optional uint64 order_book_status = 11;
+	optional uint64 money_to_claim = 12;
+	optional uint64 items_to_claim = 13;
+	optional bool risk_delayed = 14 [default = false];
+	optional uint32 fail_order_action = 15;
+	optional uint32 fail_object_type = 16;
+	optional uint32 fail_error_code = 17;
+	optional uint32 fail_extra_error_code = 18;
+	optional uint64 refunded = 19;
+	optional uint64 filled_fund_amount = 20;
+}
+message Offer {
+	required .bnet.protocol.exchange.Order order = 1;
+	optional uint64 trade_now_price = 2;
+	optional uint64 reserve_price = 3;
+	optional uint64 out_bid_price = 4;
+}
+message OfferExtended {
+	required .bnet.protocol.exchange.Offer offer = 1;
+	required .bnet.protocol.exchange.Extension extension = 2;
+	optional uint64 current_winning_price = 3;
+}
+message OfferCreation {
+	required .bnet.protocol.exchange.Offer offer = 1;
+	optional uint64 auction_duration = 2;
+	optional uint64 auction_start_delay = 3;
+	optional .bnet.protocol.exchange.BillingAddress billing_address = 4;
+}
+message Bid {
+	required .bnet.protocol.exchange.Order order = 1;
+	optional uint64 current_unit_price = 2;
+	optional uint64 max_unit_price = 3;
+}
+message BidExtended {
+	required .bnet.protocol.exchange.Bid bid = 1;
+	required .bnet.protocol.exchange.Extension extension = 2;
+	optional uint64 offer_out_bid_price = 3;
+	optional uint64 offer_trade_now_price = 4;
+	optional uint64 offer_current_winning_price = 5;
+	optional uint64 bid_current_unit_price = 6;
+	optional uint64 bid_max_unit_price = 7;
+}
+message BidCreation {
+	required .bnet.protocol.exchange.Bid bid = 1;
+	optional uint64 auction_duration = 2;
+	optional uint64 auction_start_delay = 3;
+	optional .bnet.protocol.exchange.BillingAddress billing_address = 4;
+	optional bool fill_or_kill = 5 [default = false];
+}
+message OrderExtended {
+	required uint32 order_type = 1;
+	optional .bnet.protocol.exchange.BidExtended bid_extended = 2;
+	optional .bnet.protocol.exchange.OfferExtended offer_extended = 3;
+}
+message QueryFilterByOrderId {
+	required uint32 max_result = 1;
+	optional uint64 ref_order_id = 2;
+	optional uint64 ref_price = 3;
+}
+message QueryFilterByCreatedTime {
+	required uint32 max_result = 1;
+	optional uint64 ref_created_time = 2;
+}
+message QueryOrderFilter {
+	optional string currency = 1;
+	optional uint32 specialist = 2;
+	optional uint32 order_type = 3;
+	optional uint32 claimable = 4 [default = 0];
+	optional uint32 order_status_mask = 5;
+	optional bool rollup = 6 [default = false];
+	required .bnet.protocol.exchange.QueryFilterByCreatedTime time_filter = 7;
+	optional uint32 order_book_status = 8;
+}
+message CurrencyConfig {
+	required string currency = 1;
+	optional uint64 tick_size = 2;
+	optional uint64 min_unit_price = 3;
+	optional uint64 max_unit_price = 4;
+	optional uint64 min_total_price = 5;
+	optional uint64 max_total_price = 6;
+}
+message SpecialistConfig {
+	required int32 specialist = 1;
+	repeated uint64 auction_durations = 2;
+	repeated uint64 auction_start_delays = 3;
+	optional uint64 anti_sniping_extension_delay = 4;
+	optional uint64 max_items_amount = 5 [default = 0];
+	optional int32 starting_unit_price_rule = 6;
+	optional int32 reserved_unit_price_rule = 7;
+	optional int32 trade_now_unit_price_rule = 8;
+	optional int32 current_unit_price_rule = 9;
+	optional int32 maximum_unit_price_rule = 10;
+	repeated .bnet.protocol.exchange.CurrencyConfig currency_config = 11;
+	optional int32 fill_or_kill_rule = 12;
+}
+message FeeEstimationData {
+	required fixed32 program = 1;
+	required int32 specialist = 2;
+	required string currency = 3;
+	required fixed32 source = 4;
+	required uint64 money_amount = 5;
+	required uint64 item_amount = 6;
+	optional .bnet.protocol.EntityId bnet_account = 7;
+	optional .bnet.protocol.exchange.BillingAddress billing_address = 8;
+}
+message FeeDetail {
+	required uint64 rownum = 1;
+	required uint64 fee_auth_detail_id = 2;
+	optional uint64 fee_id = 3;
+	optional uint64 fee_amount = 4;
+	optional uint64 discount_amount = 5;
+	optional uint64 fee_group_id = 6;
+	optional string fee_group_name = 7;
+	optional uint64 flat_fee_amount = 8;
+	optional float scaling_fee_rate = 9;
+	optional uint64 max_fee_amount = 10;
+	optional string fee_description = 11;
+	required bool is_tax = 12;
+	optional uint64 coupon_book_id = 13;
+	optional uint64 coupon_type = 14;
+	optional string coupon_description = 15;
+	optional uint64 left_over_coupon_credit = 16;
+	optional uint64 left_over_coupon_charge = 17;
+}
+message PriceDetail {
+	required uint64 trade_price = 1;
+	required uint64 amount = 2;
+}
+message Count {
+	required uint32 count = 1;
+	optional uint32 limit = 2;
+}
+message AdvancedSubscription {
+	required fixed32 program = 1;
+	required uint32 event = 2;
+	repeated uint32 reason = 3;
+}
+message HistoryData {
+	required uint64 order_book_id = 1;
+	required .bnet.protocol.exchange.PartitionId partition_id = 2;
+	required uint64 action_id = 3;
+	optional uint64 parent_settle_id = 4;
+	optional bool parent_settled = 5;
+	required uint64 authorized_amount = 6;
+	optional uint64 authorized_fee_amount = 7;
+	required uint64 amount = 8;
+	optional uint64 fee_amount = 9;
+	required bool deferred = 10;
+	required bool has_been_deferred = 11;
+	required uint64 progress = 12;
+	required uint64 created = 13;
+	optional uint64 risk_completed = 14;
+	optional uint64 risk_result = 15;
+	optional uint64 risk_verdict = 16;
+	optional uint64 completed = 17;
+	optional uint64 result_code = 18;
+	required .bnet.protocol.exchange.BlobFrom account_for_item = 19;
+	required .bnet.protocol.exchange.BlobFrom account_for_money = 20;
+	required uint32 order_type = 21;
+	required uint64 order_id = 22;
+	required uint64 auth_id = 23;
+	required uint32 auth_object_type = 24;
+	required string trans_direction = 25;
+	required uint64 auth_complete_progress = 26;
+	required uint64 auth_filled_progress = 27;
+	required uint64 auth_total_progress = 28;
+	required .bnet.protocol.exchange.BlobFromOfType auth_handle = 29;
+	required bool auth_deferred = 30;
+	required .bnet.protocol.exchange.PartitionId token = 31;
+}

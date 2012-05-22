@@ -1,0 +1,42 @@
+
+CS.protoD3.CSAttributeSerializer.protoItems.protoOnlineService.protoItemCrafting.proto
+Hero.protoAccount.protoProfile.proto"©
+ToolTip(
+itemId (2.D3.OnlineService.ItemId
+ItemQualityLevel (
+Name (	
+Type (	
+SetItem (
+Flavor (	
+Cost (	
+
+Durability (	
+	ClassReqs	 (	
+Requirements
+ (	
+Enhancement (	
+
+StackCount (
+
+NumSockets (
+FilledSockets ("/
+TooltipList 
+tooltips (2.D3.CS.ToolTip"e
+
+FallenHero(
+profile (2.D3.Profile.HeroProfile
+digest (2.D3.Hero.Digest
+time (	"‡
+Snapshot
+version (/
+
+definition (2.D3.Account.SavedDefinition'
+heros (2.D3.Hero.SavedDefinition3
+account_profile (2.D3.Profile.AccountProfile2
+hero_profiles (2.D3.Profile.HeroProfileList'
+fallen_heros (2.D3.CS.FallenHero"E
+SnapshotVersion
+version (!
+snapshot (2.D3.CS.Snapshot"<
+SnapshotVersions(
+versions (2.D3.CS.SnapshotVersion

@@ -1,0 +1,312 @@
+package bnet.protocol.exchange;
+import "bnet/rpc.proto";
+import "bnet/exchange.proto";
+import "bnet/exchange_object_provider_types.proto";
+import "bnet/exchange_risk_types.proto";
+import "bnet/entity.proto";
+import "bnet/account_types.proto";
+import "bnet/exchange_types.proto";
+
+message CreateOrderBookRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.OrderBook order_book = 2;
+}
+message CreateOrderBookResponse {
+	optional uint64 order_book_id = 1;
+}
+message PlaceOfferOnOrderBookRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.OfferCreation offer_creation = 2;
+}
+message PlaceOfferOnOrderBookResponse {
+	optional uint64 order_book_id = 1;
+	optional uint64 offer_id = 2;
+}
+message PlaceOfferCreateOrderBookIfNeededRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.OrderBook order_book = 2;
+	required .bnet.protocol.exchange.OfferCreation offer_creation = 3;
+}
+message PlaceOfferCreateOrderBookIfNeededResponse {
+	optional uint64 order_book_id = 1;
+	optional uint64 offer_id = 2;
+}
+message PlaceBidOnOrderBookRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.BidCreation bid_creation = 2;
+}
+message PlaceBidOnOrderBookResponse {
+	optional uint64 order_book_id = 1;
+	optional uint64 bid_id = 2;
+}
+message PlaceBidCreateOrderBookIfNeededRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.OrderBook order_book = 2;
+	required .bnet.protocol.exchange.BidCreation bid_creation = 3;
+}
+message PlaceBidCreateOrderBookIfNeededResponse {
+	optional uint64 order_book_id = 1;
+	optional uint64 bid_id = 2;
+}
+message QueryOffersByOrderBookRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.QueryFilterByOrderId filter = 2;
+	required int32 status = 3;
+}
+message QueryOffersByOrderBookResponse {
+	repeated .bnet.protocol.exchange.OfferExtended offers = 1;
+	required uint32 total_count = 2;
+}
+message QueryBidsByOrderBookRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.QueryFilterByOrderId filter = 2;
+	required int32 status = 3;
+}
+message QueryBidsByOrderBookResponse {
+	repeated .bnet.protocol.exchange.BidExtended bids = 1;
+	required uint32 total_count = 2;
+}
+message QueryOffersByAccountForItemRequest {
+	required .bnet.protocol.exchange.BlobFrom account_for_item = 1;
+	required .bnet.protocol.exchange.QueryFilterByCreatedTime filter = 2;
+	optional .bnet.protocol.EntityId bnet_account = 3;
+}
+message QueryOffersByAccountForItemResponse {
+	repeated .bnet.protocol.exchange.OfferExtended offers = 1;
+	required uint32 total_count = 2;
+}
+message QueryBidsByAccountForItemRequest {
+	required .bnet.protocol.exchange.BlobFrom account_for_item = 1;
+	required .bnet.protocol.exchange.QueryFilterByCreatedTime filter = 2;
+	optional .bnet.protocol.EntityId bnet_account = 3;
+}
+message QueryBidsByAccountForItemResponse {
+	repeated .bnet.protocol.exchange.BidExtended bids = 1;
+	required uint32 total_count = 2;
+}
+message QueryOrderBooksSummaryRequest {
+	repeated .bnet.protocol.exchange.OrderBookHandle handles = 1;
+}
+message QueryOrderBooksSummaryResponse {
+	repeated .bnet.protocol.exchange.OrderBookSummary order_books = 1;
+}
+message SubscribeOrderBookStatusChangeRequest {
+	required uint64 object_id = 1;
+	required .bnet.protocol.exchange.PartitionId min_partition_id = 2;
+	required .bnet.protocol.exchange.PartitionId max_partition_id = 3;
+	required fixed32 program = 4;
+	required int32 status = 5;
+	required string currency = 6;
+	required int32 specialist = 7;
+	optional bool bootstrap = 8;
+	optional uint64 bootstrap_oldest_created_time = 9;
+}
+message UnsubscribeOrderBookStatusChangeRequest {
+}
+message SubscribeOrderUpdateRequest {
+	required .bnet.protocol.EntityId agent_id = 1;
+	required uint64 object_id = 2;
+}
+message UnsubscribeOrderUpdateRequest {
+	required .bnet.protocol.EntityId agent_id = 1;
+	required uint64 object_id = 2;
+}
+message SubscribeAdvancedOrderUpdateRequest {
+	required uint64 object_id = 1;
+	required .bnet.protocol.exchange.PartitionId min_partition_id = 2;
+	required .bnet.protocol.exchange.PartitionId max_partition_id = 3;
+	repeated .bnet.protocol.exchange.AdvancedSubscription filters = 4;
+}
+message UnsubscribeAdvancedOrderUpdateRequest {
+}
+message ClaimRequest {
+	optional .bnet.protocol.exchange.PartitionId partition_id = 1;
+	optional uint64 order_id = 2;
+	optional fixed32 program = 3;
+	optional .bnet.protocol.EntityId bnet_account = 4;
+	optional .bnet.protocol.exchange.BlobFrom information = 5;
+}
+message CancelRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 order_id = 2;
+	optional uint32 reason = 3;
+	optional .bnet.protocol.EntityId bnet_account = 4;
+}
+message RefundRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 order_id = 2;
+	required string cs_notes = 3;
+	required uint64 cs_user_id = 4;
+}
+message GetConfigurationRequest {
+	required fixed32 program = 1;
+}
+message GetConfigurationResponse {
+	repeated .bnet.protocol.exchange.SpecialistConfig configs = 1;
+	optional .bnet.protocol.account.AccountLicense rmt_restricted_by_license = 2;
+	optional string recommended_default_rmt_currency = 3;
+}
+message GetOfferFeeEstimationRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.FeeEstimationData data = 2;
+}
+message GetBidFeeEstimationRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.FeeEstimationData data = 2;
+}
+message GetFeeEstimationResponse {
+	required uint64 fee_amount = 1;
+	repeated .bnet.protocol.exchange.FeeDetail fee_details = 2;
+}
+message OrderBookNotificationRequest {
+	repeated .bnet.protocol.exchange.OrderBookNotification notifications = 1;
+	optional bool boot_strap_last = 2;
+}
+message OfferNotificationRequest {
+	required .bnet.protocol.exchange.OfferExtended offer = 1;
+	required uint32 event = 2;
+	optional uint32 object_type = 3;
+	optional uint32 claim_result = 4;
+	optional uint32 claim_result_reason = 5;
+}
+message BidNotificationRequest {
+	required .bnet.protocol.exchange.BidExtended bid = 1;
+	required uint32 event = 2;
+	optional uint32 object_type = 3;
+	optional uint32 claim_result = 4;
+	optional uint32 claim_result_reason = 5;
+}
+message CustomNotificationRequest {
+	required .bnet.protocol.exchange.OrderBookHandle handle = 1;
+	required uint64 order_id = 2;
+	required .bnet.protocol.exchange.BlobFrom info = 3;
+}
+message QueryOrdersByAccountForItemRequest {
+	required .bnet.protocol.exchange.BlobFrom account_for_item = 1;
+	optional .bnet.protocol.EntityId bnet_account = 2;
+	required .bnet.protocol.exchange.QueryOrderFilter filter = 3;
+}
+message QueryOrdersByAccountForItemResponse {
+	repeated .bnet.protocol.exchange.OrderExtended orders = 1;
+	required uint32 total_count = 2;
+}
+message GetFeeDetailsRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint64 order_id = 2;
+	optional .bnet.protocol.EntityId bnet_account = 3;
+}
+message GetFeeDetailsResponse {
+	repeated .bnet.protocol.exchange.FeeDetail fee_details_in = 1;
+	repeated .bnet.protocol.exchange.FeeDetail fee_details_out = 2;
+}
+message GetOrderBookStatisticsRequest {
+	required .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required uint32 order_type = 2;
+	required uint64 quantity = 3;
+	required uint32 last_trades = 4;
+	required uint32 last_days = 5;
+}
+message GetOrderBookStatisticsResponse {
+	repeated .bnet.protocol.exchange.PriceDetail price_details = 1;
+	required uint64 last_trades_average = 2;
+	required uint64 last_days_average = 3;
+}
+message GetBidDetailsRequest {
+	required uint64 order_id = 1;
+	required .bnet.protocol.exchange.PartitionId partition_id = 2;
+}
+message GetBidDetailsResponse {
+	required .bnet.protocol.exchange.OrderExtended bid = 1;
+}
+message GetOfferDetailsRequest {
+	required uint64 order_id = 1;
+	required .bnet.protocol.exchange.PartitionId partition_id = 2;
+}
+message GetOfferDetailsResponse {
+	required .bnet.protocol.exchange.OrderExtended offer = 1;
+}
+message GetSystemTimeResponse {
+	required uint64 time = 1;
+}
+message CreateCSTradeRequest {
+	optional .bnet.protocol.exchange.PartitionId partition_id = 1;
+	required .bnet.protocol.exchange.OrderBook order_book = 2;
+	required uint32 amount = 3;
+	required .bnet.protocol.EntityId bnet_account = 4;
+	optional .bnet.protocol.EntityId game_account = 5;
+	required .bnet.protocol.exchange.BlobFrom account_for_item = 6;
+	required string cs_notes = 7;
+	required uint64 cs_user_id = 8;
+}
+message GetOrderCountRequest {
+	optional string currency = 1;
+	optional fixed32 source = 2;
+	optional .bnet.protocol.EntityId bnet_account = 3;
+	optional bool not_closed_offer_count = 4 [default = false];
+	optional bool order_with_claimable_count = 5 [default = false];
+}
+message GetOrderCountResponse {
+	optional .bnet.protocol.exchange.Count not_closed_offer_count = 1;
+	optional .bnet.protocol.exchange.Count order_with_claimable_count = 2;
+}
+message HistoriesForCSRequest {
+	required .bnet.protocol.EntityId bnet_account = 1;
+	required fixed32 program = 2;
+	required uint64 lower_time = 3;
+	required uint64 higher_time = 4;
+}
+message HistoriesForCSResponse {
+	repeated .bnet.protocol.exchange.HistoryData history_data = 1;
+}
+service ExchangeService {
+	rpc CreateOrderBook (.bnet.protocol.exchange.CreateOrderBookRequest) returns (.bnet.protocol.exchange.CreateOrderBookResponse);
+	rpc PlaceOfferOnOrderBook (.bnet.protocol.exchange.PlaceOfferOnOrderBookRequest) returns (.bnet.protocol.exchange.PlaceOfferOnOrderBookResponse);
+	rpc PlaceOfferCreateOrderBookIfNeeded (.bnet.protocol.exchange.PlaceOfferCreateOrderBookIfNeededRequest) returns (.bnet.protocol.exchange.PlaceOfferCreateOrderBookIfNeededResponse);
+	rpc PlaceBidOnOrderBook (.bnet.protocol.exchange.PlaceBidOnOrderBookRequest) returns (.bnet.protocol.exchange.PlaceBidOnOrderBookResponse);
+	rpc PlaceBidCreateOrderBookIfNeeded (.bnet.protocol.exchange.PlaceBidCreateOrderBookIfNeededRequest) returns (.bnet.protocol.exchange.PlaceBidCreateOrderBookIfNeededResponse);
+	rpc QueryOffersByOrderBook (.bnet.protocol.exchange.QueryOffersByOrderBookRequest) returns (.bnet.protocol.exchange.QueryOffersByOrderBookResponse);
+	rpc QueryBidsByOrderBook (.bnet.protocol.exchange.QueryBidsByOrderBookRequest) returns (.bnet.protocol.exchange.QueryBidsByOrderBookResponse);
+	rpc QueryOffersByAccountForItem (.bnet.protocol.exchange.QueryOffersByAccountForItemRequest) returns (.bnet.protocol.exchange.QueryOffersByAccountForItemResponse);
+	rpc QueryBidsByAccountForItem (.bnet.protocol.exchange.QueryBidsByAccountForItemRequest) returns (.bnet.protocol.exchange.QueryBidsByAccountForItemResponse);
+	rpc QueryOrderBooksSummary (.bnet.protocol.exchange.QueryOrderBooksSummaryRequest) returns (.bnet.protocol.exchange.QueryOrderBooksSummaryResponse);
+	rpc ReportAuthorize (.bnet.protocol.exchange_object_provider.ReportAuthorizeRequest) returns (.bnet.protocol.NoData);
+	rpc ReportSettle (.bnet.protocol.exchange_object_provider.ReportSettleRequest) returns (.bnet.protocol.NoData);
+	rpc ReportCancel (.bnet.protocol.exchange_object_provider.ReportCancelRequest) returns (.bnet.protocol.NoData);
+	rpc SubscribeOrderBookStatusChange (.bnet.protocol.exchange.SubscribeOrderBookStatusChangeRequest) returns (.bnet.protocol.NoData);
+	rpc UnsubscribeOrderBookStatusChange (.bnet.protocol.exchange.UnsubscribeOrderBookStatusChangeRequest) returns (.bnet.protocol.NoData);
+	rpc SubscribeOrderUpdate (.bnet.protocol.exchange.SubscribeOrderUpdateRequest) returns (.bnet.protocol.NoData);
+	rpc UnsubscribeOrderUpdate (.bnet.protocol.exchange.UnsubscribeOrderUpdateRequest) returns (.bnet.protocol.NoData);
+	rpc GetPaymentMethods (.bnet.protocol.exchange_object_provider.GetPaymentMethodsRequest) returns (.bnet.protocol.exchange_object_provider.GetPaymentMethodsResponse);
+	rpc ClaimBidItem (.bnet.protocol.exchange.ClaimRequest) returns (.bnet.protocol.NoData);
+	rpc ClaimBidMoney (.bnet.protocol.exchange.ClaimRequest) returns (.bnet.protocol.NoData);
+	rpc ClaimOfferItem (.bnet.protocol.exchange.ClaimRequest) returns (.bnet.protocol.NoData);
+	rpc ClaimOfferMoney (.bnet.protocol.exchange.ClaimRequest) returns (.bnet.protocol.NoData);
+	rpc CancelBid (.bnet.protocol.exchange.CancelRequest) returns (.bnet.protocol.NoData);
+	rpc CancelOffer (.bnet.protocol.exchange.CancelRequest) returns (.bnet.protocol.NoData);
+	rpc GetConfiguration (.bnet.protocol.exchange.GetConfigurationRequest) returns (.bnet.protocol.exchange.GetConfigurationResponse);
+	rpc GetBidFeeEstimation (.bnet.protocol.exchange.GetBidFeeEstimationRequest) returns (.bnet.protocol.exchange.GetFeeEstimationResponse);
+	rpc GetOfferFeeEstimation (.bnet.protocol.exchange.GetOfferFeeEstimationRequest) returns (.bnet.protocol.exchange.GetFeeEstimationResponse);
+	rpc QueryOrdersByAccountForItem (.bnet.protocol.exchange.QueryOrdersByAccountForItemRequest) returns (.bnet.protocol.exchange.QueryOrdersByAccountForItemResponse);
+	rpc ReportAuthorizeRiskVerdict (.bnet.protocol.exchange_risk.ReportAuthorizeRiskVerdictRequest) returns (.bnet.protocol.NoData);
+	rpc ReportSettleRiskVerdict (.bnet.protocol.exchange_risk.ReportSettleRiskVerdictRequest) returns (.bnet.protocol.NoData);
+	rpc DelaySettleRiskVerdict (.bnet.protocol.exchange_risk.DelaySettleRiskVerdictRequest) returns (.bnet.protocol.NoData);
+	rpc GetFeeDetails (.bnet.protocol.exchange.GetFeeDetailsRequest) returns (.bnet.protocol.exchange.GetFeeDetailsResponse);
+	rpc GetOrderBookStatistics (.bnet.protocol.exchange.GetOrderBookStatisticsRequest) returns (.bnet.protocol.exchange.GetOrderBookStatisticsResponse);
+	rpc GetBidDetails (.bnet.protocol.exchange.GetBidDetailsRequest) returns (.bnet.protocol.exchange.GetBidDetailsResponse);
+	rpc GetOfferDetails (.bnet.protocol.exchange.GetOfferDetailsRequest) returns (.bnet.protocol.exchange.GetOfferDetailsResponse);
+	rpc GetSystemTime (.bnet.protocol.NoData) returns (.bnet.protocol.exchange.GetSystemTimeResponse);
+	rpc CreateCSTrade (.bnet.protocol.exchange.CreateCSTradeRequest) returns (.bnet.protocol.NoData);
+	rpc RefundBid (.bnet.protocol.exchange.RefundRequest) returns (.bnet.protocol.NoData);
+	rpc ReportRefund (.bnet.protocol.exchange_object_provider.ReportRefundRequest) returns (.bnet.protocol.NoData);
+	rpc GetOrderCount (.bnet.protocol.exchange.GetOrderCountRequest) returns (.bnet.protocol.exchange.GetOrderCountResponse);
+	rpc SubscribeAdvancedOrderUpdate (.bnet.protocol.exchange.SubscribeAdvancedOrderUpdateRequest) returns (.bnet.protocol.NoData);
+	rpc UnsubscribeAdvancedOrderUpdate (.bnet.protocol.exchange.UnsubscribeAdvancedOrderUpdateRequest) returns (.bnet.protocol.NoData);
+	rpc SettleHistoriesForCS (.bnet.protocol.exchange.HistoriesForCSRequest) returns (.bnet.protocol.exchange.HistoriesForCSResponse);
+	rpc CancelHistoriesForCS (.bnet.protocol.exchange.HistoriesForCSRequest) returns (.bnet.protocol.exchange.HistoriesForCSResponse);
+}
+service ExchangeNotify {
+	rpc NotifyOrderBookStatusChange (.bnet.protocol.exchange.OrderBookNotificationRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyOfferUpdate (.bnet.protocol.exchange.OfferNotificationRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyBidUpdate (.bnet.protocol.exchange.BidNotificationRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc NotifyCustomMessage (.bnet.protocol.exchange.CustomNotificationRequest) returns (.bnet.protocol.NO_RESPONSE);
+}

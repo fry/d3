@@ -1,0 +1,19 @@
+package bnet.protocol.report;
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+import "bnet/rpc.proto";
+
+message Report {
+	required string report_type = 1;
+	repeated .bnet.protocol.attribute.Attribute attribute = 2;
+	optional int32 report_qos = 3 [default = 0];
+	optional .bnet.protocol.EntityId reporting_account = 4;
+	optional .bnet.protocol.EntityId reporting_game_account = 5;
+	optional fixed64 report_timestamp = 6;
+}
+message SendReportRequest {
+	required .bnet.protocol.report.Report report = 1;
+}
+service ReportService {
+	rpc SendReport (.bnet.protocol.report.SendReportRequest) returns (.bnet.protocol.NoData);
+}

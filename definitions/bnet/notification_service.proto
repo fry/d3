@@ -1,0 +1,37 @@
+package bnet.protocol.notification;
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+import "bnet/rpc.proto";
+
+message Notification {
+	optional .bnet.protocol.EntityId sender_id = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+	required string type = 3;
+	repeated .bnet.protocol.attribute.Attribute attribute = 4;
+	optional .bnet.protocol.EntityId sender_account_id = 5;
+	optional .bnet.protocol.EntityId target_account_id = 6;
+	optional string sender_battle_tag = 7;
+}
+message FindClientRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+}
+message FindClientResponse {
+	required uint32 label = 1;
+	optional .bnet.protocol.ProcessId client_process_id = 2;
+}
+message RegisterClientRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+}
+message UnregisterClientRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+}
+service NotificationService {
+	rpc SendNotification (.bnet.protocol.notification.Notification) returns (.bnet.protocol.NoData);
+	rpc RegisterClient (.bnet.protocol.notification.RegisterClientRequest) returns (.bnet.protocol.NoData);
+	rpc UnregisterClient (.bnet.protocol.notification.UnregisterClientRequest) returns (.bnet.protocol.NoData);
+	rpc FindClient (.bnet.protocol.notification.FindClientRequest) returns (.bnet.protocol.notification.FindClientResponse);
+}
+service NotificationListener {
+	rpc OnNotificationReceived (.bnet.protocol.notification.Notification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc OnNotificationSent (.bnet.protocol.notification.Notification) returns (.bnet.protocol.NO_RESPONSE);
+}

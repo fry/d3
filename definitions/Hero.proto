@@ -16,6 +16,7 @@ message VisualEquipment {
 message QuestHistoryEntry {
 	required sfixed32 sno_quest = 1 [default = -1];
 	required sint32 difficulty = 2 [default = 0];
+	optional sint32 highest_played_quest_step = 3 [default = -3];
 }
 message QuestRewardHistoryEntry {
 	required sfixed32 sno_quest = 1 [default = -1];
@@ -31,22 +32,26 @@ message Digest {
 	required uint32 player_flags = 6;
 	required .D3.Hero.VisualEquipment visual_equipment = 7;
 	repeated .D3.Hero.QuestHistoryEntry quest_history = 8;
-	required sint32 last_played_act = 10;
-	required sint32 highest_unlocked_act = 11;
-	required sint32 last_played_difficulty = 12;
-	required sint32 highest_unlocked_difficulty = 13;
-	required sfixed32 last_played_quest = 14;
-	required sint32 last_played_quest_step = 15;
-	required uint32 time_played = 16 [default = 0];
+	required sint32 last_played_act = 9;
+	required sint32 highest_unlocked_act = 10;
+	required sint32 last_played_difficulty = 11;
+	required sint32 highest_unlocked_difficulty = 12;
+	required sfixed32 last_played_quest = 13;
+	required sint32 last_played_quest_step = 14;
+	required uint32 time_played = 15 [default = 0];
+	optional sint32 highest_completed_difficulty = 16 [default = -1];
+	optional uint32 create_time = 17;
+	optional uint32 last_played_time = 18;
 }
-message HotbarButtonData {
-	required sfixed32 sno_power = 1 [default = -1];
-	required sfixed32 gbid_item = 2 [default = -1];
-}
-message SkillKeyMapping {
-	required sfixed32 sno_power = 1 [default = -1];
-	required sint32 id_hotkey = 2 [default = -1];
-	required sint32 skill_button = 3 [default = 0];
+message DigestUI {
+	required sint32 last_played_act = 1;
+	required sint32 highest_unlocked_act = 2;
+	required sint32 last_played_difficulty = 3;
+	required sint32 highest_unlocked_difficulty = 4;
+	required sfixed32 last_played_quest = 5;
+	required sint32 last_played_quest_step = 6;
+	required uint32 time_played = 7 [default = 0];
+	optional sint32 highest_completed_difficulty = 8;
 }
 message SavedQuest {
 	required sfixed32 sno_quest = 1 [default = -1];
@@ -67,19 +72,23 @@ message SavePointData_Proto {
 	required sint32 savepoint_number = 2 [default = -1];
 	required uint32 creates_portal = 3 [default = 0];
 }
+message SkillWithRune {
+	required sfixed32 sno_skill = 1 [default = -1];
+	optional sint32 rune_type = 2 [default = -1];
+}
 message SavedData {
-	repeated .D3.Hero.HotbarButtonData hotbar_button_assignments = 1;
-	repeated .D3.Hero.SkillKeyMapping skill_key_map = 2;
-	required uint32 time_played = 3 [default = 0];
-	required uint32 activated_waypoints = 4 [default = 0];
-	required .D3.Hireling.SavedData hireling_saved_data = 5;
-	required uint32 last_level_time = 6 [default = 0];
-	required .D3.Hero.LearnedLore learned_lore = 7;
-	required .D3.Hero.SavedConversations saved_conversations = 8;
-	repeated sfixed32 sno_active_skills = 9;
-	repeated sfixed32 sno_traits = 10;
-	repeated sfixed32 seen_tutorials = 11;
-	required .D3.Hero.SavePointData_Proto save_point = 12;
+	required uint32 time_played = 1 [default = 0];
+	required uint32 activated_waypoints = 2 [default = 0];
+	required .D3.Hireling.SavedData hireling_saved_data = 3;
+	required uint32 last_level_time = 4 [default = 0];
+	required .D3.Hero.LearnedLore learned_lore = 5;
+	required .D3.Hero.SavedConversations saved_conversations = 6;
+	repeated sfixed32 sno_traits = 7;
+	required .D3.Hero.SavePointData_Proto save_point = 8;
+	required sfixed32 gbid_potion_button = 9 [default = -1];
+	repeated .D3.Hero.SkillWithRune active_skills = 10;
+	required bytes skill_slot_ever_assigned = 11;
+	required uint32 skill_version = 12 [default = 0];
 }
 message Timestamps {
 	required sint64 create_time = 1;
@@ -94,19 +103,21 @@ message SavedDefinition {
 	optional .D3.Items.ItemList items = 6;
 	repeated .D3.Hero.QuestRewardHistoryEntry quest_reward_history = 7;
 }
-message NameSequence {
-	optional int64 sequence = 1 [default = 0];
-}
 message NameText {
 	required string name = 1;
 }
-message Escrow {
-	required uint32 version = 1;
-	optional .D3.Items.Generator generator = 2;
-	optional .D3.Hero.SavedData hero_data = 3;
-	optional uint32 state = 4;
-	repeated .D3.OnlineService.ItemId serviced_tokens = 5;
-}
 message HeroList {
 	repeated .D3.OnlineService.EntityId hero_ids = 1;
+}
+message DigestList {
+	repeated .D3.Hero.Digest digests = 1;
+}
+message QuestHistoryList {
+	repeated .D3.Hero.QuestHistoryEntry quest_history = 1;
+}
+message SavedQuestList {
+	repeated .D3.Hero.SavedQuest saved_quests = 1;
+}
+message QuestRewardHistoryList {
+	repeated .D3.Hero.QuestRewardHistoryEntry quest_reward_history = 1;
 }

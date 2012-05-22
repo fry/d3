@@ -1,20 +1,0 @@
-
-lib/protocol/resource.protobnet.protocol!lib/protocol/content_handle.protolib/protocol/attribute.proto"h
-Payload
-content_handle (	
-	data_size (2
-custom (2".bnet.protocol.attribute.Attribute"Y
-
-Dependency
-resource_handle (	2
-custom (2".bnet.protocol.attribute.Attribute"b
-Metadata-
-
-dependency (2.bnet.protocol.Dependency'
-payload (2.bnet.protocol.Payload"'
-
-IndexEntry
-name (	
-url (	"9
-ResourceIndex(
-entry (2.bnet.protocol.IndexEntry

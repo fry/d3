@@ -29,13 +29,16 @@ message SavedDefinition {
 	required uint32 version = 1;
 	optional .D3.Account.Digest digest = 2;
 	required .D3.AttributeSerializer.SavedAttributes saved_attributes = 3;
-	optional .D3.Items.ItemList normal_shared_saved_items = 4;
-	optional .D3.Items.ItemList hardcore_shared_saved_items = 5;
-	optional .D3.ItemCrafting.CrafterSavedData crafter_saved_data = 6;
-	repeated sfixed32 seen_tutorials = 7;
-	optional sfixed64 num_vote_kicks_participated_in = 8;
-	optional sfixed64 num_vote_kicks_initiated = 9;
-	optional sfixed64 num_public_games_no_kick = 10;
-	optional sfixed64 times_vote_kicked = 11;
-	optional .D3.OnlineService.EntityId gold_id = 12;
+	optional .D3.AttributeSerializer.SavedAttributes saved_attributes_hardcore = 4;
+	optional .D3.Items.ItemList normal_shared_saved_items = 5;
+	optional .D3.Items.ItemList hardcore_shared_saved_items = 6;
+	optional .D3.ItemCrafting.CrafterSavedData crafter_normal_data = 7;
+	optional .D3.ItemCrafting.CrafterSavedData crafter_hardcore_data = 8;
+	optional bytes seen_tutorials = 9;
+	optional sfixed64 num_vote_kicks_participated_in = 10;
+	optional sfixed64 num_vote_kicks_initiated = 11;
+	optional sfixed64 num_public_games_no_kick = 12;
+	optional sfixed64 times_vote_kicked = 13;
+	optional .D3.OnlineService.EntityId gold_id_normal = 14;
+	optional .D3.OnlineService.EntityId gold_id_hardcore = 15;
 }

@@ -1,0 +1,55 @@
+package bnet.protocol.authentication;
+import "bnet/account_types.proto";
+import "bnet/rpc.proto";
+import "bnet/content_handle.proto";
+import "bnet/entity.proto";
+
+message ModuleLoadRequest {
+	required .bnet.protocol.ContentHandle module_handle = 1;
+	optional bytes message = 2;
+}
+message ModuleNotification {
+	optional int32 module_id = 2;
+	optional uint32 result = 3;
+}
+message ModuleMessageRequest {
+	required int32 module_id = 1;
+	optional bytes message = 2;
+}
+message LogonRequest {
+	optional string program = 1;
+	optional string platform = 2;
+	optional string locale = 3;
+	optional string email = 4;
+	optional string version = 5;
+	optional int32 application_version = 6;
+}
+message LogonResult {
+	required uint32 error_code = 1;
+	optional .bnet.protocol.EntityId account = 2;
+	repeated .bnet.protocol.EntityId game_account = 3;
+}
+message AccountSettingsNotification {
+	repeated .bnet.protocol.account.AccountLicense licenses = 1;
+	optional bool is_using_rid = 2;
+	optional bool is_playing_from_igr = 3;
+	optional bool can_receive_voice = 4;
+	optional bool can_send_voice = 5;
+}
+message ServerStateChangeRequest {
+	required uint32 state = 1;
+	required uint64 event_time = 2;
+}
+service AuthenticationClient {
+	rpc ModuleLoad (.bnet.protocol.authentication.ModuleLoadRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc ModuleMessage (.bnet.protocol.authentication.ModuleMessageRequest) returns (.bnet.protocol.NoData);
+	rpc AccountSettings (.bnet.protocol.authentication.AccountSettingsNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc ServerStateChange (.bnet.protocol.authentication.ServerStateChangeRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc LogonComplete (.bnet.protocol.authentication.LogonResult) returns (.bnet.protocol.NO_RESPONSE);
+}
+service AuthenticationServer {
+	rpc Logon (.bnet.protocol.authentication.LogonRequest) returns (.bnet.protocol.NoData);
+	rpc ModuleNotify (.bnet.protocol.authentication.ModuleNotification) returns (.bnet.protocol.NoData);
+	rpc ModuleMessage (.bnet.protocol.authentication.ModuleMessageRequest) returns (.bnet.protocol.NoData);
+	rpc SelectGameAccount (.bnet.protocol.EntityId) returns (.bnet.protocol.NoData);
+}

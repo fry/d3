@@ -1,0 +1,13 @@
+
+bnet/entity.protobnet.protocolbnet/field_options.proto"1
+EntityId
+high (B€µ
+low (B€µ"i
+Identity+
+
+account_id (2.bnet.protocol.EntityId0
+game_account_id (2.bnet.protocol.EntityId"A
+AccountInfo
+account_paid (:false
+
+country_id (:0

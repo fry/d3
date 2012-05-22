@@ -1,0 +1,42 @@
+package bnet.protocol.presence;
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+import "bnet/rpc.proto";
+import "bnet/presence_types.proto";
+
+message SubscribeRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId entity_id = 2;
+	required uint64 object_id = 3;
+}
+message SubscribeNotificationRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+}
+message UnsubscribeRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	required .bnet.protocol.EntityId entity_id = 2;
+}
+message UpdateRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+	repeated .bnet.protocol.presence.FieldOperation field_operation = 2;
+}
+message QueryRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+	repeated .bnet.protocol.presence.FieldKey key = 2;
+}
+message QueryResponse {
+	repeated .bnet.protocol.presence.Field field = 2;
+}
+message OwnershipRequest {
+	required .bnet.protocol.EntityId entity_id = 1;
+	optional bool release_ownership = 2 [default = false];
+}
+service PresenceService {
+	rpc Subscribe (.bnet.protocol.presence.SubscribeRequest) returns (.bnet.protocol.NoData);
+	rpc Unsubscribe (.bnet.protocol.presence.UnsubscribeRequest) returns (.bnet.protocol.NoData);
+	rpc Update (.bnet.protocol.presence.UpdateRequest) returns (.bnet.protocol.NoData);
+	rpc Query (.bnet.protocol.presence.QueryRequest) returns (.bnet.protocol.presence.QueryResponse);
+	rpc Ownership (.bnet.protocol.presence.OwnershipRequest) returns (.bnet.protocol.NoData);
+	rpc Heal (.bnet.protocol.presence.UpdateRequest) returns (.bnet.protocol.NoData);
+	rpc SubscribeNotification (.bnet.protocol.presence.SubscribeNotificationRequest) returns (.bnet.protocol.NoData);
+}

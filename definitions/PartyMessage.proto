@@ -11,3 +11,11 @@ message SearchForPublicGameParams {
 	optional .D3.OnlineService.GameCreateParams game_params = 3;
 	optional int32 remove_reason = 4;
 }
+message EnterGamePartyMember {
+	required .D3.OnlineService.EntityId account_id = 1;
+	required .D3.OnlineService.EntityId hero_id = 2;
+}
+message EnterGamePartyMemberList {
+	repeated .D3.PartyMessage.EnterGamePartyMember member = 1;
+	optional int32 requester_index = 2;
+}

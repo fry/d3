@@ -19,17 +19,16 @@
 open_to_friends (:false
 open_to_friends_message (	"(
 PvPCreateParams
-	sno_world (:-1"Ê
+	sno_world (:-1"°
 GameCreateParams
 	game_type (
 creation_flags (:00
 coop (2".D3.OnlineService.CoopCreateParams.
 pvp (2!.D3.OnlineService.PvPCreateParams
-name (	
+name (	"n
+HeroCreateParams
+name (	
 
-is_private (:true"`
-HeroCreateParams
-
-gbid_class (:-1
-is_hardcore (:false
-	is_female (:false
+gbid_class (:-1
+is_hardcore (:false
+	is_female (:false

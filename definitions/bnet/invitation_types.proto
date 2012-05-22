@@ -1,0 +1,49 @@
+package bnet.protocol.invitation;
+import "bnet/attribute.proto";
+import "bnet/entity.proto";
+
+message Invitation {
+	required fixed64 id = 1;
+	required .bnet.protocol.Identity inviter_identity = 2;
+	required .bnet.protocol.Identity invitee_identity = 3;
+	optional string inviter_name = 4;
+	optional string invitee_name = 5;
+	optional string invitation_message = 6;
+	optional uint64 creation_time = 7;
+	optional uint64 expiration_time = 8;
+	extensions 100 to 10000;
+}
+message Suggestion {
+	optional .bnet.protocol.EntityId channel_id = 1;
+	required .bnet.protocol.EntityId suggester_id = 2;
+	required .bnet.protocol.EntityId suggestee_id = 3;
+	optional string suggester_name = 4;
+	optional string suggestee_name = 5;
+}
+message InvitationParams {
+	optional string invitation_message = 1;
+	optional uint64 expiration_time = 2 [default = 0];
+	extensions 100 to 10000;
+}
+message SendInvitationRequest {
+	optional .bnet.protocol.Identity agent_identity = 1;
+	required .bnet.protocol.EntityId target_id = 2;
+	required .bnet.protocol.invitation.InvitationParams params = 3;
+}
+message SendInvitationResponse {
+	optional .bnet.protocol.invitation.Invitation invitation = 2;
+}
+message UpdateInvitationRequest {
+	optional .bnet.protocol.Identity agent_identity = 1;
+	required fixed64 invitation_id = 2;
+	required .bnet.protocol.invitation.InvitationParams params = 3;
+}
+message GenericRequest {
+	optional .bnet.protocol.EntityId agent_id = 1;
+	optional .bnet.protocol.EntityId target_id = 2;
+	required fixed64 invitation_id = 3;
+	optional string invitee_name = 4;
+	optional string inviter_name = 5;
+	repeated uint32 previous_role = 6;
+	repeated uint32 desired_role = 7;
+}

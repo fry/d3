@@ -12,18 +12,18 @@ message Generator {
 	required uint32 seed = 1 [default = 0];
 	required .D3.GameBalance.Handle gb_handle = 2;
 	repeated sfixed32 base_affixes = 3;
-	required .D3.Items.RareItemName rare_item_name = 4;
-	required sfixed32 enchant_affix = 5 [default = -1];
-	required sfixed32 socket_affix = 6 [default = -1];
-	required uint32 flags = 7 [default = 0];
-	required uint32 durability = 8;
-	required uint64 stack_size = 9;
-	required uint32 dye_type = 10;
-	required sint32 item_quality_level = 11;
-	required sint32 item_binding_level = 12;
-	required uint32 max_durability = 13;
-	repeated .D3.Items.EmbeddedGenerator contents = 14;
-	optional sfixed32 attuned_skill = 15 [default = -1];
+	optional .D3.Items.RareItemName rare_item_name = 4;
+	optional sfixed32 enchant_affix = 5 [default = -1];
+	required uint32 flags = 6 [default = 0];
+	required uint32 durability = 7;
+	required uint64 stack_size = 8;
+	optional uint32 dye_type = 9 [default = 0];
+	optional sint32 item_quality_level = 10 [default = 1];
+	optional sint32 item_binding_level = 11 [default = 0];
+	optional uint32 max_durability = 12 [default = 0];
+	repeated .D3.Items.EmbeddedGenerator contents = 13;
+	optional uint64 item_unlock_timestamp = 14 [default = 0];
+	optional uint32 enchant_range_val = 15 [default = 0];
 }
 message EmbeddedGenerator {
 	required .D3.OnlineService.ItemId id = 1;
@@ -39,23 +39,6 @@ message SavedItem {
 	required uint32 used_socket_count = 7 [default = 0];
 	optional .D3.Items.Generator generator = 8;
 }
-message AuctionAccountInfo {
-	required .D3.OnlineService.EntityId account_id = 1;
-	required .D3.OnlineService.EntityId escrow_id = 2;
-}
-message AuctionItem {
-	required .D3.OnlineService.ItemId id = 1;
-	required .D3.Items.Generator generator = 2;
-}
-message AuctionInfo {
-	required .D3.OnlineService.ItemId id = 1;
-	optional .D3.Items.Ownership owner = 2;
-}
 message ItemList {
 	repeated .D3.Items.SavedItem items = 1;
-}
-message Ownership {
-	required .D3.OnlineService.EntityId owner_entity_id = 1;
-	optional sint64 delete_time = 2;
-	optional .D3.OnlineService.EntityId escrow_id = 3;
 }

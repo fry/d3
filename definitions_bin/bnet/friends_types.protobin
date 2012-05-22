@@ -1,0 +1,21 @@
+
+bnet/friends_types.protobnet.protocol.friendsbnet/attribute.protobnet/entity.protobnet/invitation_types.proto"§
+Friend#
+id (2.bnet.protocol.EntityId5
+	attribute (2".bnet.protocol.attribute.Attribute
+role (B
+
+privileges (:0
+attributes_epoch ("­
+FriendInvitation
+first_received (:false
+role (B2h
+friend_invitation$.bnet.protocol.invitation.Invitationg (2'.bnet.protocol.friends.FriendInvitation"¢
+FriendInvitationParams
+target_email (	
+target_battle_tag (	
+inviter_battle_tag (	
+inviter_full_name (	
+invitee_display_name (	
+role (B2p
+friend_params*.bnet.protocol.invitation.InvitationParamsg (2-.bnet.protocol.friends.FriendInvitationParams

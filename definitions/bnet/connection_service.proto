@@ -1,0 +1,58 @@
+package bnet.protocol.connection;
+import "bnet/content_handle.proto";
+import "bnet/rpc.proto";
+
+message ConnectRequest {
+	optional .bnet.protocol.ProcessId client_id = 1;
+	optional .bnet.protocol.connection.BindRequest bind_request = 2;
+}
+message ConnectionMeteringContentHandles {
+	repeated .bnet.protocol.ContentHandle content_handle = 1;
+}
+message ConnectResponse {
+	required .bnet.protocol.ProcessId server_id = 1;
+	optional .bnet.protocol.ProcessId client_id = 2;
+	optional uint32 bind_result = 3;
+	optional .bnet.protocol.connection.BindResponse bind_response = 4;
+	optional .bnet.protocol.connection.ConnectionMeteringContentHandles content_handle_array = 5;
+}
+message BoundService {
+	required fixed32 hash = 1;
+	required uint32 id = 2;
+}
+message BindRequest {
+	repeated fixed32 imported_service_hash = 1;
+	repeated .bnet.protocol.connection.BoundService exported_service = 2;
+}
+message BindResponse {
+	repeated uint32 imported_service_id = 1;
+}
+message EchoRequest {
+	optional fixed64 time = 1;
+	optional bool network_only = 2 [default = false];
+	optional bytes payload = 3;
+}
+message EchoResponse {
+	optional fixed64 time = 1;
+	optional bytes payload = 2;
+}
+message DisconnectRequest {
+	required uint32 error_code = 1;
+}
+message DisconnectNotification {
+	required uint32 error_code = 1;
+	optional string reason = 2;
+}
+message NullRequest {
+}
+message EncryptRequest {
+}
+service ConnectionService {
+	rpc Connect (.bnet.protocol.connection.ConnectRequest) returns (.bnet.protocol.connection.ConnectResponse);
+	rpc Bind (.bnet.protocol.connection.BindRequest) returns (.bnet.protocol.connection.BindResponse);
+	rpc Echo (.bnet.protocol.connection.EchoRequest) returns (.bnet.protocol.connection.EchoResponse);
+	rpc ForceDisconnect (.bnet.protocol.connection.DisconnectNotification) returns (.bnet.protocol.NO_RESPONSE);
+	rpc Null (.bnet.protocol.connection.NullRequest) returns (.bnet.protocol.NO_RESPONSE);
+	rpc Encrypt (.bnet.protocol.connection.EncryptRequest) returns (.bnet.protocol.NoData);
+	rpc RequestDisconnect (.bnet.protocol.connection.DisconnectRequest) returns (.bnet.protocol.NO_RESPONSE);
+}

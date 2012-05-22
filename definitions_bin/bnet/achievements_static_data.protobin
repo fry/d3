@@ -1,0 +1,62 @@
+
+#bnet/achievements_static_data.protobnet.protocol.achievements"'
+	Attribute
+key (	
+value (	"c
+CriteriaModifier
+necessary_condition (
+target (
+operand (
+	comparand ("‰
+CriteriaEvent
+
+id (
+	comparand (:0>
+modifier (2,.bnet.protocol.achievements.CriteriaModifier
+timer_duration ("²
+StaticCategoryDefinition
+
+id (
+	parent_id ((
+ OBSOLETE_featured_achievement_id (
+
+order_hint (9
+
+attributes (2%.bnet.protocol.achievements.Attribute"
+StaticAchievementDefinition
+
+id ("
+superseding_achievement_id (
+category_id (
+minimum_criteria (
+points_value (
+flags (
+
+order_hint (+
+#criteria_shared_with_achievement_id (9
+
+attributes	 (2%.bnet.protocol.achievements.Attribute"¤
+StaticCriteriaDefinition
+criteria_id (
+parent_achievement_id (>
+start_event (2).bnet.protocol.achievements.CriteriaEvent@
+advance_event (2).bnet.protocol.achievements.CriteriaEvent=
+
+fail_event (2).bnet.protocol.achievements.CriteriaEvent
+necessary_quantity (
+
+order_hint (
+evalutation_class (
+flags	 (9
+
+attributes
+ (2%.bnet.protocol.achievements.Attribute"ª
+AchievementFileF
+category (24.bnet.protocol.achievements.StaticCategoryDefinitionL
+achievement (27.bnet.protocol.achievements.StaticAchievementDefinitionF
+criteria (24.bnet.protocol.achievements.StaticCriteriaDefinition9
+
+attributes (2%.bnet.protocol.achievements.Attribute*3
+ModiferTargetType
+SUBJECTêÄÕ›
+OBJECTêÄ½
