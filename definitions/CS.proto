@@ -22,6 +22,7 @@ message ToolTip {
 	required uint64 StackCount = 12;
 	required uint32 NumSockets = 13;
 	required uint32 FilledSockets = 14;
+	required string DisplayName = 15;
 }
 message TooltipList {
 	repeated .D3.CS.ToolTip tooltips = 1;

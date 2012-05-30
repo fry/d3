@@ -1,6 +1,6 @@
 
 CS.protoD3.CSAttributeSerializer.protoItems.protoOnlineService.protoItemCrafting.proto
-Hero.protoAccount.protoProfile.proto"©
+Hero.protoAccount.protoProfile.proto"¾
 ToolTip(
 itemId (2.D3.OnlineService.ItemId
 ItemQualityLevel (
@@ -19,7 +19,8 @@ Durability (	
 StackCount (
 
 NumSockets (
-FilledSockets ("/
+FilledSockets (
+DisplayName (	"/
 TooltipList 
 tooltips (2.D3.CS.ToolTip"e
 

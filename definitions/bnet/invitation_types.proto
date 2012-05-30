@@ -19,6 +19,7 @@ message Suggestion {
 	required .bnet.protocol.EntityId suggestee_id = 3;
 	optional string suggester_name = 4;
 	optional string suggestee_name = 5;
+	optional .bnet.protocol.EntityId suggester_account_id = 6;
 }
 message InvitationParams {
 	optional string invitation_message = 1;

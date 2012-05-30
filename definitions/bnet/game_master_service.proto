@@ -36,11 +36,6 @@ message FindGameResponse {
 	optional fixed64 factory_id = 2;
 	optional bool queued = 3 [default = false];
 }
-message CancelGameEntryRequest {
-	required fixed64 request_id = 1;
-	optional fixed64 factory_id = 2;
-	repeated .bnet.protocol.game_master.Player player = 3;
-}
 message GameEndedNotification {
 	required .bnet.protocol.game_master.GameHandle game_handle = 1;
 	optional uint32 reason = 2 [default = 0];

@@ -10,6 +10,7 @@ message SessionNotification {
 	optional uint32 cais_played_minutes = 4;
 	optional uint32 cais_rested_minutes = 5;
 	optional bool benefactor = 6;
+	optional uint32 billing_minutes_remaining = 7;
 }
 service SessionNotify {
 	rpc Update (.bnet.protocol.session.SessionNotification) returns (.bnet.protocol.NO_RESPONSE);

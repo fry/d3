@@ -18,7 +18,7 @@ difficulty (:0%
 	sno_quest (:-1
 step_uid (:-1
 
-difficulty (:0"¡
+difficulty (:0"¶
 Digest
 version (+
 hero_id (2.D3.OnlineService.EntityId
@@ -39,7 +39,8 @@ gbid_class (
 time_played (:0(
 highest_completed_difficulty (:-1
 create_time (
-last_played_time ("ÿ
+last_played_time (
+delete_time ("ÿ
 DigestUI
 last_played_act (
 highest_unlocked_act (

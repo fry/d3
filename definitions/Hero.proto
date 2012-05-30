@@ -42,6 +42,7 @@ message Digest {
 	optional sint32 highest_completed_difficulty = 16 [default = -1];
 	optional uint32 create_time = 17;
 	optional uint32 last_played_time = 18;
+	optional uint32 delete_time = 19;
 }
 message DigestUI {
 	required sint32 last_played_act = 1;

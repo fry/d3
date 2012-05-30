@@ -39,3 +39,8 @@ message GameHandle {
 	required fixed64 factory_id = 1;
 	required .bnet.protocol.EntityId game_id = 2;
 }
+message CancelGameEntryRequest {
+	required fixed64 request_id = 1;
+	optional fixed64 factory_id = 2;
+	repeated .bnet.protocol.game_master.Player player = 3;
+}

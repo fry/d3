@@ -10,7 +10,7 @@ Invitation
 invitee_name (	
 invitation_message (	
 creation_time (
-expiration_time (*dN"Ç
+expiration_time (*dN"ş
 
 Suggestion+
 
@@ -18,7 +18,8 @@ channel_id (2.bnet.protocol.EntityId-
 suggester_id (2.bnet.protocol.EntityId-
 suggestee_id (2.bnet.protocol.EntityId
 suggester_name (	
-suggestee_name (	"Q
+suggestee_name (	5
+suggester_account_id (2.bnet.protocol.EntityId"Q
 InvitationParams
 invitation_message (	
 expiration_time (:0*dN"°

@@ -16,4 +16,5 @@ message ReportSettleRiskVerdictRequest {
 message DelaySettleRiskVerdictRequest {
 	required .bnet.protocol.exchange.PartitionId partition_id = 1;
 	required uint64 settle_id = 2;
+	optional uint64 delay_in_min = 3;
 }
